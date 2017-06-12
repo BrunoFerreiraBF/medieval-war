@@ -6,7 +6,7 @@ package objects.terrain;
 public class TerrainFactory {
 
 
-    public Terrain makeTerrain(int cells) {
+    public Terrain makeTerrain() {
 
         Terrain ter;
 
