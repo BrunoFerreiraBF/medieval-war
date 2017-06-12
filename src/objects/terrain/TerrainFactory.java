@@ -14,25 +14,40 @@ public class TerrainFactory {
 
 
         for (int i = 0; i <cells ; i++) {
-            int randim= (int) Math.random()TerrainType.values();
+
+            int random = (int) (Math.random() * TerrainType.values().length);
+
+            TerrainType terrainType = TerrainType.values()[random];
+
+            Terrain ter;
 
 
 
 
 
 
+            switch (terrainType) {
 
+                case TALLGRASS:
 
+                    a[i] = new TallGrass(col,row);
+                    break;
+                case MOUNTAIN:
+                    a[i] = new Mountain(col,row);
+                    break;
+                case FOREST:
+                    a[i] = new Forest(col,row);
+                    break;
+                case ROCK:
+                    a[i] = new Rock(col,row);
+                    break;
 
-
-            a[i]=
-
-
-
+                case NOTYPE:
+                    //a[i] = new Rock(x,y);
+                    break;
+            }
 
         }
-
-
         return a;
     }
 
