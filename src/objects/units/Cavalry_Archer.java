@@ -1,0 +1,38 @@
+package objects.units;
+
+import field.Position;
+import objects.Damageable;
+import objects.Damager;
+
+/**
+ * Created by codecadet on 12/06/2017.
+ */
+public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
+
+    private double hp=100;
+
+    public final MercenaryType type = MercenaryType.CAVALRY_ARCHER;
+
+    public final double moveRange=50;
+
+    public final double attackRange= 30;
+
+    public final double damage=20;
+
+    private Position pos;
+
+    public final double accuracy=0.8;
+
+
+
+    public Cavalry_Archer(double x, double y){
+        super (x,y);
+    }
+
+
+
+    @Override
+    public void hit(double damage) {
+
+    }
+}
