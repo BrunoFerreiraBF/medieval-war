@@ -7,6 +7,7 @@ public enum TerrainType {
 
     TALLGRASS,
     MOUNTAIN,
-    NOTYPE,
-    FOREST
+    FOREST,
+    ROCK,
+    NOTYPE
 }
