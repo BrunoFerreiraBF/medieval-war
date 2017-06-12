@@ -11,6 +11,7 @@ public abstract class Terrain {
 
     private Position pos;
 
+    public Terrain(){}
 
     public Terrain(int x,int y){
 

@@ -5,7 +5,6 @@ package objects.terrain;
  */
 public class Mountain extends Terrain {
 
-    public Mountain (int x, int y){
-        super(x,y);
-    }
+
+
 }

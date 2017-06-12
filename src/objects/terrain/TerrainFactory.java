@@ -6,50 +6,66 @@ package objects.terrain;
 public class TerrainFactory {
 
 
+    public Terrain makeTerrain(int cells) {
 
-    public Terrain[] makeTerrain(int cells){
+        Terrain ter;
 
-
-        Terrain[] a= new Terrain[cells];
-
-
-        for (int i = 0; i <cells ; i++) {
-
-            int random = (int) (Math.random() * TerrainType.values().length);
-
-            TerrainType terrainType = TerrainType.values()[random];
-
-            Terrain ter;
+        double a=(int) (Math.random());
 
 
+        if (a>0.75){
+            ter= new Grass();
+        }
 
+        if (a>0.6){
+            ter= new Mountain();
+        }
 
+        if (a>0.45){
+            ter = new Forest();
+        }
 
+        if (a>0.3){
+            ter = new Rock();
+        }
 
-            switch (terrainType) {
+        else {
+            ter = new TallGrass();
+        }
 
-                case TALLGRASS:
+        return ter;
 
-                    a[i] = new TallGrass(col,row);
-                    break;
-                case MOUNTAIN:
-                    a[i] = new Mountain(col,row);
-                    break;
-                case FOREST:
-                    a[i] = new Forest(col,row);
-                    break;
-                case ROCK:
-                    a[i] = new Rock(col,row);
-                    break;
+        /*
 
-                case NOTYPE:
-                    //a[i] = new Rock(x,y);
-                    break;
-            }
+        int random = (int) (Math.random() * TerrainType.values().length);
+
+        TerrainType terrainType = TerrainType.values()[random];
+
+        switch (terrainType) {
+            case TALLGRASS:
+                 ter = new TallGrass();
+                break;
+
+            case MOUNTAIN:
+                ter = new Mountain();
+                break;
+
+            case FOREST:
+                ter = new Forest();
+                break;
+
+            case ROCK:
+                ter = new Rock();
+                break;
+
+            case GRASS:
+                ter = new Grass();
+                break;
+
 
         }
-        return a;
+
+        return ter;
+        */
     }
-
-
 }

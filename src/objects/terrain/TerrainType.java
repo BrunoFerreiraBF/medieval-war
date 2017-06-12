@@ -9,5 +9,5 @@ public enum TerrainType {
     MOUNTAIN,
     FOREST,
     ROCK,
-    NOTYPE
+    GRASS
 }
