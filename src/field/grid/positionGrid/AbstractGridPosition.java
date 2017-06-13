@@ -24,6 +24,7 @@ public abstract class AbstractGridPosition implements GridPosition {
      * @param grid  the grid in which the positionGrid will be displayed
      */
     public AbstractGridPosition(int col, int row, SimpleGfxGrid grid) {
+
         this.col = col;
         this.row = row;
         this.grid = grid;

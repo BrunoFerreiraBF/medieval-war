@@ -9,30 +9,30 @@ import objects.Damager;
  */
 public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
 
-    private double hp=100;
+    private double hp=105;
 
     public final MercenaryType type = MercenaryType.CAVALRY_ARCHER;
 
-    public final double moveRange=50;
+    public final double moveRange = 50;
 
-    public final double attackRange= 30;
+    public final double attackRange =  120;
 
-    public final double damage=20;
+    public final double damage = 27;
 
     private Position pos;
 
-    public final double accuracy=0.8;
+    public final double accuracy = 0.8;
 
 
 
     public Cavalry_Archer(double x, double y){
+
         super (x,y);
+        this.setInitialHp(hp);
     }
 
-
-
-    @Override
-    public void hit(double damage) {
-
+    public Cavalry_Archer(){
+        this.setInitialHp(hp);
     }
+
 }

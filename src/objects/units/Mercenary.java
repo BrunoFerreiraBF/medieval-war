@@ -9,7 +9,7 @@ import objects.Damager;
  */
 public abstract class Mercenary implements Damageable, Damager {
 
-
+    private double initialHp;
     private double hp;
 
     public double damage;
@@ -21,6 +21,10 @@ public abstract class Mercenary implements Damageable, Damager {
     public Mercenary(double x, double y){
 
         pos= new Position(x,y);
+        initialHp=hp;
+    }
+    public Mercenary(){
+        initialHp=hp;
     }
 
     @Override
@@ -33,8 +37,15 @@ public abstract class Mercenary implements Damageable, Damager {
         return hp;
     }
 
+    @Override
+    public void hit(Damageable unit){
+        unit.takeHit(getDamage()*initialHp/getHp());
 
-    public abstract void hit(double damage);
+    }
+
+    public void setInitialHp(double initialHp) {
+        this.initialHp = initialHp;
+    }
 
     public double getDamage(){
 

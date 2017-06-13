@@ -11,7 +11,7 @@ import objects.units.MercenaryType;
  */
 public class Spearman extends Mercenary implements Damageable, Damager {
 
-    private double hp = 100;
+    private double hp = 84;
 
     public final MercenaryType type = MercenaryType.SPEARMAN;
 
@@ -19,7 +19,7 @@ public class Spearman extends Mercenary implements Damageable, Damager {
 
     public final double attackRange = 15;
 
-    public final double damage = 30;
+    public final double damage = 60;
 
     public final double accuracy=0.9;
 
@@ -28,11 +28,10 @@ public class Spearman extends Mercenary implements Damageable, Damager {
 
     public Spearman(double x, double y) {
         super(x, y);
+        this.setInitialHp(hp);
     }
 
-
-    @Override
-    public void hit(double damage) {
-
+    public Spearman(){
+        this.setInitialHp(hp);
     }
 }

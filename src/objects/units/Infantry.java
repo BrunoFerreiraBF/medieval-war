@@ -8,15 +8,15 @@ import objects.Damager;
  */
 public class Infantry extends Mercenary implements Damageable, Damager {
 
-    private double hp=100;
+    private double hp=135;
 
     public final MercenaryType type = MercenaryType.INFANTRY;
 
-    public final double moveRange=50;
+    public final double moveRange=35;
 
     public final double attackRange= 10;
 
-    public final double damage=25;
+    public final double damage=81;
 
     public final double accuracy=0.95;
 
@@ -26,12 +26,11 @@ public class Infantry extends Mercenary implements Damageable, Damager {
     public Infantry(double x, double y){
 
         super(x,y);
+        this.setInitialHp(hp);
     }
 
-
-    @Override
-    public void hit(double damage) {
-
+    public Infantry(){
+        this.setInitialHp(hp);
     }
 
 

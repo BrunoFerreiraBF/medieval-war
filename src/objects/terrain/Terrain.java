@@ -1,18 +1,35 @@
 package objects.terrain;
 
-import field.Position;
+
+import field.grid.positionGrid.GridPosition;
+
 
 /**
  * Created by codecadet on 12/06/2017.
  */
-public class Terrain {
+public abstract class Terrain {
 
     private double damageMultiplier;
 
-    private Position pos;
+    private double accuraryMultiplier ;
 
+    private GridPosition pos;
 
+    private TerrainType terrainType;
 
+   // private Position pos;
 
+    public Terrain(){}
 
+    public Terrain(GridPosition pos){
+        this.pos = pos;
+    }
+
+    public void setDamageMultiplier(double damageMultiplier) {
+        this.damageMultiplier = damageMultiplier;
+    }
+
+    public void setAccuracyMultiplier(double accuracyMultiplier) {
+        this.accuraryMultiplier = accuracyMultiplier;
+    }
 }

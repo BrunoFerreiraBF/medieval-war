@@ -12,14 +12,12 @@ public class Position {
     //private double centerX;
     //private double centerY;
 
-
+    public Position(){}
 
     public Position(double x, double y) {
 
         this.x = x;
         this.y = y;
-
-
     }
 
 

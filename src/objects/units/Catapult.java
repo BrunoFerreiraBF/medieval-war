@@ -9,15 +9,15 @@ import objects.Damager;
  */
 public class Catapult extends Mercenary implements Damageable, Damager {
 
-    private double hp = 40;
+    private double hp = 50;
 
     public final MercenaryType type = MercenaryType.CATAPULT;
 
-    public final double moveRange = 50;
+    public final double moveRange = 20;
 
-    public final double attackRange = 10;
+    public final double attackRange = 200;
 
-    public final double damage = 30;
+    public final double damage = 55;
 
     public final double accuracy=0.70;
 
@@ -26,11 +26,11 @@ public class Catapult extends Mercenary implements Damageable, Damager {
 
     public Catapult(double x, double y) {
         super(x, y);
+        this.setInitialHp(hp);
     }
 
 
-    @Override
-    public void hit(double damage) {
-
+    public Catapult(){
+        this.setInitialHp(hp);
     }
 }

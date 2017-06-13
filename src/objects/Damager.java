@@ -5,7 +5,5 @@ package objects;
  */
 public interface Damager {
 
-    void hit(double damage);
-
-
+    void hit(Damageable unit);
 }

@@ -9,7 +9,7 @@ import objects.Damager;
  */
 public class General extends Mercenary implements Damageable, Damager {
 
-    private double hp=500;
+    private double hp=300;
 
     public final MercenaryType type = MercenaryType.GENERAL;
 
@@ -17,7 +17,7 @@ public class General extends Mercenary implements Damageable, Damager {
 
     public final double attackRange= 10;
 
-    public final double damage=30;
+    public final double damage = 90;
 
     private Position pos;
 
@@ -27,11 +27,10 @@ public class General extends Mercenary implements Damageable, Damager {
 
     public General (double x, double y){
         super (x,y);
+        this.setInitialHp(hp);
     }
 
-
-    @Override
-    public void hit(double damage) {
-
+    public General(){
+        this.setInitialHp(hp);
     }
 }
