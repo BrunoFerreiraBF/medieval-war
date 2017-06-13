@@ -1,7 +1,5 @@
 package simpleGfx.screens;
 
-import sun.font.ScriptRun;
-
 /**
  * Basic implementation of a ScreenManager
  * Works like a stack, last screen is the one shown in the screen
@@ -14,6 +12,10 @@ import sun.font.ScriptRun;
 public class ScreenManager {
 
     private ScreenNode head;
+
+    public void changeScreen() {
+
+    }
 
     public void push(Screen element) {
         if(head == null) {
