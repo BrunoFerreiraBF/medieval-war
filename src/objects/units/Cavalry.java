@@ -30,6 +30,8 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-
+    public Cavalry(){
+        this.setInitialHp(hp);
+    }
 
 }

@@ -30,5 +30,7 @@ public class General extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-
+    public General(){
+        this.setInitialHp(hp);
+    }
 }

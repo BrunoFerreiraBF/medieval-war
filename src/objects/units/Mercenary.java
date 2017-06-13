@@ -21,6 +21,10 @@ public abstract class Mercenary implements Damageable, Damager {
     public Mercenary(double x, double y){
 
         pos= new Position(x,y);
+        initialHp=hp;
+    }
+    public Mercenary(){
+        initialHp=hp;
     }
 
     @Override

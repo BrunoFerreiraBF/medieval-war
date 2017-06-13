@@ -31,5 +31,7 @@ public class Spearman extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-
+    public Spearman(){
+        this.setInitialHp(hp);
+    }
 }

@@ -29,7 +29,9 @@ public class Infantry extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-
+    public Infantry(){
+        this.setInitialHp(hp);
+    }
 
 
 }

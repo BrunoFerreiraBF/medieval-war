@@ -30,5 +30,7 @@ public class Catapult extends Mercenary implements Damageable, Damager {
     }
 
 
-
+    public Catapult(){
+        this.setInitialHp(hp);
+    }
 }

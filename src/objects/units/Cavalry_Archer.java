@@ -31,6 +31,8 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-
+    public Cavalry_Archer(){
+        this.setInitialHp(hp);
+    }
 
 }

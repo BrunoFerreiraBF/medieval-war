@@ -29,6 +29,9 @@ public class Archer extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
+    public Archer(){
+        this.setInitialHp(hp);
+    }
 
 
 
