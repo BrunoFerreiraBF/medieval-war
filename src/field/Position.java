@@ -5,27 +5,27 @@ package field;
  */
 public class Position {
 
-    private double x;
+    private int x;
 
-    private double y;
+    private int y;
 
     //private double centerX;
     //private double centerY;
 
     public Position(){}
 
-    public Position(double x, double y) {
+    public Position(int x, int y) {
 
         this.x = x;
         this.y = y;
     }
 
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 

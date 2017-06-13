@@ -52,5 +52,7 @@ public abstract class Mercenary implements Damageable, Damager {
         return damage;
     }
 
-
+    public Position getPos() {
+        return pos;
+    }
 }

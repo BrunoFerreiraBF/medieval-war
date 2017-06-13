@@ -45,8 +45,12 @@ public class TerrainFactory {
 
         else {
             ter = new TallGrass(grid.makeGridPosition(col,row));
+            System.out.println("made sand");
             return ter;
         }
+
+
+
 
     }
 

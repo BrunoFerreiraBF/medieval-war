@@ -29,7 +29,6 @@ public class Game {
 
     public void init(){
         grid.init();
-        sm= new ScreenManager();
 
     }
 
@@ -42,7 +41,6 @@ public class Game {
     }
 
 
-
     private void turn(){
 
         while (!endTurn){
@@ -53,9 +51,6 @@ public class Game {
         }
     }
 
-    private Damager Buy(){
-        return null;
-    }
 
     public Terrain[][] createTerrains(Grid grid){
 
@@ -68,7 +63,7 @@ public class Game {
 
                     terrains[i][j] = TerrainFactory.makeTerrain(grid,i,j);
 
-                    //System.out.println( terrains[i][j].toString() );
+                    System.out.println( terrains[i][j].toString() );
                 }
             }
 

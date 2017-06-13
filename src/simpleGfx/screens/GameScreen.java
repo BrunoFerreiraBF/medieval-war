@@ -59,7 +59,7 @@ public class GameScreen implements Screen {
             }
             if (units[i] instanceof Archer) {
 
-                picture = new Picture(10,10,"http:/Users/codecadet/Dev/medieval-war/imageslib/charset/RED_Archer_Static.png");
+                picture = new Picture(10,10,"charset/RED_Archer_Static.png");
             }
 
             if (units[i] instanceof Cavalry_Archer) {
@@ -84,7 +84,7 @@ public class GameScreen implements Screen {
 
     private void drawTerrains(Terrain[][] terrains, Grid grid) {
 
-        Picture picture;
+        Picture picture=null;
 
         for (int i = 0; i < terrains.length; i++) {
 
@@ -92,32 +92,32 @@ public class GameScreen implements Screen {
 
                 if (terrains[i][j] instanceof Grass) {
 
-                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/SimpleGrass_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/SimpleGrass_Tile.png");
+
                 }
                 if (terrains[i][j] instanceof Mountain) {
 
-                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Mountain_movable_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Mountain_movable_Tile.png");
+
                 }
                 if (terrains[i][j] instanceof Forest) {
 
-                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Forest_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Forest_Tile.png");
+
                 }
                 if (terrains[i][j] instanceof Rock) {
 
-                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Sand_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Sand_Tile.png");
+
                 }
-                else {
+                if (terrains[i][j] instanceof TallGrass){
                     System.out.println("in");
-                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
                 }
 
                 picture.draw();
             }
-
-
-
         }
-
     }
 
 

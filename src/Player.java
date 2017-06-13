@@ -32,4 +32,15 @@ public class Player {
     public boolean isPlaying() {
         return this.playing;
     }
+
+    private Mercenary[] buy(){
+        Mercenary [] mercenaries= new Mercenary[20];
+
+
+
+
+
+    }
+
+
 }
