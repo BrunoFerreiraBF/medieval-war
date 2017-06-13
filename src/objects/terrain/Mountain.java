@@ -5,6 +5,16 @@ package objects.terrain;
  */
 public class Mountain extends Terrain {
 
+    public Mountain(){
+        this.setDamageMultiplier(1.25);
+        this.setAccuracyMultiplier(1.1);
+    }
 
+    public Mountain(int x, int y) {
+
+        super(x, y);
+        this.setDamageMultiplier(1.25);
+        this.setAccuracyMultiplier(1.1);
+    }
 
 }

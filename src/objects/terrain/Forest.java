@@ -5,6 +5,16 @@ package objects.terrain;
  */
 public class Forest extends Terrain {
 
+    public Forest(){
+        this.setDamageMultiplier(1);
+        this.setAccuracyMultiplier(0.9);
+    }
 
+    public Forest(int x, int y) {
+
+        super(x, y);
+        this.setDamageMultiplier(1);
+        this.setAccuracyMultiplier(0.9);
+    }
 
 }

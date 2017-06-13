@@ -5,5 +5,15 @@ package objects.terrain;
  */
 public class Rock extends Terrain{
 
+    public Rock(){
+        this.setDamageMultiplier(0);
+        this.setAccuracyMultiplier(0);
+    }
 
+    public Rock(int x, int y) {
+
+        super(x, y);
+        this.setDamageMultiplier(0);
+        this.setAccuracyMultiplier(0);
+    }
 }
