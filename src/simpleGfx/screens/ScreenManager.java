@@ -18,12 +18,10 @@ public class ScreenManager {
     }
 
     public void push(Screen element) {
-        if(head == null) {
+        if (head == null) {
             head = new ScreenNode(element);
             return;
         }
-
-        head.push(element);
     }
 
     public Screen pop() {

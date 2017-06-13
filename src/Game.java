@@ -3,19 +3,39 @@ import objects.Damager;
 import objects.terrain.Terrain;
 import objects.terrain.TerrainFactory;
 import objects.units.Mercenary;
+import simpleGfx.SimpleGfxGrid;
+import simpleGfx.screens.ScreenManager;
 
 public class Game {
 
     private boolean endTurn;
 
-    private Mercenary[] player1;
-    private Mercenary[] player2;
+    private ScreenManager sm;
 
-    public Game(){}
+    private SimpleGfxGrid grid;
 
-    public void init(){}
+    private Terrain[] terrains;
 
-    public void start(){}
+    public Game(){
+
+        grid= new SimpleGfxGrid(6,6);
+
+        terrains=createTerrains(grid);
+
+
+    }
+
+    public void init(){
+        grid.init();
+        sm= new ScreenManager();
+
+    }
+
+    public void start(){
+        turn();
+    }
+
+
 
     private void turn(){
 
@@ -46,5 +66,4 @@ public class Game {
         }
         return terrains;
     }
-
 }
