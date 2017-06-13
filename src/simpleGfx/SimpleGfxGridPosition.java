@@ -22,8 +22,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         simpleGfxGrid = grid;
 
-        rectangle = new Rectangle(  grid.columnToX(super.getCol())+ grid.PADDING , grid.rowToY(super.getRow())+grid.PADDING  , grid.getCellSize() , grid.getCellSize());
-
+        rectangle = new Rectangle(  grid.columnToX(super.getCol())+ grid.PADDING , grid.rowToY(super.getRow())+grid.PADDING  , grid.CELLWIDTH, grid.CELLHEIGHT);
 
         show();
 
@@ -41,11 +40,22 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         simpleGfxGrid = grid;
 
-        rectangle = new Rectangle(grid.getX() + col * grid.getCellSize(), grid.getY() + row * grid.getCellSize(), grid.getCellSize(), grid.getCellSize());
+
+
+
+
+
+        // colocar um boneco
+
+
+
+
+
+
+
+        rectangle = new Rectangle(grid.getX() + col * grid.CELLWIDTH, grid.getY() + row * grid.CELLHEIGHT, grid.CELLWIDTH, grid.CELLHEIGHT);
 
         show();
-
-
     }
 
     /**
@@ -53,10 +63,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void show() {
-
-
         rectangle.fill();
-
     }
 
     /**
@@ -66,7 +73,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     public void hide() {
         rectangle.delete();
 
-        //check this later
     }
 
 

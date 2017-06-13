@@ -6,6 +6,4 @@ package objects;
 public interface Damager {
 
     void hit(Damageable unit);
-
-
 }

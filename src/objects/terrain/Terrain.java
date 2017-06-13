@@ -1,6 +1,8 @@
 package objects.terrain;
 
-import field.Position;
+
+import field.grid.positionGrid.GridPosition;
+
 
 /**
  * Created by codecadet on 12/06/2017.
@@ -11,13 +13,16 @@ public abstract class Terrain {
 
     private double accuraryMultiplier ;
 
-    private Position pos;
+    private GridPosition pos;
+
+    private TerrainType terrainType;
+
+   // private Position pos;
 
     public Terrain(){}
 
-    public Terrain(int x,int y){
-
-        pos= new Position(x,y);
+    public Terrain(GridPosition pos){
+        this.pos = pos;
     }
 
     public void setDamageMultiplier(double damageMultiplier) {

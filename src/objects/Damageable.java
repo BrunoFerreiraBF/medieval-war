@@ -9,10 +9,4 @@ public interface Damageable {
     void takeHit(double damage);
 
     double getHp();
-
-
-
-
-
-
 }

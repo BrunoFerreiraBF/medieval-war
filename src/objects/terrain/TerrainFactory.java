@@ -1,12 +1,14 @@
 package objects.terrain;
 
+import field.grid.Grid;
+
 /**
  * Created by codecadet on 12/06/2017.
  */
 public class TerrainFactory {
 
 
-    public Terrain makeTerrain() {
+    public Terrain makeTerrain(Grid grid,int col, int row) {
 
         Terrain ter;
 
@@ -14,58 +16,49 @@ public class TerrainFactory {
 
 
         if (a>0.75){
-            ter= new Grass();
+            ter= new Grass(grid.makeGridPosition(col,row));
         }
 
         if (a>0.6){
-            ter= new Mountain();
+            ter= new Mountain(grid.makeGridPosition(col,row));
         }
 
         if (a>0.45){
-            ter = new Forest();
+            ter = new Forest(grid.makeGridPosition(col,row));
         }
 
         if (a>0.3){
-            ter = new Rock();
+            ter = new Rock(grid.makeGridPosition(col,row));
         }
 
         else {
-            ter = new TallGrass();
+            ter = new TallGrass(grid.makeGridPosition(col,row));
         }
 
         return ter;
 
-        /*
-
-        int random = (int) (Math.random() * TerrainType.values().length);
-
-        TerrainType terrainType = TerrainType.values()[random];
-
-        switch (terrainType) {
-            case TALLGRASS:
-                 ter = new TallGrass();
-                break;
-
-            case MOUNTAIN:
-                ter = new Mountain();
-                break;
-
-            case FOREST:
-                ter = new Forest();
-                break;
-
-            case ROCK:
-                ter = new Rock();
-                break;
-
-            case GRASS:
-                ter = new Grass();
-                break;
-
-
-        }
-
-        return ter;
-        */
     }
+
+
+
+    public Terrain [] createTerrains(){
+
+        Terrain [] terrains= new Terrain[grid.getCol*grid.getRows];
+        for (int a = 0; a <terrains.length; a++) {
+
+            for (int i = 0; i < grid.getCol; i++) {
+
+                for (int j = 0; j <grid ; j++) {
+
+                      terrains[a]= makeTerrain(gird,i,j);
+                }
+            }
+        }
+        return terrains;
+    }
+
+
+
+
+
 }

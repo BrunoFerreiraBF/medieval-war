@@ -9,7 +9,9 @@ public class SimpleGfxGrid implements Grid {
 
     public static final int PADDING = 10;
 
-    public static final int CELLSIZE=20;
+    public static final int CELLWIDTH=120;
+
+    public static final int CELLHEIGHT=160;
 
     private Rectangle rec;
 
@@ -34,8 +36,10 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public void init() {
 
-        rec=new Rectangle(10,10,CELLSIZE*cols,CELLSIZE*rows);
+        rec=new Rectangle(10,10,CELLWIDTH*cols,CELLHEIGHT*rows);
+
         rec.setColor(Color.BLACK);
+
         rec.draw();
 
 
@@ -94,8 +98,12 @@ public class SimpleGfxGrid implements Grid {
      * Obtains the pixel width and height of a grid positionGrid
      * @return
      */
-    public int getCellSize() {
-        return CELLSIZE;
+    public static int getCELLHEIGHT() {
+        return CELLHEIGHT;
+    }
+
+    public static int getCELLWIDTH() {
+        return CELLWIDTH;
     }
 
     /**
@@ -103,11 +111,7 @@ public class SimpleGfxGrid implements Grid {
      */
     @Override
     public GridPosition makeGridPosition() {
-
        return new SimpleGfxGridPosition(this);
-
-
-
     }
 
     /**
@@ -125,8 +129,7 @@ public class SimpleGfxGrid implements Grid {
      * @return y pixel value
      */
     public int rowToY(int row) {
-
-        return CELLSIZE*row;
+        return CELLHEIGHT*row;
     }
 
     /**
@@ -135,6 +138,6 @@ public class SimpleGfxGrid implements Grid {
      * @return x pixel value
      */
     public int columnToX(int column) {
-        return CELLSIZE*column;
+        return CELLWIDTH*column;
     }
 }
