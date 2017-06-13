@@ -7,14 +7,14 @@ public class TerrainFactory {
 
 
 
-    public Terrain[] makeTerrain(int cells){
+    public terrain[] maketerrain(int cells){
 
 
-        Terrain[] a= new Terrain[cells];
+        terrain[] a= new terrain[cells];
 
 
         for (int i = 0; i <cells ; i++) {
-            int randim= (int) Math.random()TerrainType.values();
+            int randim= (int) math.random()terraintype.values();
 
 
 

@@ -1,6 +1,7 @@
 package simpleGfx.screens;
 
 /**
+ * Basic screen skeleton
  * @author João David Silva
  */
 
