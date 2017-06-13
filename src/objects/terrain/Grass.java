@@ -10,6 +10,7 @@ public class Grass extends Terrain {
     public Grass() {
         this.setDamageMultiplier(1);
         this.setAccuracyMultiplier(1);
+
     }
 
     public Grass(GridPosition pos) {

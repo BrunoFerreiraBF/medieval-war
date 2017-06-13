@@ -25,11 +25,23 @@ public abstract class Terrain {
         this.pos = pos;
     }
 
+    public GridPosition getPos() {
+        return pos;
+    }
+
     public void setDamageMultiplier(double damageMultiplier) {
         this.damageMultiplier = damageMultiplier;
     }
 
     public void setAccuracyMultiplier(double accuracyMultiplier) {
         this.accuraryMultiplier = accuracyMultiplier;
+    }
+
+    @Override
+    public String toString() {
+        return "Terrain{" +
+                ", pos=" + pos +
+                ", terrainType=" + terrainType +
+                '}';
     }
 }

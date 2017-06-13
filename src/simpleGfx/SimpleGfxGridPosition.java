@@ -22,7 +22,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         simpleGfxGrid = grid;
 
-        rectangle = new Rectangle(  grid.columnToX(super.getCol())+ grid.PADDING , grid.rowToY(super.getRow())+grid.PADDING  , grid.CELLWIDTH, grid.CELLHEIGHT);
+        rectangle = new Rectangle(grid.columnToX(super.getCol()) + grid.PADDING, grid.rowToY(super.getRow()) + grid.PADDING, grid.CELLWIDTH, grid.CELLHEIGHT);
 
         show();
 
@@ -36,26 +36,18 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      * @param grid Simple graphics grid
      */
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid) {
+
         super(col, row, grid);
 
         simpleGfxGrid = grid;
 
-
-
-
-
-
         // colocar um boneco
 
+        rectangle = new Rectangle(grid.columnToX(super.getCol()) + grid.PADDING, grid.rowToY(super.getRow()) + grid.PADDING, grid.CELLWIDTH, grid.CELLHEIGHT);
 
+        //rectangle = new Rectangle(grid.getX() + col * grid.CELLWIDTH, grid.getY() + row * grid.CELLHEIGHT, grid.CELLWIDTH, grid.CELLHEIGHT);
 
-
-
-
-
-        rectangle = new Rectangle(grid.getX() + col * grid.CELLWIDTH, grid.getY() + row * grid.CELLHEIGHT, grid.CELLWIDTH, grid.CELLHEIGHT);
-
-        show();
+        //show();
     }
 
     /**
@@ -71,7 +63,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void hide() {
-        rectangle.delete();
+         rectangle.delete();
 
     }
 

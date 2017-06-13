@@ -13,14 +13,11 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ScreenManager sm = new ScreenManager();
 
-        sm.init(new MenuScreen());
+        Game g =new Game();
+        g.init();
+        g.start();
 
-        while(true) {
-            sm.start();
-            Thread.sleep(200);
-        }
 
     }
 

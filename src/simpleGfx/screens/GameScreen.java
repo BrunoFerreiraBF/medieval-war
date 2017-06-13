@@ -4,6 +4,7 @@ import field.grid.Grid;
 import objects.terrain.*;
 import objects.units.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import simpleGfx.SimpleGfxGrid;
 
 /**
  * Created by codecadet on 13/06/17.
@@ -22,16 +23,21 @@ public class GameScreen implements Screen {
 
     }
 
+    @Override
+    public void draw() {
 
-    public  void draw(Terrain[] terrains,Mercenary[] units,Grid grid) {
+    }
+
+
+    public void draw(Terrain[][] terrains,Grid grid) {
 
         this.drawTerrains(terrains, grid);
-        drawUnits(units);
+        //drawUnits(units);
     }
 
     private void drawUnits(Mercenary[] units){
 
-        Mercenary picture;
+        Picture picture;
 
         for (int i = 0; i < units.length; i++) {
 
@@ -53,7 +59,7 @@ public class GameScreen implements Screen {
             }
             if (units[i] instanceof Archer) {
 
-                //picture = ArcherImage;
+                picture = new Picture(10,10,"http:/Users/codecadet/Dev/medieval-war/imageslib/charset/RED_Archer_Static.png");
             }
 
             if (units[i] instanceof Cavalry_Archer) {
@@ -76,37 +82,42 @@ public class GameScreen implements Screen {
         }
     }
 
-    private void drawTerrains(Terrain[] terrains, Grid grid) {
+    private void drawTerrains(Terrain[][] terrains, Grid grid) {
 
         Picture picture;
 
         for (int i = 0; i < terrains.length; i++) {
 
+            for (int j = 0; j <terrains.length ; j++) {
 
-            if (terrains[i] instanceof Grass) {
+                if (terrains[i][j] instanceof Grass) {
 
-                // picture = GrassImage;
+                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/SimpleGrass_Tile.png");
+                }
+                if (terrains[i][j] instanceof Mountain) {
+
+                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Mountain_movable_Tile.png");
+                }
+                if (terrains[i][j] instanceof Forest) {
+
+                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Forest_Tile.png");
+                }
+                if (terrains[i][j] instanceof Rock) {
+
+                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Sand_Tile.png");
+                }
+                else {
+                    System.out.println("in");
+                    picture = new Picture(i* SimpleGfxGrid.CELLWIDTH,j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
+                }
+
+                picture.draw();
             }
-            if (terrains[i] instanceof Mountain) {
 
-                 //picture = MountainImage;
-            }
-            if (terrains[i] instanceof Forest) {
 
-                 //picture = ForestImage;
-            }
-            if (terrains[i] instanceof Rock) {
-
-                 //picture = TallGrassImage;
-            }
-            else {
-
-                 //picture = GrassImage;
-            }
-
-            //picture.draw();
 
         }
+
     }
 
 

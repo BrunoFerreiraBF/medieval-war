@@ -9,10 +9,10 @@ import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
 public class Mouse implements MouseHandler {
 
 
-private MouseEvent event(){
-    MouseEvent event=new MouseEvent();
+//private MouseEvent event(){
+  //  MouseEvent event=new MouseEvent();
 
-}
+//}
 
 
     @Override

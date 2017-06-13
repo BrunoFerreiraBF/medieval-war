@@ -9,9 +9,9 @@ public class SimpleGfxGrid implements Grid {
 
     public static final int PADDING = 10;
 
-    public static final int CELLWIDTH=120;
+    public static final int CELLWIDTH=160;
 
-    public static final int CELLHEIGHT=160;
+    public static final int CELLHEIGHT=120;
 
     private Rectangle rec;
 

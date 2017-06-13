@@ -4,6 +4,7 @@ import objects.terrain.Terrain;
 import objects.terrain.TerrainFactory;
 import objects.units.Mercenary;
 import simpleGfx.SimpleGfxGrid;
+import simpleGfx.screens.GameScreen;
 import simpleGfx.screens.ScreenManager;
 
 public class Game {
@@ -14,9 +15,10 @@ public class Game {
 
     private SimpleGfxGrid grid;
 
-    private Terrain[] terrains;
+    private Terrain[][] terrains;
 
     public Game(){
+        sm= new ScreenManager();
 
         grid= new SimpleGfxGrid(6,6);
 
@@ -32,7 +34,11 @@ public class Game {
     }
 
     public void start(){
-        turn();
+
+        GameScreen gm= new GameScreen();
+
+        gm.draw(terrains,grid);
+
     }
 
 
@@ -51,19 +57,21 @@ public class Game {
         return null;
     }
 
-    public Terrain[] createTerrains(Grid grid){
+    public Terrain[][] createTerrains(Grid grid){
 
-        Terrain [] terrains= new Terrain[grid.getCols()*grid.getRows()];
-        for (int a = 0; a <terrains.length; a++) {
+        Terrain [][] terrains= new Terrain[grid.getCols()][grid.getRows()];
+
 
             for (int i = 0; i < grid.getCols(); i++) {
 
                 for (int j = 0; j < grid.getRows() ; j++) {
 
-                    terrains[a] = TerrainFactory.makeTerrain(grid,i,j);
+                    terrains[i][j] = TerrainFactory.makeTerrain(grid,i,j);
+
+                    //System.out.println( terrains[i][j].toString() );
                 }
             }
-        }
+
         return terrains;
     }
 }
