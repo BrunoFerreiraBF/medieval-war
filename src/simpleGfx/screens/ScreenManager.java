@@ -22,7 +22,6 @@ public class ScreenManager {
         }
     }
 
-
     public Screen pop() {
         if(head == null) {
             return null;
