@@ -12,7 +12,7 @@ public class ScreenManager {
     public void start() {
         update();
         draw();
-        remove();
+        //remove();
     }
 
     public void update() {
