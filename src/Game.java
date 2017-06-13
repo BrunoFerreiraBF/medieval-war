@@ -1,5 +1,7 @@
+import field.grid.Grid;
 import objects.Damager;
 import objects.terrain.Terrain;
+import objects.terrain.TerrainFactory;
 import objects.units.Mercenary;
 
 public class Game {
@@ -29,24 +31,20 @@ public class Game {
         return null;
     }
 
-<<<<<<< HEAD
-=======
+    public Terrain[] createTerrains(Grid grid){
 
-    public Terrain[] createTerrains(){
-
-        Terrain [] terrains= new Terrain[grid.getCol*grid.getRows];
+        Terrain [] terrains= new Terrain[grid.getCols()*grid.getRows()];
         for (int a = 0; a <terrains.length; a++) {
 
-            for (int i = 0; i < grid.getCol; i++) {
+            for (int i = 0; i < grid.getCols(); i++) {
 
-                for (int j = 0; j <grid ; j++) {
+                for (int j = 0; j < grid.getRows() ; j++) {
 
-                    terrains[a]= makeTerrain(gird,i,j);
+                    terrains[a] = TerrainFactory.makeTerrain(grid,i,j);
                 }
             }
         }
         return terrains;
     }
 
->>>>>>> 8d92aff88fed191c069b9f2697729f58201bfb74
 }
