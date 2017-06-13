@@ -1,5 +1,9 @@
 import objects.units.Mercenary;
 
+/**
+ * @author João David Silva
+ */
+
 public class Player {
 
     private Mercenary[] units;
