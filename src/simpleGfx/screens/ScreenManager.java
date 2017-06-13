@@ -13,18 +13,14 @@ public class ScreenManager {
 
     private ScreenNode head;
 
-    public void changeScreen() {
-
-    }
-
-    public void push(Screen element) {
+    public void pushScreen(Screen element) {
         if (head == null) {
             head = new ScreenNode(element);
             return;
         }
     }
 
-    public Screen pop() {
+    public Screen popScreen() {
         if(head == null) {
             return null;
         }
@@ -69,6 +65,10 @@ public class ScreenManager {
         }
 
         head.remove(index);
+    }
+
+    public Screen getLastScreen() {
+        return head.getElement(size() - 1);
     }
 
     private class ScreenNode {
