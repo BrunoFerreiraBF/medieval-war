@@ -1,18 +1,12 @@
 import objects.Damager;
 import objects.units.Mercenary;
 
-/**
- * Created by codecadet on 10/06/2017.
- */
 public class Game {
-
 
     private boolean endTurn;
 
     private Mercenary[] player1;
     private Mercenary[] player2;
-
-
 
     public Game(){}
 
@@ -30,12 +24,8 @@ public class Game {
         }
     }
 
-
     private Damager Buy(){
         return null;
     }
-
-
-
 
 }
