@@ -2,6 +2,7 @@ package org.academiadecodigo.medievalwar.mouseHandler;
 
 import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
+
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
@@ -62,6 +63,7 @@ public class Move implements MouseHandler {
 
 
     }
+
 
 
     @Override

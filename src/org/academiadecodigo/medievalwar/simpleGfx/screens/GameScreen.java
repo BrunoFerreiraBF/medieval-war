@@ -111,7 +111,7 @@ public class GameScreen implements Screen {
 
                 }
                 if (terrains[i][j] instanceof TallGrass){
-                    System.out.println("in");
+                    //System.out.println("in");
                     picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
                 }
 

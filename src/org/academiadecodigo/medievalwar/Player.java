@@ -8,12 +8,19 @@ import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 
 public class Player {
 
+    private String name;
+
     private Mercenary[] units;
 
     private int gold = 0;
     private boolean playing;
 
-    public Player() {
+    public Player (String name){
+        this.name=name;
+    }
+
+    public String getName() {
+        return name;
 
     }
 

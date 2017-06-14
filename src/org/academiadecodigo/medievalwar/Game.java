@@ -24,6 +24,8 @@ public class Game {
 
         terrains=createTerrains(grid);
 
+        Player p1=new Player("p1");
+        Player p2=new Player("p2");
 
     }
 
@@ -63,7 +65,7 @@ public class Game {
 
                     terrains[i][j] = TerrainFactory.makeTerrain(grid,i,j);
 
-                    System.out.println( terrains[i][j].toString() );
+                    //System.out.println( terrains[i][j].toString() );
                 }
             }
 

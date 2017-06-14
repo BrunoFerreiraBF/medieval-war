@@ -15,29 +15,28 @@ public class TerrainFactory {
         double a= (Math.random());
 
         if (a>0.75){
-            System.out.println("made grass");
+            //System.out.println("made grass");
             ter= new Grass(grid.makeGridPosition(col,row));
 
             return ter;
-
         }
 
         if (a>0.6){
-            System.out.println("made mountain");
+            //System.out.println("made mountain");
             ter= new Mountain(grid.makeGridPosition(col,row));
 
             return ter;
         }
 
         if (a>0.45){
-            System.out.println("made forest");
+            //System.out.println("made forest");
             ter = new Forest(grid.makeGridPosition(col,row));
 
             return ter;
         }
 
         if (a>0.3){
-            System.out.println("made rock");
+            //System.out.println("made rock");
             ter = new Rock(grid.makeGridPosition(col,row));
 
             return ter;
@@ -45,7 +44,7 @@ public class TerrainFactory {
 
         else {
             ter = new TallGrass(grid.makeGridPosition(col,row));
-            System.out.println("made sand");
+            //System.out.println("made sand");
             return ter;
         }
 

@@ -2,11 +2,14 @@ package org.academiadecodigo.medievalwar.objects.units;
 
 import org.academiadecodigo.medievalwar.objects.Damageable;
 import org.academiadecodigo.medievalwar.objects.Damager;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created by codecadet on 12/06/2017.
  */
 public class Infantry extends Mercenary implements Damageable, Damager {
+
+    private Picture unitPic;
 
     private double hp=135;
 

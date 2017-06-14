@@ -3,13 +3,17 @@ package org.academiadecodigo.medievalwar.objects.units;
 import org.academiadecodigo.medievalwar.field.Position;
 import org.academiadecodigo.medievalwar.objects.Damageable;
 import org.academiadecodigo.medievalwar.objects.Damager;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Created by codecadet on 10/06/2017.
  */
 public abstract class Mercenary implements Damageable, Damager {
 
+    private Picture unitPic;
+
     private double initialHp;
+
     private double hp;
 
     public double damage;
@@ -24,6 +28,7 @@ public abstract class Mercenary implements Damageable, Damager {
 
         pos= new Position(x,y);
         initialHp=hp;
+
     }
     public Mercenary(){
         initialHp=hp;
@@ -58,6 +63,11 @@ public abstract class Mercenary implements Damageable, Damager {
     public double getDamage(){
 
         return damage;
+    }
+
+
+    public void setUnitPic(Picture unitPic) {
+        this.unitPic = unitPic;
     }
 
     public Position getPos() {
