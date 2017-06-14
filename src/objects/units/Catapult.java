@@ -29,6 +29,16 @@ public class Catapult extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
+    @Override
+    public double getMoveRange() {
+        return moveRange;
+
+    }
+
+    public double getAttackRange() {
+        return attackRange;
+    }
+
 
     public Catapult(){
         this.setInitialHp(hp);

@@ -30,6 +30,16 @@ public class General extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
+    @Override
+    public double getMoveRange() {
+        return moveRange;
+
+    }
+
+    public double getAttackRange() {
+        return attackRange;
+    }
+
     public General(){
         this.setInitialHp(hp);
     }

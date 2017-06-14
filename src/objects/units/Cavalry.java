@@ -30,6 +30,16 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
+    @Override
+    public double getMoveRange() {
+        return moveRange;
+
+    }
+
+    public double getAttackRange() {
+        return attackRange;
+    }
+
     public Cavalry(){
         this.setInitialHp(hp);
     }

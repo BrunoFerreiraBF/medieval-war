@@ -31,6 +31,16 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
+    @Override
+    public double getMoveRange() {
+        return moveRange;
+
+    }
+
+    public double getAttackRange() {
+        return attackRange;
+    }
+
     public Cavalry_Archer(){
         this.setInitialHp(hp);
     }
