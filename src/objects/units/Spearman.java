@@ -26,7 +26,7 @@ public class Spearman extends Mercenary implements Damageable, Damager {
     private Position pos;
 
 
-    public Spearman(double x, double y) {
+    public Spearman(int x, int y) {
         super(x, y);
         this.setInitialHp(hp);
     }

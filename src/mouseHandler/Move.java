@@ -16,16 +16,15 @@ public class Move implements MouseHandler {
 
     private Mercenary mercenary;
 
-    public Move ( Picture pic, Mercenary mercenary){
+    public Move(Picture pic, Mercenary mercenary) {
 
-        this.pic=pic;
-        this.mercenary=mercenary;
+        this.pic = pic;
+        this.mercenary = mercenary;
         Mouse m = new Mouse(this);
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         m.addEventListener(MouseEventType.MOUSE_MOVED);
 
     }
-
 
 
     @Override
@@ -35,14 +34,19 @@ public class Move implements MouseHandler {
         int currentX = pic.getX();
         int currentY = pic.getY();
 
-        //int centerX = currentX + currentY / 2;
+        int centerX = currentX + pic.getWidth() / 2;
+        int centerY = currentY + pic.getHeight() / 2;
 
-        int mouseX = (int)mouseEvent.getX();
-        int mouseY = (int)(mouseEvent.getY()) - 23;
+        int mouseX = (int) mouseEvent.getX();
+        int mouseY = (int) (mouseEvent.getY()) - 23;
 
-        if ()
+        double distance = (int) (Math.sqrt(Math.pow(Math.abs(mouseX - currentX), 2) + Math.pow(Math.abs(mouseY - currentY), 2)));
 
-        pic.translate(mouseX - currentX, mouseY - currentY);
+        if (distance > mercenary.getMoveRange()) {
+            return;
+        }
+
+        pic.translate(mouseX - centerX, mouseY - centerY);
     }
 
     @Override

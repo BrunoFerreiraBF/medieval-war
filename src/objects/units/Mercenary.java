@@ -14,11 +14,13 @@ public abstract class Mercenary implements Damageable, Damager {
 
     public double damage;
 
+    private double moveRange;
+
     private MercenaryType type;
 
     private Position pos;
 
-    public Mercenary(double x, double y){
+    public Mercenary(int x, int y){
 
         pos= new Position(x,y);
         initialHp=hp;
@@ -41,6 +43,11 @@ public abstract class Mercenary implements Damageable, Damager {
     public void hit(Damageable unit){
         unit.takeHit(getDamage()*initialHp/getHp());
 
+    }
+
+
+    public double getMoveRange() {
+        return moveRange;
     }
 
     public void setInitialHp(double initialHp) {
