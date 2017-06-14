@@ -40,7 +40,7 @@ public class Move implements MouseHandler {
         int mouseX = (int)mouseEvent.getX();
         int mouseY = (int)(mouseEvent.getY()) - 23;
 
-        if ()
+
 
         pic.translate(mouseX - currentX, mouseY - currentY);
     }

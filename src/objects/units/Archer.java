@@ -22,7 +22,7 @@ public class Archer extends Mercenary implements Damageable, Damager {
     public final double accuracy=0.8;
 
 
-    public Archer(double x, double y){
+    public Archer(int x, int y){
 
         super (x,y);
 

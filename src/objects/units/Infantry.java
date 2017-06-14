@@ -23,7 +23,7 @@ public class Infantry extends Mercenary implements Damageable, Damager {
 
 
 
-    public Infantry(double x, double y){
+    public Infantry(int x, int y){
 
         super(x,y);
         this.setInitialHp(hp);

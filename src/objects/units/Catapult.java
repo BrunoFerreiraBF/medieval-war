@@ -24,7 +24,7 @@ public class Catapult extends Mercenary implements Damageable, Damager {
     private Position pos;
 
 
-    public Catapult(double x, double y) {
+    public Catapult(int x, int y) {
         super(x, y);
         this.setInitialHp(hp);
     }

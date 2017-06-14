@@ -18,7 +18,7 @@ public abstract class Mercenary implements Damageable, Damager {
 
     private Position pos;
 
-    public Mercenary(double x, double y){
+    public Mercenary(int x, int y){
 
         pos= new Position(x,y);
         initialHp=hp;
