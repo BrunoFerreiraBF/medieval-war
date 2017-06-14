@@ -18,7 +18,7 @@ public class Player {
     }
 
     public void changePlayingState() {
-        if(playing) {
+        if (playing) {
             playing = false;
         } else {
             playing = true;
@@ -33,13 +33,12 @@ public class Player {
         return this.playing;
     }
 
-    private Mercenary[] buy(){
-        Mercenary [] mercenaries= new Mercenary[20];
+    private Mercenary[] buy() {
+        Mercenary[] mercenaries = new Mercenary[20];
 
 
+        return null;
 
-
-return null;
     }
 
 

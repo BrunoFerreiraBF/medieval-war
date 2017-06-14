@@ -42,6 +42,7 @@ public class Move implements MouseHandler {
 
         double distance = (int) (Math.sqrt(Math.pow(Math.abs(mouseX - currentX), 2) + Math.pow(Math.abs(mouseY - currentY), 2)));
 
+
         if (distance > mercenary.getMoveRange()) {
             return;
         }
