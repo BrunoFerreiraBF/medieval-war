@@ -52,8 +52,7 @@ public abstract class Mercenary implements Damageable, Damager {
 
 
     public double getMoveRange() {
-        return this.moveRange;
-
+        return moveRange;
     }
 
     public void setInitialHp(double initialHp) {
