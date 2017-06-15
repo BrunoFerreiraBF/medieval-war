@@ -23,7 +23,7 @@ public class Archer extends Mercenary implements Damageable, Damager {
 
     public final double accuracy=0.8;
 
-    private int cost=112;
+    private static int cost=112;
 
 
     public Archer(int x, int y){
@@ -52,6 +52,7 @@ public class Archer extends Mercenary implements Damageable, Damager {
         return unitPic;
     }
 
-
-
+    public static int getCost() {
+        return cost;
+    }
 }

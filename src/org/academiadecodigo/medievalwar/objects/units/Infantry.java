@@ -23,7 +23,7 @@ public class Infantry extends Mercenary implements Damageable, Damager {
 
     public final double accuracy=0.95;
 
-    private int cost=60;
+    private  static int cost=60;
 
 
     public Infantry(int x, int y){
@@ -44,6 +44,9 @@ public class Infantry extends Mercenary implements Damageable, Damager {
 
     public Infantry(){
         this.setInitialHp(hp);
+    }
+    public static int getCost() {
+        return cost;
     }
 
 

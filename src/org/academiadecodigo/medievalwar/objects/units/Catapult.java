@@ -25,6 +25,7 @@ public class Catapult extends Mercenary implements Damageable, Damager {
 
     private Position pos;
 
+    private static int cost=80;
 
     public Catapult(int x, int y) {
         super(x, y);
@@ -41,8 +42,13 @@ public class Catapult extends Mercenary implements Damageable, Damager {
         return attackRange;
     }
 
-
     public Catapult(){
         this.setInitialHp(hp);
+    }
+
+
+
+    public static int getCost() {
+        return cost;
     }
 }

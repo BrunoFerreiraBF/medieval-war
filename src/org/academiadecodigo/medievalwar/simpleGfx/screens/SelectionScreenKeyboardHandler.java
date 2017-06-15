@@ -49,26 +49,44 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         KeyboardEvent onePressedEvent = new KeyboardEvent();
         onePressedEvent.setKey(KeyboardEvent.KEY_1);
         onePressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent oneReleasedEvent = new KeyboardEvent();
+        oneReleasedEvent.setKey(KeyboardEvent.KEY_1);
+        oneReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent twoPressedEvent = new KeyboardEvent();
         twoPressedEvent.setKey(KeyboardEvent.KEY_2);
         twoPressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent twoReleasedEvent = new KeyboardEvent();
+        twoReleasedEvent.setKey(KeyboardEvent.KEY_2);
+        twoReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent threePressedEvent = new KeyboardEvent();
         threePressedEvent.setKey(KeyboardEvent.KEY_3);
         threePressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent threeReleasedEvent = new KeyboardEvent();
+        threeReleasedEvent.setKey(KeyboardEvent.KEY_3);
+        threeReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent fourPressedEvent = new KeyboardEvent();
         fourPressedEvent.setKey(KeyboardEvent.KEY_4);
         fourPressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent fourReleasedEvent = new KeyboardEvent();
+        fourReleasedEvent.setKey(KeyboardEvent.KEY_4);
+        fourReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent fivePressedEvent = new KeyboardEvent();
         fivePressedEvent.setKey(KeyboardEvent.KEY_5);
         fivePressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent fiveReleasedEvent = new KeyboardEvent();
+        fiveReleasedEvent.setKey(KeyboardEvent.KEY_5);
+        fiveReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         KeyboardEvent sixPressedEvent = new KeyboardEvent();
         sixPressedEvent.setKey(KeyboardEvent.KEY_6);
         sixPressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        KeyboardEvent sixReleasedEvent = new KeyboardEvent();
+        sixReleasedEvent.setKey(KeyboardEvent.KEY_6);
+        sixReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
         k.addEventListener(onePressedEvent);
         k.addEventListener(twoPressedEvent);
@@ -76,6 +94,13 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         k.addEventListener(fourPressedEvent);
         k.addEventListener(fivePressedEvent);
         k.addEventListener(sixPressedEvent);
+
+        k.addEventListener(oneReleasedEvent);
+        k.addEventListener(twoReleasedEvent);
+        k.addEventListener(threeReleasedEvent);
+        k.addEventListener(fourReleasedEvent);
+        k.addEventListener(fiveReleasedEvent);
+        k.addEventListener(sixReleasedEvent);
 
     }
 
@@ -86,7 +111,7 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
 
-                System.out.println("1 is pressed");
+                //System.out.println("1 is pressed");
                 key1=true;
                 break;
 
@@ -121,6 +146,7 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
                 key1=false;
+               // System.out.println("1 is unpressed");
                 break;
 
             case KeyboardEvent.KEY_2:

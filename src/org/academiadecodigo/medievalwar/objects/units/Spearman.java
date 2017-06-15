@@ -22,10 +22,10 @@ public class Spearman extends Mercenary implements Damageable, Damager {
 
     public final double damage = 60;
 
-    public final double accuracy=0.9;
+    public final double accuracy = 0.9;
 
     private Position pos;
-
+    private static int cost = 65;
 
     public Spearman(int x, int y) {
         super(x, y);
@@ -42,7 +42,10 @@ public class Spearman extends Mercenary implements Damageable, Damager {
         return attackRange;
     }
 
-    public Spearman(){
+    public Spearman() {
         this.setInitialHp(hp);
+    }
+    public static int getCost() {
+        return cost;
     }
 }

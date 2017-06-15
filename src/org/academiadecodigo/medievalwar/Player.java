@@ -19,6 +19,8 @@ public class Player {
         this.name=name;
         this.units = new Mercenary[20];
 
+        this.gold=100;
+
     }
 
     public String getName() {
@@ -58,7 +60,7 @@ public class Player {
 
     public void spendGold(int mercenaryCost){
 
-        this.gold-=mercenaryCost;
+        this.gold= gold-mercenaryCost;
 
     }
 

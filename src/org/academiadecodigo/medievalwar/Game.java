@@ -44,7 +44,7 @@ public class Game {
     public void start(){
 
         GameScreen gm= new GameScreen();
-        SelectionScreen ss=new SelectionScreen(p1);
+        SelectionScreen ss=new SelectionScreen(p1,p2);
 
         ss.init(terrains,grid);
 

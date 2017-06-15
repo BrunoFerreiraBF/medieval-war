@@ -25,7 +25,7 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
     private Position pos;
 
     public final double accuracy = 0.8;
-
+    private static int cost=94;
 
 
     public Cavalry_Archer(int x, int y){

@@ -24,9 +24,9 @@ public abstract class Mercenary implements Damageable, Damager {
 
     private Position pos;
 
-    private int cost;
+    private static int cost;
 
-    public int getCost() {
+    public static int getCost() {
         return cost;
     }
 
