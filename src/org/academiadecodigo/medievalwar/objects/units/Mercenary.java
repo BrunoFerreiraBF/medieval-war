@@ -68,8 +68,9 @@ public abstract class Mercenary implements Damageable, Damager {
     }
 
 
-    public void setUnitPic(Picture unitPic) {
+    public Picture setUnitPic(Picture unitPic) {
         this.unitPic = unitPic;
+        return unitPic;
     }
 
     public Position getPos() {

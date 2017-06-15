@@ -56,5 +56,10 @@ public class Player {
         return this.playing;
     }
 
+    public void spendGold(int mercenaryCost){
+
+        this.gold-=mercenaryCost;
+
+    }
 
 }

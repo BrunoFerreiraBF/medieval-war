@@ -85,6 +85,8 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_1:
+
+                System.out.println("1 is pressed");
                 key1=true;
                 break;
 

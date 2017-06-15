@@ -6,6 +6,7 @@ import org.academiadecodigo.medievalwar.objects.terrain.TerrainFactory;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.medievalwar.simpleGfx.screens.GameScreen;
 import org.academiadecodigo.medievalwar.simpleGfx.screens.ScreenManager;
+import org.academiadecodigo.medievalwar.simpleGfx.screens.SelectionScreen;
 
 public class Game {
 
@@ -17,15 +18,21 @@ public class Game {
 
     private Terrain[][] terrains;
 
+    private Player p1;
+
+    private Player p2;
+
+
     public Game(){
+
         sm= new ScreenManager();
 
         grid= new SimpleGfxGrid(6,6);
 
         terrains=createTerrains(grid);
 
-        Player p1=new Player("p1");
-        Player p2=new Player("p2");
+        p1=new Player("p1");
+        p2=new Player("p2");
 
     }
 
@@ -37,8 +44,12 @@ public class Game {
     public void start(){
 
         GameScreen gm= new GameScreen();
+        SelectionScreen ss=new SelectionScreen(p1);
 
-        gm.draw(terrains,grid);
+        ss.init(terrains,grid);
+
+
+        //gm.init(terrains);
 
 
 

@@ -28,7 +28,7 @@ public class GameScreen implements Screen {
         this.p2units = p2units;
         this.grid = grid;
 
-        drawTerrains(terrains, grid);
+        //drawTerrains(terrains, grid);  // IMPORTANTE
 
     }
 
@@ -45,19 +45,6 @@ public class GameScreen implements Screen {
     }
 
 
-   /* public void draw(Terrain[][] terrains, Grid grid, Mercenary[] units) {
-
-        this.terrains = terrains;
-
-        this.units = units;
-
-        drawTerrains(terrains, grid);
-
-        drawUnits(units);
-
-
-    }
-    */
 
     private void drawUnits(Mercenary[] units) {
 
@@ -69,7 +56,7 @@ public class GameScreen implements Screen {
             picture.draw();
         }
     }
-
+/*
 
     private void drawTerrains(Terrain[][] terrains, Grid grid) {
 
@@ -99,7 +86,7 @@ public class GameScreen implements Screen {
                     picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Sand_Tile.png");
 
                 }
-                if (terrains[i][j] instanceof TallGrass) {
+                if (terrains[i][j] instanceof Sand) {
                     //System.out.println("in");
                     picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
                 }
@@ -108,7 +95,7 @@ public class GameScreen implements Screen {
             }
         }
     }
-
+*/
 
     //@Override
     public void update() {

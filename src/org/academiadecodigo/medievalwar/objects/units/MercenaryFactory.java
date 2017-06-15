@@ -10,75 +10,58 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class MercenaryFactory {
 
 
-    public static Mercenary makeMercenary(int x, int y, Mercenary unit, Player player){
+    public static Mercenary makeMercenary(int x, int y, Mercenary unit, Player player) {
 
-        if( player.getName()=="p1"){
+        //if( player.getName()=="p1"){
 
-            if (unit instanceof Archer) {
-                ((Archer) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+        if (unit instanceof Archer) {
+            //System.out.println("in create Archer image");
 
-            if (unit instanceof Catapult) {
-                ((Catapult) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
 
-            if (unit instanceof Cavalry) {
-                ((Cavalry) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
-
-            if (unit instanceof Cavalry_Archer) {
-                ((Cavalry_Archer) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
-
-            if (unit instanceof General) {
-                ((General) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
-
-            if (unit instanceof Infantry) {
-                ((Infantry) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
-
-            if (unit instanceof Spearman) {
-                ((Spearman) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+            pic.draw();
 
         }
-        if (player.getName()=="p2") {
-            if (unit instanceof Archer) {
-                ((Archer) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
 
-            if (unit instanceof Catapult) {
-                ((Catapult) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+        if (unit instanceof Catapult) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
 
-            if (unit instanceof Cavalry) {
-                ((Cavalry) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+            pic.draw();
+        }
 
-            if (unit instanceof Cavalry_Archer) {
-                ((Cavalry_Archer) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+        if (unit instanceof Cavalry) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
 
-            if (unit instanceof General) {
-                ((General) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+            pic.draw();
+        }
 
-            if (unit instanceof Infantry) {
-                ((Infantry) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+        if (unit instanceof Cavalry_Archer) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
 
-            if (unit instanceof Spearman) {
-                ((Spearman) unit).setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
-            }
+            pic.draw();
+        }
 
+        if (unit instanceof General) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
+
+            pic.draw();
+        }
+
+        if (unit instanceof Infantry) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
+
+            pic.draw();
+        }
+
+        if (unit instanceof Spearman) {
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
+
+            pic.draw();
         }
 
 
         return unit;
     }
-
-
 
 
 }

@@ -45,7 +45,8 @@ public class Archer extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-    public void setUnitPic(Picture unitPic) {
+    public Picture setUnitPic(Picture unitPic) {
         this.unitPic = unitPic;
+        return unitPic;
     }
 }

@@ -1,5 +1,9 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
+import org.academiadecodigo.medievalwar.field.grid.Grid;
+import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
+import org.academiadecodigo.medievalwar.objects.units.Mercenary;
+
 /**
  * Basic implementation of a ScreenManager
  * Works like a stack, last screen is the one shown in the screen
@@ -10,6 +14,24 @@ package org.academiadecodigo.medievalwar.simpleGfx.screens;
  */
 
 public class ScreenManager {
+
+    private Terrain[][] terrains;
+
+    private Mercenary[] p1units;
+
+    private Mercenary[] p2units;
+
+    private Grid grid;
+
+    public ScreenManager() {
+    }
+
+    public ScreenManager(Terrain[][] terrains, Mercenary[] p1units, Mercenary[] p2units, Grid grid) {
+        this.terrains = terrains;
+        this.p1units = p1units;
+        this.p2units = p2units;
+        this.grid = grid;
+    }
 
     private ScreenNode head;
 
@@ -148,4 +170,12 @@ public class ScreenManager {
             next.remove(index - 1);
         }
     }
+
+
+
+
+
+
+
+
 }
