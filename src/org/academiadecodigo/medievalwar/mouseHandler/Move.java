@@ -63,8 +63,8 @@ public class Move implements MouseHandler {
 
         for (int i = 0; i < mercenaries.length; i++) {
 
-            if (mercenaries[i].getPos().getX() < mouseX && mouseX < mercenaries[i].getUnitPic().getWidth()
-                    && mercenaries[i].getPos().getY() < mouseY && mouseY < mercenaries[i].getUnitPic().getHeight()) {
+            if (mercenaries[i].getPos().getX() < mouseX && mouseX < mercenaries[i].getPos().getX()+mercenaries[i].getUnitPic().getWidth()
+                    && mercenaries[i].getPos().getY() < mouseY && mouseY <mercenaries[i].getPos().getY()+ mercenaries[i].getUnitPic().getHeight()) {
 
                 return mercenaries[i];
 
@@ -98,7 +98,7 @@ public class Move implements MouseHandler {
         double distance = (int) (Math.sqrt(Math.pow(Math.abs(mouseX - currentX), 2) + Math.pow(Math.abs(mouseY - currentY), 2)));
 
 
-        if (distance > mercenary.getMoveRange()) {
+        if (distance > verifyMercenary(mouseX, mouseY).getMoveRange()) {
             return;
 
         }
