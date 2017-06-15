@@ -50,6 +50,9 @@ public abstract class Mercenary implements Damageable, Damager {
 
     }
 
+    public Picture getUnitPic() {
+        return unitPic;
+    }
 
     public double getMoveRange() {
         return moveRange;

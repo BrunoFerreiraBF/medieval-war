@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class MercenaryFactory {
 
 
-    public Damageable makeMercenary(int x, int y, Damageable unit, Player player){
+    public static Mercenary makeMercenary(int x, int y, Mercenary unit, Player player){
 
         if( player.getName()=="p1"){
 

@@ -10,25 +10,26 @@ public interface Screen {
     /**
      * Initialize every thing in the game
      */
-    void init();
+    //void init();
 
     /**
      * Start the loop to draw the screen
      */
-    void start();
+    //void start();
 
     /**
      * Draw onto the screen
      */
-    void draw();
+    //void draw();
 
     /**
      * Update movement on the screen
      */
-    void update();
+    //void update();
 
     /**
      * Remove entities when Screen is pop'ed off the stack
      */
-    void remove();
+    //void remove();
+
 }

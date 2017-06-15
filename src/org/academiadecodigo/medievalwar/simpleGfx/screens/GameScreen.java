@@ -11,108 +11,97 @@ import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
  */
 public class GameScreen implements Screen {
 
+    private Terrain[][] terrains;
+
+    private Mercenary[] p1units;
+
+    private Mercenary[] p2units;
+
+    private Grid grid;
 
 
-    @Override
-    public void init() {
+    //@Override
+    public void init(Terrain[][] terrains, Grid grid, Mercenary[] p1units, Mercenary[] p2units) {
+
+        this.terrains = terrains;
+        this.p1units = p1units;
+        this.p2units = p2units;
+        this.grid = grid;
+
+        drawTerrains(terrains, grid);
 
     }
 
-    @Override
+    //@Override
     public void start() {
-
+        draw();
     }
 
-    @Override
+    //@Override
     public void draw() {
 
+        drawUnits(p1units);
+        drawUnits(p2units);
     }
 
 
-    public void draw(Terrain[][] terrains,Grid grid) {
+   /* public void draw(Terrain[][] terrains, Grid grid, Mercenary[] units) {
 
-        this.drawTerrains(terrains, grid);
-        //drawUnits(units);
+        this.terrains = terrains;
+
+        this.units = units;
+
+        drawTerrains(terrains, grid);
+
+        drawUnits(units);
+
+
     }
+    */
 
-    private void drawUnits(Mercenary[] units){
+    private void drawUnits(Mercenary[] units) {
 
         Picture picture;
 
         for (int i = 0; i < units.length; i++) {
 
-            if (units[i] instanceof General) {
-
-                //picture = GeneralImage;
-            }
-            if (units[i] instanceof Spearman) {
-
-                //picture = SpearmanImage;
-            }
-            if (units[i] instanceof Infantry) {
-
-                //picture = InfantryImage;
-            }
-            if (units[i] instanceof Cavalry) {
-
-                //picture = CavalryImage;
-            }
-            if (units[i] instanceof Archer) {
-
-                picture = new Picture(10,10,"charset/RED_Archer_Static.png");
-            }
-
-            if (units[i] instanceof Cavalry_Archer) {
-
-                //picture = Cavalry_ArcherImage;
-            }
-
-            if (units[i] instanceof Cavalry) {
-
-                //picture = CavalryImage;
-            }
-
-            else {
-
-                //picture = CatapultImage;
-            }
-
-            //picture.draw();
-
+            picture = units[i].getUnitPic();
+            picture.draw();
         }
     }
 
+
     private void drawTerrains(Terrain[][] terrains, Grid grid) {
 
-        Picture picture=null;
+        Picture picture = null;
 
         for (int i = 0; i < terrains.length; i++) {
 
-            for (int j = 0; j <terrains.length ; j++) {
+            for (int j = 0; j < terrains.length; j++) {
 
                 if (terrains[i][j] instanceof Grass) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/SimpleGrass_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/SimpleGrass_Tile.png");
 
                 }
                 if (terrains[i][j] instanceof Mountain) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Mountain_movable_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Mountain_movable_Tile.png");
 
                 }
                 if (terrains[i][j] instanceof Forest) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Forest_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Forest_Tile.png");
 
                 }
                 if (terrains[i][j] instanceof Rock) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Sand_Tile.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Sand_Tile.png");
 
                 }
-                if (terrains[i][j] instanceof TallGrass){
+                if (terrains[i][j] instanceof TallGrass) {
                     //System.out.println("in");
-                    picture = new Picture(SimpleGfxGrid.PADDING+i* SimpleGfxGrid.CELLWIDTH,SimpleGfxGrid.PADDING+j*SimpleGfxGrid.CELLHEIGHT,"chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipset_tiles/Grass_to_Sand_Tiles_TOP-LEFT.png");
                 }
 
                 picture.draw();
@@ -121,16 +110,26 @@ public class GameScreen implements Screen {
     }
 
 
-
-
-
-    @Override
+    //@Override
     public void update() {
 
+        remove(p1units);
+
+        remove(p2units);
+
+        draw();
     }
 
-    @Override
-    public void remove() {
+    //@Override
+    public void remove(Mercenary[] units) {
+
+        Picture picture;
+
+        for (int i = 0; i < units.length; i++) {
+
+            picture = units[i].getUnitPic();
+            picture.delete();
+        }
 
     }
 }
