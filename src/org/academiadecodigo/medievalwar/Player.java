@@ -17,11 +17,21 @@ public class Player {
 
     public Player (String name){
         this.name=name;
+        this.units = new Mercenary[20];
+
     }
 
     public String getName() {
         return name;
 
+    }
+
+    public void setUnits(Mercenary[] units) {
+        this.units = units;
+    }
+
+    public Mercenary[] getUnits() {
+        return units;
     }
 
     public void init() {
@@ -44,14 +54,6 @@ public class Player {
 
     public boolean isPlaying() {
         return this.playing;
-    }
-
-    private Mercenary[] buy() {
-        Mercenary[] mercenaries = new Mercenary[20];
-
-
-        return null;
-
     }
 
 
