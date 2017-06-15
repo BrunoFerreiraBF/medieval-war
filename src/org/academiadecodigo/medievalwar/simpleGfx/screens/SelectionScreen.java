@@ -53,7 +53,7 @@ public class SelectionScreen implements MouseHandler{
                 if (keyboardHandler.isKey1()) {
 
                     mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Archer(mouseX, mouseY), player);
-                    player.
+                    player.spendGold(mercenaries[i].getCost());
 
                 }
 

@@ -24,6 +24,12 @@ public abstract class Mercenary implements Damageable, Damager {
 
     private Position pos;
 
+    private int cost;
+
+    public int getCost() {
+        return cost;
+    }
+
     public Mercenary(int x, int y){
 
         pos= new Position(x,y);
@@ -66,7 +72,6 @@ public abstract class Mercenary implements Damageable, Damager {
 
         return damage;
     }
-
 
     public Picture setUnitPic(Picture unitPic) {
         this.unitPic = unitPic;
