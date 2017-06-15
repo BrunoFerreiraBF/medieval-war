@@ -23,7 +23,7 @@ public class Infantry extends Mercenary implements Damageable, Damager {
 
     public final double accuracy=0.95;
 
-
+    private int cost=60;
 
 
     public Infantry(int x, int y){
