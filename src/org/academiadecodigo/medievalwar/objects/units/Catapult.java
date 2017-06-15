@@ -28,7 +28,7 @@ public class Catapult extends Mercenary implements Damageable, Damager {
     private static int cost=80;
 
     public Catapult(int x, int y) {
-        super(x, y);
+        super(x, y,MercenaryType.CATAPULT);
         this.setInitialHp(hp);
     }
 

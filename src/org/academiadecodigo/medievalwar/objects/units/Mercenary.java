@@ -30,19 +30,20 @@ public abstract class Mercenary implements Damageable, Damager {
         return cost;
     }
 
-    public Mercenary(int x, int y){
-
-        pos= new Position(x,y);
-        initialHp=hp;
+    public Mercenary(int x, int y, MercenaryType type) {
+        this.type = type;
+        pos = new Position(x, y);
+        initialHp = hp;
 
     }
-    public Mercenary(){
-        initialHp=hp;
+
+    public Mercenary() {
+        initialHp = hp;
     }
 
     @Override
     public void takeHit(double damage) {
-        hp-=damage;
+        hp -= damage;
     }
 
     @Override
@@ -51,8 +52,8 @@ public abstract class Mercenary implements Damageable, Damager {
     }
 
     @Override
-    public void hit(Damageable unit){
-        unit.takeHit(getDamage()*initialHp/getHp());
+    public void hit(Damageable unit) {
+        unit.takeHit(getDamage() * initialHp / getHp());
 
     }
 
@@ -68,7 +69,7 @@ public abstract class Mercenary implements Damageable, Damager {
         this.initialHp = initialHp;
     }
 
-    public double getDamage(){
+    public double getDamage() {
 
         return damage;
     }
@@ -80,5 +81,13 @@ public abstract class Mercenary implements Damageable, Damager {
 
     public Position getPos() {
         return pos;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Mercenary{" +
+                "type=" + type +
+                '}';
     }
 }

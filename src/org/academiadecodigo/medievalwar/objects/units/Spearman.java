@@ -28,7 +28,7 @@ public class Spearman extends Mercenary implements Damageable, Damager {
     private static int cost = 65;
 
     public Spearman(int x, int y) {
-        super(x, y);
+        super(x, y,MercenaryType.SPEARMAN);
         this.setInitialHp(hp);
     }
 

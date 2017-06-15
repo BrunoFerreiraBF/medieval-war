@@ -20,12 +20,18 @@ public class SelectionScreen implements MouseHandler {
     private Player p2;
     private Mercenary[] mercenaries;
 
+    private Terrain[][] terrains;
+
+    private SimpleGfxGrid grid = new SimpleGfxGrid(6, 6);
+
+
     private SelectionScreenKeyboardHandler keyboardHandler = new SelectionScreenKeyboardHandler();
 
 
     public SelectionScreen(Player p1, Player p2) {
 
         this.p1 = p1;
+        this.p2 = p2;
         this.mercenaries = p1.getUnits();
 
         Mouse m = new Mouse(this);
@@ -34,25 +40,31 @@ public class SelectionScreen implements MouseHandler {
 
     }
 
-    public void setPlayerUnits() {
-        // player.setUnits(mercenaries);
-
-    }
-
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
+
         int mouseX = (int) mouseEvent.getX();
-        int mouseY = (int) mouseEvent.getY();
+        int mouseY = (int) mouseEvent.getY() - 23;
 
-        //if (isThereMercenary(mouseX, mouseY)) {
-          //  System.out.println("there is a mercenary there");
-            //return;}
+        if (isThereMercenary(mouseX-10, mouseY-10)) {
 
-        if (mouseX > 320 && mouseX < 660) {
+            System.out.println("there is a mercenary there");
+
+            return;
+        }
+
+        Terrain terrain = verifyTerrain(mouseX-10, mouseY-10);
+        if (terrain instanceof Rock) {
+            System.out.println("cant place unit o rock");
+            return;
+        }
+
+        if (mouseX > 320 && mouseX < 640) {
             System.out.println("wrong place");
             return;
         }
+
         Player player = null;
 
         if (mouseX < 320) {
@@ -62,85 +74,90 @@ public class SelectionScreen implements MouseHandler {
             player = p2;
         }
 
+        //System.out.println(p1.toString());
+
+        //System.out.println(p2.toString());
+
 
         for (int i = 0; i < mercenaries.length; i++) {
             if (mercenaries[i] == null) {
 
                 if (keyboardHandler.isKey1()) {
 
-                    //System.out.println(player.getGold()+" "+Archer.getCost());
 
-                    if (player.getGold()<Archer.getCost()){
-                        //System.out.println(player.getGold()+" not enough gold "+Archer.getCost());
+                    if (player.getGold() < Archer.getCost()) {
+
                         return;
                     }
 
                     player.spendGold(Archer.getCost());
 
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Archer(mouseX, mouseY), player);
+
+                    //System.out.println(player.getUnits()[i].getPos().getX()+" equal "+mouseX+"  "+player.getUnits()[i].getPos().getY()+" equal "+mouseY);
                 }
 
                 if (keyboardHandler.isKey2()) {
 
-                    if (player.getGold()<Catapult.getCost()){
-                        System.out.println(player.getGold()+"not enough gold"+Catapult.getCost());
+                    if (player.getGold() < Catapult.getCost()) {
+                        System.out.println(player.getGold() + "not enough gold" + Catapult.getCost());
                         return;
                     }
 
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Catapult(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Catapult(mouseX, mouseY), player);
 
 
                 }
 
                 if (keyboardHandler.isKey3()) {
-                    if (player.getGold()<Cavalry.getCost()){
-                        //System.out.println(player.getGold()+" not enough gold "+Archer.getCost());
+                    if (player.getGold() < Cavalry.getCost()) {
+
                         return;
                     }
 
                     player.spendGold(Cavalry.getCost());
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry(mouseX, mouseY), player);
 
 
                 }
 
                 if (keyboardHandler.isKey4()) {
 
-                    if (player.getGold()<Cavalry_Archer.getCost()){
-                        //System.out.println(player.getGold()+" not enough gold "+Cavalry_Archer.getCost());
+                    if (player.getGold() < Cavalry_Archer.getCost()) {
+
                         return;
                     }
 
                     player.spendGold(Cavalry_Archer.getCost());
 
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY), player);
 
 
                 }
 
                 if (keyboardHandler.isKey5()) {
-                    if (player.getGold()<Infantry.getCost()){
-                        //System.out.println(player.getGold()+" not enough gold "+Infantry.getCost());
+                    if (player.getGold() < Infantry.getCost()) {
+
                         return;
                     }
 
                     player.spendGold(Infantry.getCost());
 
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Infantry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Infantry(mouseX, mouseY), player);
 
 
                 }
 
                 if (keyboardHandler.isKey6()) {
-                    if (player.getGold()<Spearman.getCost()){
-                        //System.out.println(player.getGold()+" not enough gold "+Spearman.getCost());
+                    if (player.getGold() < Spearman.getCost()) {
+
                         return;
                     }
 
                     player.spendGold(Spearman.getCost());
 
 
-                    mercenaries[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Spearman(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Spearman(mouseX, mouseY), player);
 
 
                 }
@@ -150,6 +167,7 @@ public class SelectionScreen implements MouseHandler {
             }
 
         }
+
 
     }
 
@@ -167,6 +185,8 @@ public class SelectionScreen implements MouseHandler {
     private void drawTerrains(Terrain[][] terrains, Grid grid) {
 
         Picture picture = null;
+
+        this.terrains = terrains;
 
         for (int i = 0; i < terrains.length; i++) {
 
@@ -202,34 +222,69 @@ public class SelectionScreen implements MouseHandler {
         }
     }
 
+
     public Mercenary verifyMercenary(int mouseX, int mouseY) {
 
         for (int i = 0; i < mercenaries.length; i++) {
 
-            if (mercenaries[i].getPos().getX() < mouseX && mouseX < mercenaries[i].getPos().getX() + mercenaries[i].getUnitPic().getWidth()
-                    && mercenaries[i].getPos().getY() < mouseY && mouseY < mercenaries[i].getPos().getY() + mercenaries[i].getUnitPic().getHeight()) {
+            if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
+                    && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {
 
-                return mercenaries[i];
+                return p1.getUnits()[i];
 
             }
         }
         return null;
     }
 
+
     public boolean isThereMercenary(int mouseX, int mouseY) {
 
-        for (int i = 0; i < mercenaries.length; i++) {
+        for (int i = 0; i < 20; i++) {
 
-            if (mercenaries[i].getPos().getX() == 0) {
-                break;
+            if (p1.getUnits()[i]==null||p2.getUnits()[i]==null){
+                System.out.println("no mercenary on "+ mouseX+" "+mouseY);
+                return false;
             }
 
-            if (mercenaries[i].getPos().getX() < mouseX && mouseX < mercenaries[i].getPos().getX() + mercenaries[i].getUnitPic().getWidth()
-                    && mercenaries[i].getPos().getY() < mouseY && mouseY < mercenaries[i].getPos().getY() + mercenaries[i].getUnitPic().getHeight()) {
+            System.out.println(p1.getUnits()[i].getPos().getX()+" "+mouseX+" "+p1.getUnits()[i].getPos().getX()+" ");
+
+            if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
+                    && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {
+
+                return true;
+            }
+
+            if (p2.getUnits()[i].getPos().getX() < mouseX && mouseX < p2.getUnits()[i].getPos().getX() + p2.getUnits()[i].getUnitPic().getWidth()
+                    && p2.getUnits()[i].getPos().getY() < mouseY && mouseY < p2.getUnits()[i].getPos().getY() + p2.getUnits()[i].getUnitPic().getHeight()) {
 
                 return true;
             }
         }
         return false;
+    }
+
+
+    public Terrain verifyTerrain(int mouseX, int mouseY) {
+
+        int mouseRow = (mouseX - SimpleGfxGrid.PADDING) / SimpleGfxGrid.getCELLWIDTH();
+        int mouseCol = (mouseY - SimpleGfxGrid.PADDING - 23) / SimpleGfxGrid.getCELLHEIGHT();
+
+        for (int i = 0; i < grid.getCols(); i++) {
+
+            for (int j = 0; j < grid.getRows(); j++) {
+
+                if ((mouseRow == i) && (mouseCol == j)) {
+
+                    System.out.println(terrains[i][j].toString());
+
+                    return terrains[i][j];
+
+                }
+
+            }
+        }
+        return null;
+
     }
 }

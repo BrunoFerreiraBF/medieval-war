@@ -111,7 +111,7 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
 
-                //System.out.println("1 is pressed");
+
                 key1=true;
                 break;
 
@@ -146,7 +146,7 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
                 key1=false;
-               // System.out.println("1 is unpressed");
+
                 break;
 
             case KeyboardEvent.KEY_2:

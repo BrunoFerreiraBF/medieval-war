@@ -2,6 +2,8 @@ package org.academiadecodigo.medievalwar;
 
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 
+import java.util.Arrays;
+
 /**
  * @author João David Silva
  */
@@ -17,9 +19,9 @@ public class Player {
 
     public Player (String name){
         this.name=name;
-        this.units = new Mercenary[20];
+        this.units = new Mercenary[5];
 
-        this.gold=100;
+        this.gold=500;
 
     }
 
@@ -64,4 +66,12 @@ public class Player {
 
     }
 
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "units=" + Arrays.toString(units) +
+                ", gold=" + gold +
+                '}';
+    }
 }

@@ -15,9 +15,13 @@ public class MercenaryFactory {
 
         if (unit instanceof Archer) {
 
+
+
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/archer/BLUE_archer_static.png"));
 
             pic.draw();
+
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
             return unit;
         }
@@ -25,7 +29,9 @@ public class MercenaryFactory {
         if (unit instanceof Catapult) {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/catapult/BLUE_Catapult_static.png"));
 
+
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 
@@ -33,6 +39,7 @@ public class MercenaryFactory {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalry/BLUE_cavalry_Static.png"));
 
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 
@@ -40,6 +47,7 @@ public class MercenaryFactory {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalryarcher/BLUE_cavalryArcher_Static.png"));
 
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 
@@ -47,6 +55,7 @@ public class MercenaryFactory {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
 
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 
@@ -54,6 +63,7 @@ public class MercenaryFactory {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/infantry/BLUE_soldier_Static.png"));
 
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 
@@ -61,6 +71,7 @@ public class MercenaryFactory {
             Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/spearman/BLUE_spearman_Static.png"));
 
             pic.draw();
+            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
             return unit;
         }
 

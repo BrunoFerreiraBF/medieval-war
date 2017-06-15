@@ -30,7 +30,7 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
 
     public Cavalry_Archer(int x, int y){
 
-        super (x,y);
+        super(x, y,MercenaryType.CAVALRY_ARCHER);
         this.setInitialHp(hp);
     }
 

@@ -26,7 +26,7 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
 
 
     public Cavalry(int x, int y) {
-        super(x, y);
+        super(x, y,MercenaryType.CAVALRY);
         this.setInitialHp(hp);
     }
 

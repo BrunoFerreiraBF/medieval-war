@@ -29,7 +29,7 @@ public class General extends Mercenary implements Damageable, Damager {
 
 
     public General (int x, int y){
-        super (x,y);
+        super(x, y,MercenaryType.GENERAL);
         this.setInitialHp(hp);
     }
 
