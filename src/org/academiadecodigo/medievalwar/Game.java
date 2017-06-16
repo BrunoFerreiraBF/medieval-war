@@ -38,21 +38,21 @@ public class Game {
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-
-        //GameScreen gameScreen = new GameScreen(p1, p2, grid, terrains);
-
-        //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
-
-
-
         menuScreen.setSpacePressed(true);
+
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
         }
 
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
-        selectionScreen.init();
+        SelectionScreenKeyboardHandler.setStartGameScreen(true);
+        while (!(SelectionScreenKeyboardHandler.isStartGameScreen())) {
+            selectionScreen.init();
+        }
 
+        GameScreen gameScreen = new GameScreen(p1, p2, grid, terrains);
+
+        //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
     }
 
 

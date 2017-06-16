@@ -17,6 +17,8 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
     private boolean key5;
     private boolean key6;
 
+    private static boolean startGameScreen;
+
 
     public boolean isKey1() {
         return key1;
@@ -88,6 +90,12 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         sixReleasedEvent.setKey(KeyboardEvent.KEY_6);
         sixReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
+        KeyboardEvent spaceReleasedEvent = new KeyboardEvent();
+        spaceReleasedEvent.setKey(KeyboardEvent.KEY_SPACE);
+        spaceReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+
+
         k.addEventListener(onePressedEvent);
         k.addEventListener(twoPressedEvent);
         k.addEventListener(threePressedEvent);
@@ -102,6 +110,14 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         k.addEventListener(fiveReleasedEvent);
         k.addEventListener(sixReleasedEvent);
 
+    }
+
+    public static boolean isStartGameScreen() {
+        return startGameScreen;
+    }
+
+    public static void setStartGameScreen(boolean startGameScreen) {
+        SelectionScreenKeyboardHandler.startGameScreen = startGameScreen;
     }
 
     @Override
@@ -167,6 +183,10 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_6:
                 key6=false;
                 break;
+            case KeyboardEvent.KEY_SPACE:
+                startGameScreen=true;
+
+
 
         }
     }

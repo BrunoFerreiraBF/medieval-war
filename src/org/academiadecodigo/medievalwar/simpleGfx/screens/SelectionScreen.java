@@ -46,6 +46,7 @@ public class SelectionScreen implements MouseHandler {
         rules.draw();
     }
 
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Player player = null;
@@ -80,10 +81,8 @@ public class SelectionScreen implements MouseHandler {
             return;
         }
 
-
-        System.out.println(p1.toString());
-
-        System.out.println(p2.toString());
+        //System.out.println(p1.toString());
+        //System.out.println(p2.toString());
 
         mouseX += 10;
         mouseY += 10;
@@ -108,7 +107,6 @@ public class SelectionScreen implements MouseHandler {
                 if (keyboardHandler.isKey2()) {
 
                     if (player.getGold() < Catapult.getCost()) {
-                        System.out.println(player.getGold() + "not enough gold" + Catapult.getCost());
                         return;
                     }
                     player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Catapult(mouseX, mouseY), player);
@@ -155,7 +153,7 @@ public class SelectionScreen implements MouseHandler {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);11111
+        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);
         verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY())-23,p2);
 
     }
@@ -210,7 +208,6 @@ public class SelectionScreen implements MouseHandler {
 
         for (int i = 0; i < 100; i++) {
 
-
             if (player.getUnits()[i] == null) {
                 return null;
             }
@@ -229,42 +226,6 @@ public class SelectionScreen implements MouseHandler {
             }
         }
         return null;
-    }
-
-
-    public boolean isThereMercenary(int mouseX, int mouseY) {
-
-        for (int i = 0; i < 20; i++) {
-
-            if (p1.getUnits()[i] == null) {
-
-                System.out.println("no mercenary on " + mouseX + " " + mouseY);
-
-                return false;
-            }
-
-            if (p2.getUnits()[i] == null) {
-
-                System.out.println("no mercenary on " + mouseX + " " + mouseY);
-
-                return false;
-            }
-
-            System.out.println(p1.getUnits()[i].getPos().getX() + " " + mouseX + " " + p1.getUnits()[i].getPos().getX() + " ");
-
-            if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
-                    && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {
-
-                return true;
-            }
-
-            if (p2.getUnits()[i].getPos().getX() < mouseX && mouseX < p2.getUnits()[i].getPos().getX() + p2.getUnits()[i].getUnitPic().getWidth()
-                    && p2.getUnits()[i].getPos().getY() < mouseY && mouseY < p2.getUnits()[i].getPos().getY() + p2.getUnits()[i].getUnitPic().getHeight()) {
-
-                return true;
-            }
-        }
-        return false;
     }
 
 
