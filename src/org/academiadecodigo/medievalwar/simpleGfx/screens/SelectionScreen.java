@@ -155,7 +155,7 @@ public class SelectionScreen implements MouseHandler {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);11111
+        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);
         verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY())-23,p2);
 
     }
