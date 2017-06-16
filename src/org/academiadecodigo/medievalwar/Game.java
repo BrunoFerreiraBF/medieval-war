@@ -43,19 +43,15 @@ public class Game {
 
         //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
 
+
+
+        menuScreen.setSpacePressed(true);
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
         }
 
-       // menuScreen.setSpacePressed(true);
-
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
-
         selectionScreen.init();
-
-
-
-
 
     }
 
@@ -76,17 +72,12 @@ public class Game {
 
         Terrain[][] terrains = new Terrain[grid.getCols()][grid.getRows()];
 
-
         for (int i = 0; i < grid.getCols(); i++) {
-
             for (int j = 0; j < grid.getRows(); j++) {
 
                 terrains[i][j] = TerrainFactory.makeTerrain(grid, i, j);
-
-                //System.out.println( terrains[i][j].toString() );
             }
         }
-
         return terrains;
     }
 }

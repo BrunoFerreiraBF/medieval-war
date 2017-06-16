@@ -41,6 +41,9 @@ public class MenuScreen implements Screen, KeyboardHandler {
         return spacePressed;
     }
 
+    public void setSpacePressed(boolean spacePressed) {
+        this.spacePressed = spacePressed;
+    }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
