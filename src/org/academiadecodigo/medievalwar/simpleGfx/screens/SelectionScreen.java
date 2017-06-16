@@ -261,6 +261,7 @@ public class SelectionScreen implements MouseHandler {
 
 
             if ((mouseX > p1.getUnits()[i].getPos().getX() && (mouseX < (p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()))
+
                     && (mouseY > p1.getUnits()[i].getPos().getY()) && (mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()))) {
 
                 return p1.getUnits()[i];
