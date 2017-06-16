@@ -19,9 +19,8 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
 
     public final double damage = 54;
 
-    private Position pos;
-
     public final double accuracy = 0.95;
+
     private static int cost = 100;
 
 
@@ -30,17 +29,6 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-    @Override
-    public double getMoveRange() {
-        return moveRange;
-
-    }
-    public static int getCost() {
-        return cost;
-    }
-    public double getAttackRange() {
-        return attackRange;
-    }
 
     public Cavalry() {
         this.setInitialHp(hp);

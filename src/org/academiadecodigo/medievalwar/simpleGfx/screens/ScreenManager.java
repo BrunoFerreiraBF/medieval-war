@@ -1,5 +1,6 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
+import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
@@ -17,19 +18,19 @@ public class ScreenManager {
 
     private Terrain[][] terrains;
 
-    private Mercenary[] p1units;
+    private Player p1;
 
-    private Mercenary[] p2units;
+    private Player p2;
 
     private Grid grid;
 
     public ScreenManager() {
     }
 
-    public ScreenManager(Terrain[][] terrains, Mercenary[] p1units, Mercenary[] p2units, Grid grid) {
+    public ScreenManager(Terrain[][] terrains, Player p1units, Player p2units, Grid grid) {
         this.terrains = terrains;
-        this.p1units = p1units;
-        this.p2units = p2units;
+        this.p1 = p1units;
+        this.p2 = p2units;
         this.grid = grid;
     }
 

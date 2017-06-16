@@ -8,8 +8,11 @@ import org.academiadecodigo.medievalwar.field.grid.positionGrid.GridPosition;
 public class Sand extends Terrain {
 
     public Sand(){
+
+        super(TerrainType.SAND);
         this.setDamageMultiplier(1);
         this.setAccuracyMultiplier(0.9);
+
     }
 
     public Sand(GridPosition pos) {

@@ -17,9 +17,10 @@ public abstract class Terrain {
 
     private TerrainType terrainType;
 
-   // private Position pos;
 
-    public Terrain(){}
+    public Terrain(TerrainType terrainType){
+        this.terrainType=terrainType;
+    }
 
     public Terrain(GridPosition pos){
         this.pos = pos;
@@ -36,6 +37,11 @@ public abstract class Terrain {
     public void setAccuracyMultiplier(double accuracyMultiplier) {
         this.accuraryMultiplier = accuracyMultiplier;
     }
+
+    public void setTerrainType(TerrainType terrainType) {
+        this.terrainType = terrainType;
+    }
+
 
     @Override
     public String toString() {

@@ -1,43 +1,63 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
+import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
  * Implementation of the menu screen
+ *
  * @author João David Silva
  */
-public class MenuScreen implements Screen {
-    private Rectangle rect;
-    private final int PADDING = 10;
+public class MenuScreen implements Screen, KeyboardHandler {
 
-    private Rectangle rect2 = new Rectangle(50, 50, 50, 50);
+    private boolean spacePressed;
+
+    private Picture menuScreen = new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_init.jpg");
 
 
+    public MenuScreen() {
+        Keyboard k = new Keyboard(this);
 
-    public void init() {
-        rect = new Rectangle(PADDING, PADDING, 960, 720);
-        rect.setColor(Color.GREEN);
+        KeyboardEvent spacePressed = new KeyboardEvent();
+        spacePressed.setKey(KeyboardEvent.KEY_SPACE);
+        spacePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        k.addEventListener(spacePressed);
+
+    }
+
+    public void Start() {
+
+        menuScreen.draw();
+    }
+
+    public boolean isSpacePressed() {
+        return spacePressed;
     }
 
 
-    public void start() {
-        update();
-        draw();
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+
+        switch (keyboardEvent.getKey()) {
+
+            case KeyboardEvent.KEY_SPACE:
+
+                spacePressed = true;
+                menuScreen.delete();
+                break;
+        }
     }
 
 
-    public void draw() {
-        rect.fill();
-    }
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
 
-
-    public void update() {
-        rect2.translate(10, 0);
-    }
-
-
-    public void remove() {
-        rect.delete();
     }
 }

@@ -26,9 +26,6 @@ public abstract class Mercenary implements Damageable, Damager {
 
     private static int cost;
 
-    public static int getCost() {
-        return cost;
-    }
 
     public Mercenary(int x, int y, MercenaryType type) {
         this.type = type;
@@ -40,6 +37,12 @@ public abstract class Mercenary implements Damageable, Damager {
     public Mercenary() {
         initialHp = hp;
     }
+
+
+    public static int getCost() {
+        return cost;
+    }
+
 
     @Override
     public void takeHit(double damage) {
@@ -82,6 +85,8 @@ public abstract class Mercenary implements Damageable, Damager {
     public Position getPos() {
         return pos;
     }
+
+
 
 
     @Override

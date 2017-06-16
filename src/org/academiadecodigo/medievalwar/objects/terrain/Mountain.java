@@ -8,8 +8,10 @@ import org.academiadecodigo.medievalwar.field.grid.positionGrid.GridPosition;
 public class Mountain extends Terrain {
 
     public Mountain(){
+        super(TerrainType.MOUNTAIN);
         this.setDamageMultiplier(1.25);
         this.setAccuracyMultiplier(1.1);
+
     }
 
     public Mountain (GridPosition pos) {

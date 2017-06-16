@@ -8,8 +8,12 @@ import org.academiadecodigo.medievalwar.field.grid.positionGrid.GridPosition;
 public class Forest extends Terrain {
 
     public Forest(){
+        super(TerrainType.FOREST);
         this.setDamageMultiplier(1);
         this.setAccuracyMultiplier(0.9);
+
+
+
     }
 
     public Forest(GridPosition pos) {

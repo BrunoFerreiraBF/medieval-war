@@ -5,7 +5,7 @@ package org.academiadecodigo.medievalwar.objects.terrain;
  */
 public enum TerrainType {
 
-    TALLGRASS,
+    SAND,
     MOUNTAIN,
     FOREST,
     ROCK,

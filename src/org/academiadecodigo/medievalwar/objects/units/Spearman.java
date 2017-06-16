@@ -10,8 +10,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class Spearman extends Mercenary implements Damageable, Damager {
 
-    private Picture unitPic;
-
     private double hp = 84;
 
     public final MercenaryType type = MercenaryType.SPEARMAN;
@@ -24,28 +22,15 @@ public class Spearman extends Mercenary implements Damageable, Damager {
 
     public final double accuracy = 0.9;
 
-    private Position pos;
     private static int cost = 65;
+
 
     public Spearman(int x, int y) {
         super(x, y,MercenaryType.SPEARMAN);
         this.setInitialHp(hp);
     }
 
-    @Override
-    public double getMoveRange() {
-        return moveRange;
-
-    }
-
-    public double getAttackRange() {
-        return attackRange;
-    }
-
     public Spearman() {
         this.setInitialHp(hp);
-    }
-    public static int getCost() {
-        return cost;
     }
 }

@@ -17,44 +17,51 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class SelectionScreen implements MouseHandler {
 
     private Player p1;
+
     private Player p2;
-    private Mercenary[] mercenaries;
 
     private Terrain[][] terrains;
 
-    private SimpleGfxGrid grid = new SimpleGfxGrid(6, 6);
-
+    private SimpleGfxGrid grid;
 
     private SelectionScreenKeyboardHandler keyboardHandler = new SelectionScreenKeyboardHandler();
 
 
-    public SelectionScreen(Player p1, Player p2) {
+    public SelectionScreen(Player p1, Player p2, SimpleGfxGrid grid, Terrain[][] terrains) {
 
         this.p1 = p1;
         this.p2 = p2;
-        this.mercenaries = p1.getUnits();
-
+        this.grid = grid;
+        this.terrains = terrains;
         Mouse m = new Mouse(this);
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         m.addEventListener(MouseEventType.MOUSE_MOVED);
 
     }
 
+    public void init() {
+        Picture rules = new Picture(960 / 3 + SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/pickScreen.jpg");
+
+        drawTerrains(terrains);
+        rules.draw();
+    }
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
 
-        int mouseX = (int) mouseEvent.getX();
-        int mouseY = (int) mouseEvent.getY() - 23;
+        int mouseX = (int) mouseEvent.getX() - 10;
+        int mouseY = (int) mouseEvent.getY() - 33;
 
-        if (isThereMercenary(mouseX-10, mouseY-10)) {
+        if (verifyMercenary(mouseX, mouseY) != null) {
 
             System.out.println("there is a mercenary there");
 
             return;
         }
 
-        Terrain terrain = verifyTerrain(mouseX-10, mouseY-10);
+        Terrain terrain = verifyTerrain(mouseX + 10, mouseY + 33);
+
         if (terrain instanceof Rock) {
             System.out.println("cant place unit o rock");
             return;
@@ -74,13 +81,17 @@ public class SelectionScreen implements MouseHandler {
             player = p2;
         }
 
-        //System.out.println(p1.toString());
+        System.out.println(p1.toString());
 
-        //System.out.println(p2.toString());
+        System.out.println(p2.toString());
+
+        mouseX += 10;
+        mouseY += 10;
+
+        for (int i = 0; i < 20; i++) {
 
 
-        for (int i = 0; i < mercenaries.length; i++) {
-            if (mercenaries[i] == null) {
+            if (player.getUnits()[i] == null) {
 
                 if (keyboardHandler.isKey1()) {
 
@@ -159,30 +170,30 @@ public class SelectionScreen implements MouseHandler {
 
                     player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Spearman(mouseX, mouseY), player);
 
-
                 }
-
                 return;
-
             }
-
         }
-
-
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
+        System.out.println(mouseEvent.getX() - 10 + " " + (mouseEvent.getY() - 33));
+
+        Terrain terrain = verifyTerrain(((int) mouseEvent.getX()), ((int) mouseEvent.getY()));
+        System.out.println(terrain.toString());
+
+
+        Mercenary mercenary = verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()));
+
+        System.out.println(mercenary);
+        // System.out.println(mercenary.toString());
+
     }
 
-    public void init(Terrain[][] terrains, SimpleGfxGrid grid) {
 
-        drawTerrains(terrains, grid);
-    }
-
-
-    private void drawTerrains(Terrain[][] terrains, Grid grid) {
+    private void drawTerrains(Terrain[][] terrains) {
 
         Picture picture = null;
 
@@ -194,27 +205,27 @@ public class SelectionScreen implements MouseHandler {
 
                 if (terrains[i][j] instanceof Grass) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "Chipset Tiles/grass.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/grass.png");
 
                 }
                 if (terrains[i][j] instanceof Mountain) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "Chipset Tiles/mountain.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/mountain.png");
 
                 }
                 if (terrains[i][j] instanceof Forest) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "Chipset Tiles/forest.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/forest.png");
 
                 }
                 if (terrains[i][j] instanceof Rock) {
 
-                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "Chipset Tiles/rock.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/rock.png");
 
                 }
                 if (terrains[i][j] instanceof Sand) {
                     //System.out.println("in");
-                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "Chipset Tiles/sand.png");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/sand.png");
                 }
 
                 picture.draw();
@@ -225,14 +236,60 @@ public class SelectionScreen implements MouseHandler {
 
     public Mercenary verifyMercenary(int mouseX, int mouseY) {
 
-        for (int i = 0; i < mercenaries.length; i++) {
+        if (p1.getUnits() == null) {
+            return null;
+        }
+        if (p2.getUnits() == null) {
+            return null;
+        }
 
-            if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
-                    && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {
+        for (int i = 0; i < p1.getUnits().length; i++) {
+
+            if (p1.getUnits()[i] == null) {
+
+                System.out.println("no mercenary on " + mouseX + " " + mouseY);
+
+                return null;
+            }
+
+            if (p2.getUnits()[i] == null) {
+
+                System.out.println("no mercenary on " + mouseX + " " + mouseY);
+
+                return null;
+            }
+
+
+            if ((mouseX > p1.getUnits()[i].getPos().getX() && (mouseX < (p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()))
+                    && (mouseY > p1.getUnits()[i].getPos().getY()) && (mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()))) {
 
                 return p1.getUnits()[i];
-
             }
+
+            if ((mouseX > p2.getUnits()[i].getPos().getX() && (mouseX < (p2.getUnits()[i].getPos().getX() + p2.getUnits()[i].getUnitPic().getWidth()))
+                    && (mouseY > p2.getUnits()[i].getPos().getY()) && (mouseY < p2.getUnits()[i].getPos().getY() + p2.getUnits()[i].getUnitPic().getHeight()))) {
+
+                return p2.getUnits()[i];
+            }
+        }
+
+        for (int i = 0; i < p2.getUnits().length; i++) {
+
+            if (p2.getUnits()[i] == null) {
+
+                System.out.println("no mercenary on " + mouseX + " " + mouseY);
+
+                return null;
+            }
+
+            System.out.println("in2");
+            if ((mouseX > p2.getUnits()[i].getPos().getX() && (mouseX < (p2.getUnits()[i].getPos().getX() + p2.getUnits()[i].getUnitPic().getWidth()))
+                    && (mouseY > p2.getUnits()[i].getPos().getY()) && (mouseY < p2.getUnits()[i].getPos().getY() + p2.getUnits()[i].getUnitPic().getHeight()))) {
+
+                return p2.getUnits()[i];
+            }
+
+
         }
         return null;
     }
@@ -242,12 +299,21 @@ public class SelectionScreen implements MouseHandler {
 
         for (int i = 0; i < 20; i++) {
 
-            if (p1.getUnits()[i]==null||p2.getUnits()[i]==null){
-                System.out.println("no mercenary on "+ mouseX+" "+mouseY);
+            if (p1.getUnits()[i] == null) {
+
+                System.out.println("no mercenary on " + mouseX + " " + mouseY);
+
                 return false;
             }
 
-            System.out.println(p1.getUnits()[i].getPos().getX()+" "+mouseX+" "+p1.getUnits()[i].getPos().getX()+" ");
+            if (p2.getUnits()[i] == null) {
+
+                System.out.println("no mercenary on " + mouseX + " " + mouseY);
+
+                return false;
+            }
+
+            System.out.println(p1.getUnits()[i].getPos().getX() + " " + mouseX + " " + p1.getUnits()[i].getPos().getX() + " ");
 
             if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
                     && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {

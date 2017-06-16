@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
 
-    private Picture unitPic;
+
 
     private double hp=105;
 
@@ -22,30 +22,21 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
 
     public final double damage = 27;
 
-    private Position pos;
-
     public final double accuracy = 0.8;
+
     private static int cost=94;
 
-
+    public Cavalry_Archer(){
+        this.setInitialHp(hp);
+    }
     public Cavalry_Archer(int x, int y){
 
         super(x, y,MercenaryType.CAVALRY_ARCHER);
         this.setInitialHp(hp);
     }
 
-    @Override
-    public double getMoveRange() {
-        return moveRange;
 
-    }
 
-    public double getAttackRange() {
-        return attackRange;
-    }
 
-    public Cavalry_Archer(){
-        this.setInitialHp(hp);
-    }
 
 }

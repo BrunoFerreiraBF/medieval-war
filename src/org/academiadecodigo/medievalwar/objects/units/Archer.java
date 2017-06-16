@@ -9,8 +9,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class Archer extends Mercenary implements Damageable, Damager {
 
-    private Picture unitPic;
-
     private double hp=36;
 
     public final MercenaryType type = MercenaryType.ARCHER;
@@ -33,26 +31,8 @@ public class Archer extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-    @Override
-    public double getMoveRange() {
-        return moveRange;
-
-    }
-
-    public double getAttackRange() {
-        return attackRange;
-    }
-
     public Archer(){
         this.setInitialHp(hp);
     }
 
-    public Picture setUnitPic(Picture unitPic) {
-        this.unitPic = unitPic;
-        return unitPic;
-    }
-
-    public static int getCost() {
-        return cost;
-    }
 }

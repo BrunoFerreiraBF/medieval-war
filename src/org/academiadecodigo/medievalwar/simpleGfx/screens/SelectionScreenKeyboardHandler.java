@@ -111,7 +111,6 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
 
-
                 key1=true;
                 break;
 

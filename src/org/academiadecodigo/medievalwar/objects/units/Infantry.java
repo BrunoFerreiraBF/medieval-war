@@ -32,22 +32,12 @@ public class Infantry extends Mercenary implements Damageable, Damager {
         this.setInitialHp(hp);
     }
 
-    @Override
-    public double getMoveRange() {
-        return moveRange;
-
-    }
-
-    public double getAttackRange() {
-        return attackRange;
-    }
 
     public Infantry(){
         this.setInitialHp(hp);
     }
-    public static int getCost() {
-        return cost;
-    }
+
+
 
 
 }

@@ -4,15 +4,11 @@ import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.terrain.TerrainFactory;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
-import org.academiadecodigo.medievalwar.simpleGfx.screens.GameScreen;
-import org.academiadecodigo.medievalwar.simpleGfx.screens.ScreenManager;
-import org.academiadecodigo.medievalwar.simpleGfx.screens.SelectionScreen;
+import org.academiadecodigo.medievalwar.simpleGfx.screens.*;
 
 public class Game {
 
-    private boolean endTurn;
-
-    private ScreenManager sm;
+    //private ScreenManager sm;
 
     private SimpleGfxGrid grid;
 
@@ -22,65 +18,74 @@ public class Game {
 
     private Player p2;
 
+    private boolean endTurn;
 
-    public Game(){
 
-        sm= new ScreenManager();
+    public void init() {
 
-        grid= new SimpleGfxGrid(6,6);
+        grid = new SimpleGfxGrid(6, 6);
 
-        terrains=createTerrains(grid);
+        terrains = createTerrains(grid);
 
-        p1=new Player("p1");
-        p2=new Player("p2");
+        p1 = new Player();
 
-    }
+        p2 = new Player();
 
-    public void init(){
         grid.init();
 
     }
 
-    public void start(){
+    public void start() {
 
-        GameScreen gm= new GameScreen();
-        SelectionScreen ss=new SelectionScreen(p1,p2);
+        MenuScreen menuScreen = new MenuScreen();
 
-        ss.init(terrains,grid);
+        //GameScreen gameScreen = new GameScreen(p1, p2, grid, terrains);
+
+        //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
+
+        while (!menuScreen.isSpacePressed()) {
+            menuScreen.Start();
+        }
+
+       // menuScreen.setSpacePressed(true);
+
+        SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
+
+        selectionScreen.init();
 
 
-        //gm.init(terrains);
 
 
 
     }
 
 
-    private void turn(){
+    private void turn() {
 
-        while (!endTurn){
+        while (!endTurn) {
 
-        // allow player actions
+            // mouse Handler
+            // allow player actions
 
-               //on click of ENDTURN ---> endTurn=true;
+            //on click of ENDTURN ---> endTurn=true;
         }
     }
 
 
-    public Terrain[][] createTerrains(Grid grid){
+    public Terrain[][] createTerrains(Grid grid) {
 
-        Terrain [][] terrains= new Terrain[grid.getCols()][grid.getRows()];
+        Terrain[][] terrains = new Terrain[grid.getCols()][grid.getRows()];
 
 
-            for (int i = 0; i < grid.getCols(); i++) {
+        for (int i = 0; i < grid.getCols(); i++) {
 
-                for (int j = 0; j < grid.getRows() ; j++) {
+            for (int j = 0; j < grid.getRows(); j++) {
 
-                    terrains[i][j] = TerrainFactory.makeTerrain(grid,i,j);
+                terrains[i][j] = TerrainFactory.makeTerrain(grid, i, j);
 
-                    //System.out.println( terrains[i][j].toString() );
-                }
+                //System.out.println( terrains[i][j].toString() );
             }
+        }
 
         return terrains;
     }
