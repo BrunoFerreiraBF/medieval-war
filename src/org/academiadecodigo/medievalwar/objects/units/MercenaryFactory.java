@@ -51,7 +51,7 @@ public class MercenaryFactory {
 
         if (unit instanceof General) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/RED_Archer_Static.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/general/BLUE_general_Static.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 

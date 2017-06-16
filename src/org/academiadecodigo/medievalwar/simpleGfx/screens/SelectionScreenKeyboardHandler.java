@@ -92,9 +92,9 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
         KeyboardEvent spaceReleasedEvent = new KeyboardEvent();
         spaceReleasedEvent.setKey(KeyboardEvent.KEY_SPACE);
-        spaceReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        spaceReleasedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-
+        k.addEventListener(spaceReleasedEvent);
 
         k.addEventListener(onePressedEvent);
         k.addEventListener(twoPressedEvent);
@@ -127,29 +127,30 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
             case KeyboardEvent.KEY_1:
 
-                key1=true;
+                key1 = true;
                 break;
 
             case KeyboardEvent.KEY_2:
-                key2=true;
+                key2 = true;
                 break;
 
             case KeyboardEvent.KEY_3:
-                key3=true;
+                key3 = true;
                 break;
 
             case KeyboardEvent.KEY_4:
-                key4=true;
+                key4 = true;
                 break;
 
             case KeyboardEvent.KEY_5:
-                key5=true;
+                key5 = true;
                 break;
 
             case KeyboardEvent.KEY_6:
-                key6=true;
+                key6 = true;
                 break;
-
+            case KeyboardEvent.KEY_SPACE:
+                startGameScreen = true;
         }
 
 
@@ -160,32 +161,29 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
 
             case KeyboardEvent.KEY_1:
-                key1=false;
+                key1 = false;
 
                 break;
 
             case KeyboardEvent.KEY_2:
-                key2=false;
+                key2 = false;
                 break;
 
             case KeyboardEvent.KEY_3:
-                key3=false;
+                key3 = false;
                 break;
 
             case KeyboardEvent.KEY_4:
-                key4=false;
+                key4 = false;
                 break;
 
             case KeyboardEvent.KEY_5:
-                key5=false;
+                key5 = false;
                 break;
 
             case KeyboardEvent.KEY_6:
-                key6=false;
+                key6 = false;
                 break;
-            case KeyboardEvent.KEY_SPACE:
-                startGameScreen=true;
-
 
 
         }

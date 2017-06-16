@@ -46,16 +46,22 @@ public class Game {
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
         //SelectionScreenKeyboardHandler.setStartGameScreen(true);
 
-        while (!(SelectionScreenKeyboardHandler.isStartGameScreen())) {
-            selectionScreen.init();
+        selectionScreen.init();
+
+        while (!SelectionScreenKeyboardHandler.isStartGameScreen()) {
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+
+            }
+
         }
 
-        GameScreen gameScreen = new GameScreen(terrains,grid,p1, p2);
+        GameScreen gameScreen = new GameScreen(terrains, grid, p1, p2);
 
         gameScreen.init();
         gameScreen.start();
-
-
 
 
         //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
