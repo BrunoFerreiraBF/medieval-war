@@ -1,5 +1,6 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
+import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.*;
 import org.academiadecodigo.medievalwar.objects.units.*;
@@ -13,27 +14,25 @@ public class GameScreen implements Screen {
 
     private Terrain[][] terrains;
 
-    private Mercenary[] p1units;
+    private Player p1;
 
-    private Mercenary[] p2units;
+    private Player p2;
 
-    private Grid grid;
+    private SimpleGfxGrid grid;
 
 
 
-    public GameScreen(Terrain[][] terrains, Grid grid, Mercenary[] p1units, Mercenary[] p2units) {
+    public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
 
         this.terrains = terrains;
-        this.p1units = p1units;
-        this.p2units = p2units;
+        this.p1 = p1;
+        this.p2 = p2;
         this.grid = grid;
-
-        //drawTerrains(terrains, grid);  // IMPORTANTE
 
     }
 
-    private void init(){
-
+    public void init() {
+        drawTerrains(terrains);
     }
 
     public void start() {
@@ -43,8 +42,8 @@ public class GameScreen implements Screen {
 
     public void draw() {
 
-        drawUnits(p1units);
-        drawUnits(p2units);
+        drawUnits(p1.getUnits());
+        drawUnits(p2.getUnits());
     }
 
 
@@ -60,12 +59,52 @@ public class GameScreen implements Screen {
         }
     }
 
+    private void drawTerrains(Terrain[][] terrains) {
+
+        Picture picture = null;
+
+        this.terrains = terrains;
+
+        for (int i = 0; i < terrains.length; i++) {
+
+            for (int j = 0; j < terrains.length; j++) {
+
+                if (terrains[i][j] instanceof Grass) {
+
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/grass.png");
+
+                }
+                if (terrains[i][j] instanceof Mountain) {
+
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/mountain.png");
+
+                }
+                if (terrains[i][j] instanceof Forest) {
+
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/forest.png");
+
+                }
+                if (terrains[i][j] instanceof Rock) {
+
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/rock.png");
+
+                }
+                if (terrains[i][j] instanceof Sand) {
+                    //System.out.println("in");
+                    picture = new Picture(SimpleGfxGrid.PADDING + i * SimpleGfxGrid.CELLWIDTH, SimpleGfxGrid.PADDING + j * SimpleGfxGrid.CELLHEIGHT, "chipsets/sand.png");
+                }
+
+                picture.draw();
+            }
+        }
+    }
+
 
     public void update() {
 
-        remove(p1units);
+        remove(p1.getUnits());
 
-        remove(p2units);
+        remove(p2.getUnits());
 
         draw();
     }

@@ -32,25 +32,31 @@ public class Game {
         p2 = new Player();
 
         grid.init();
-
     }
 
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-        menuScreen.setSpacePressed(true);
+        //menuScreen.setSpacePressed(true);
 
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
         }
 
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
-        SelectionScreenKeyboardHandler.setStartGameScreen(true);
+        //SelectionScreenKeyboardHandler.setStartGameScreen(true);
+
         while (!(SelectionScreenKeyboardHandler.isStartGameScreen())) {
             selectionScreen.init();
         }
 
-        GameScreen gameScreen = new GameScreen(p1, p2, grid, terrains);
+        GameScreen gameScreen = new GameScreen(terrains,grid,p1, p2);
+
+        gameScreen.init();
+        gameScreen.start();
+
+
+
 
         //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
     }
