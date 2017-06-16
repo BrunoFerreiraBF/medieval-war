@@ -248,4 +248,21 @@ public class SelectionScreen implements MouseHandler {
         return null;
 
     }
+
+
+    public void remove(Mercenary[] units) {
+
+        Picture picture;
+
+        for (int i = 0; i < units.length; i++) {
+
+            if (units[i] == null) {
+                return;
+            }
+
+            picture = units[i].getUnitPic();
+            picture.delete();
+        }
+
+    }
 }

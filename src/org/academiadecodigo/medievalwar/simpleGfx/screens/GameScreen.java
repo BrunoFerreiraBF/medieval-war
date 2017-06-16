@@ -4,6 +4,8 @@ import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.*;
 import org.academiadecodigo.medievalwar.objects.units.*;
+import org.academiadecodigo.simplegraphics.mouse.Mouse;
+import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 
@@ -20,6 +22,7 @@ public class GameScreen implements Screen {
 
     private SimpleGfxGrid grid;
 
+    private GameScreenMouseHandler gameScreenMouseHandler= new GameScreenMouseHandler(terrains,grid,p1,p2);
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
@@ -29,6 +32,10 @@ public class GameScreen implements Screen {
         this.p2 = p2;
         this.grid = grid;
 
+        Mouse m = new Mouse(gameScreenMouseHandler);
+        m.addEventListener(MouseEventType.MOUSE_CLICKED);
+        m.addEventListener(MouseEventType.MOUSE_MOVED);
+
     }
 
     public void init() {
@@ -36,16 +43,17 @@ public class GameScreen implements Screen {
     }
 
     public void start() {
-        draw();
-    }
-
-
-    public void draw() {
+        System.out.println(p1);
+        System.out.println(p2);
 
         drawUnits(p1.getUnits());
         drawUnits(p2.getUnits());
     }
 
+
+    public void draw() {
+
+    }
 
 
     private void drawUnits(Mercenary[] units) {
@@ -54,7 +62,12 @@ public class GameScreen implements Screen {
 
         for (int i = 0; i < units.length; i++) {
 
+            if (units[i] == null) {
+                return;
+            }
+
             picture = units[i].getUnitPic();
+            System.out.println(units[i].getUnitPic());
             picture.draw();
         }
     }
@@ -115,6 +128,10 @@ public class GameScreen implements Screen {
         Picture picture;
 
         for (int i = 0; i < units.length; i++) {
+            System.out.println();
+            if (units[i] == null) {
+                return;
+            }
 
             picture = units[i].getUnitPic();
             picture.delete();

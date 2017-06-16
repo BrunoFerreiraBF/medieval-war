@@ -49,14 +49,14 @@ public class Game {
         selectionScreen.init();
 
         while (!SelectionScreenKeyboardHandler.isStartGameScreen()) {
-
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
-
             }
-
         }
+
+        selectionScreen.remove(p1.getUnits());
+        selectionScreen.remove(p2.getUnits());
 
         GameScreen gameScreen = new GameScreen(terrains, grid, p1, p2);
 
