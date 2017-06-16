@@ -1,7 +1,6 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
 import org.academiadecodigo.medievalwar.Player;
-import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.*;
 import org.academiadecodigo.medievalwar.objects.units.*;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
@@ -51,8 +50,8 @@ public class SelectionScreen implements MouseHandler {
     public void mouseClicked(MouseEvent mouseEvent) {
         Player player = null;
 
-        int mouseX = (int) mouseEvent.getX() - 10;
-        int mouseY = (int) mouseEvent.getY() - 33;
+        int mouseX = (int) mouseEvent.getX();
+        int mouseY = (int) mouseEvent.getY() - 23;
 
         if (mouseX <= 320) {
             player = p1;
@@ -61,6 +60,10 @@ public class SelectionScreen implements MouseHandler {
             player = p2;
         }
 
+        if (mouseX > 320 && mouseX < 640) {
+            System.out.println("wrong place");
+            return;
+        }
 
         if (verifyMercenary(mouseX, mouseY,player) != null) {
 
@@ -69,23 +72,17 @@ public class SelectionScreen implements MouseHandler {
             return;
         }
 
-        Terrain terrain = verifyTerrain(mouseX + 10, mouseY + 33);
+        Terrain terrain = verifyTerrain(mouseX, mouseY);
 
         if (terrain instanceof Rock) {
             System.out.println("cant place unit o rock");
             return;
         }
 
-        if (mouseX > 320 && mouseX < 640) {
-            System.out.println("wrong place");
-            return;
-        }
 
         //System.out.println(p1.toString());
         //System.out.println(p2.toString());
 
-        mouseX += 10;
-        mouseY += 10;
 
         for (int i = 0; i < player.getUnits().length; i++) {
 
@@ -153,8 +150,8 @@ public class SelectionScreen implements MouseHandler {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);
-        verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY())-23,p2);
+        //verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);
+        //verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY())-23,p2);
 
     }
 
@@ -206,19 +203,19 @@ public class SelectionScreen implements MouseHandler {
             return null;
         }
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < player.getUnits().length; i++) {
 
             if (player.getUnits()[i] == null) {
                 return null;
             }
 
-            int centerPosX = player.getUnits()[i].getPos().getX()  -  player.getUnits()[i].getUnitPic().getWidth()/2;
-            int centerPosY = player.getUnits()[i].getPos().getY()  -  player.getUnits()[i].getUnitPic().getHeight()/2;
+            int centerPosX = player.getUnits()[i].getPos().getX()  -  player.getUnits()[i].getUnitPic().getWidth()/2 - 20;
+            int centerPosY = player.getUnits()[i].getPos().getY()  -  player.getUnits()[i].getUnitPic().getHeight()/2 - 20;
             //System.out.println("in X = "+centerPosX+ " "+ mouseX+" "+(centerPosX+80));
             //System.out.println("in y = "+centerPosY+ " "+ mouseY+" "+(centerPosY+60));
 
-            if ((mouseX > centerPosX && (mouseX < (centerPosX+80))
-                    && (mouseY > centerPosY) && (mouseY < (centerPosY+60)))) {
+            if ((mouseX > centerPosX && (mouseX < (centerPosX + 120))
+                    && (mouseY > centerPosY) && (mouseY < (centerPosY + 80)))) {
 
                 System.out.println(player.getUnits()[i]);
 
