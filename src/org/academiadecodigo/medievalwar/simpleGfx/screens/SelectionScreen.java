@@ -227,8 +227,8 @@ public class SelectionScreen implements MouseHandler {
 
         for (int i = 0; i < mercenaries.length; i++) {
 
-            if (p1.getUnits()[i].getPos().getX() < mouseX && mouseX < p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()
-                    && p1.getUnits()[i].getPos().getY() < mouseY && mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()) {
+            if ((mouseX > p1.getUnits()[i].getPos().getX()  && (mouseX < (p1.getUnits()[i].getPos().getX() + p1.getUnits()[i].getUnitPic().getWidth()))
+                    && (mouseY > p1.getUnits()[i].getPos().getY()) && (mouseY < p1.getUnits()[i].getPos().getY() + p1.getUnits()[i].getUnitPic().getHeight()))) {
 
                 return p1.getUnits()[i];
 
