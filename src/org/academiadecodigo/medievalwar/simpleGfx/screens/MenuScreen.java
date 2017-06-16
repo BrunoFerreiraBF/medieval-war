@@ -16,7 +16,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class MenuScreen implements Screen, KeyboardHandler {
 
-    private boolean spacePressed=false111111;
+    private boolean spacePressed;
 
     private Picture menuScreen = new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_init.jpg");
 
