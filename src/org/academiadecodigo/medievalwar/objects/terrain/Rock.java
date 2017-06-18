@@ -7,18 +7,7 @@ import org.academiadecodigo.medievalwar.field.grid.positionGrid.GridPosition;
  */
 public class Rock extends Terrain{
 
-    public Rock(){
-        super(TerrainType.ROCK);
-        this.setDamageMultiplier(0);
-        this.setAccuracyMultiplier(0);
-
-
-    }
-
-    public Rock (GridPosition pos) {
-
-        super(pos);
-        this.setDamageMultiplier(0);
-        this.setAccuracyMultiplier(0);
+    public Rock(GridPosition pos) {
+        super(1, 1, 1, pos, TerrainType.ROCK);
     }
 }

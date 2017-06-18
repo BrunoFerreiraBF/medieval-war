@@ -13,18 +13,21 @@ public abstract class Terrain {
 
     private double accuraryMultiplier ;
 
+    private double defenseMultiplier;
+
     private GridPosition pos;
 
     private TerrainType terrainType;
 
 
-    public Terrain(TerrainType terrainType){
-        this.terrainType=terrainType;
+    public Terrain(double damageMultiplier, double accuracyMultiplier,double defenseMultiplier, GridPosition pos, TerrainType terrainType) {
+        this.damageMultiplier = damageMultiplier;
+        this.accuraryMultiplier = accuracyMultiplier;
+        this.pos = pos;
+        this.terrainType = terrainType;
+        this.defenseMultiplier=defenseMultiplier;
     }
 
-    public Terrain(GridPosition pos){
-        this.pos = pos;
-    }
 
     public GridPosition getPos() {
         return pos;
@@ -38,10 +41,22 @@ public abstract class Terrain {
         this.accuraryMultiplier = accuracyMultiplier;
     }
 
-    public void setTerrainType(TerrainType terrainType) {
-        this.terrainType = terrainType;
+    public TerrainType getTerrainType() {
+        return terrainType;
     }
 
+
+    public double getAccuraryMultiplier() {
+        return accuraryMultiplier;
+    }
+
+    public double getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public double getDefenseMultiplier() {
+        return defenseMultiplier;
+    }
 
     @Override
     public String toString() {

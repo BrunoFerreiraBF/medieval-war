@@ -3,6 +3,7 @@ package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
 import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
+import org.academiadecodigo.medievalwar.objects.terrain.TerrainType;
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -27,10 +28,15 @@ public class GameScreenMouseHandler implements MouseHandler {
     private SimpleGfxGrid grid;
 
 
-    private Player playerInControl;
-
-
     private Mercenary selectedMerc;
+
+    private Mercenary targetMerc;
+
+
+    private Ellipse move = new Ellipse(0, 0, 0, 0);
+
+    private Ellipse attack = new Ellipse(0, 0, 0, 0);
+    private Ellipse attack1 = new Ellipse(0, 0, 0, 0);
 
 
     public GameScreenMouseHandler(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
@@ -48,33 +54,57 @@ public class GameScreenMouseHandler implements MouseHandler {
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
 
-
         Terrain terrain = verifyTerrain(mouseX, mouseY);
 
-
-        if (selectedMerc!=null){
-
-            move(mouseX,mouseY);
-
-            selectedMerc=null;
+        if (terrain.getTerrainType() == TerrainType.ROCK) {
+            return;
         }
-
-
-        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
-        //Mercenary mercenary2 = verifyMercenary(mouseX, mouseY, p2);
-
-        System.out.println("----------------------------------------------------------"+selectedMerc+"------------------------------------------------------------------");
-        System.out.println("----------------------------------------------------------"+selectedMerc+"------------------------------------------------------------------");
+        attack1.delete();
 
 
         if (selectedMerc != null) {
 
-            Ellipse move = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getMoveRange()), (selectedMerc.getMoveRange()));
+            move(mouseX, mouseY);
+
+
+            move.delete();
+            attack.delete();
+
+            attack1 = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getAttackRange(), selectedMerc.getAttackRange());
+            attack1.setColor(Color.RED);
+            attack1.fill();
+            attack1.draw();
+
+            selectedMerc = null;
+            return;
+        }
+
+
+        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
+        targetMerc = verifyMercenary(mouseX, mouseY, p2);
+
+        if (targetMerc != null) {
+
+            selectedMerc.hit(targetMerc);
+
+            if (targetMerc.isDead()){
+                targetMerc.getUnitPic().delete();
+                targetMerc.getPos().setX(-10);
+                targetMerc.getPos().setY(-10);
+            }
+
+            targetMerc=null;
+            return;
+        }
+
+        if (selectedMerc != null) {
+
+            move = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getMoveRange()), (selectedMerc.getMoveRange()));
             move.setColor(Color.YELLOW);
             move.fill();
             move.draw();
 
-            Ellipse attack = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getMoveRange() + selectedMerc.getAttackRange(), selectedMerc.getMoveRange() + selectedMerc.getAttackRange());
+            attack = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getMoveRange() + selectedMerc.getAttackRange(), selectedMerc.getMoveRange() + selectedMerc.getAttackRange());
             attack.setColor(Color.RED);
             attack.fill();
             attack.draw();
@@ -89,12 +119,12 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-/*
+
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY();
-
+/*
         System.out.println(mouseX + " " + mouseY);
-        System.out.println(verifyTerrain(mouseX, mouseY));
+
         System.out.println(verifyMercenary(mouseX, mouseY, p1));
         System.out.println(verifyMercenary(mouseX, mouseY, p2));
 
@@ -104,27 +134,23 @@ public class GameScreenMouseHandler implements MouseHandler {
 
         System.out.println("X" + (mercenary1.getPos().getX() - (mercenary1.getMoveRange() / 2)) + "Y" + (mercenary1.getPos().getY() - (mercenary1.getMoveRange() / 2)) + " RAIO" + (mercenary1.getMoveRange()));
 */
+       // System.out.println(verifyTerrain(mouseX, mouseY));
     }
 
-    private void move(int x,int y){
+    private void move(int x, int y) {
 
-        System.out.println(selectedMerc.getPos().getDistance(x,y)+"move range "+selectedMerc.getMoveRange()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa");
-        if (selectedMerc.getPos().getDistance(x,y)>selectedMerc.getMoveRange()){
+//        System.out.println(selectedMerc.getPos().getDistance(x,y)+"move range "+selectedMerc.getMoveRange()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa");
+        if (selectedMerc.getPos().getDistance(x, y) > selectedMerc.getMoveRange()) {
 
             System.out.println("out of move range");
             return;
         }
 
-        selectedMerc.getUnitPic().translate(x-selectedMerc.getPos().getX(),y-selectedMerc.getPos().getY());
+        selectedMerc.getUnitPic().translate(x - selectedMerc.getPos().getX(), y - selectedMerc.getPos().getY());
         selectedMerc.getPos().setX(x);
         selectedMerc.getPos().setY(y);
 
-
     }
-
-
-
-
 
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {

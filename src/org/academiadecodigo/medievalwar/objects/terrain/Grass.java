@@ -7,17 +7,7 @@ import org.academiadecodigo.medievalwar.field.grid.positionGrid.GridPosition;
  */
 public class Grass extends Terrain {
 
-    public Grass() {
-        super(TerrainType.GRASS);
-        this.setDamageMultiplier(1);
-        this.setAccuracyMultiplier(1);
-
-    }
-
     public Grass(GridPosition pos) {
-
-        super(pos);
-        this.setDamageMultiplier(1);
-        this.setAccuracyMultiplier(1);
+        super(1, 1, 1, pos, TerrainType.GRASS);
     }
 }

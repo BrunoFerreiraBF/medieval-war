@@ -31,6 +31,9 @@ public abstract class Mercenary implements Damageable, Damager {
     private static int cost;
 
 
+    private boolean dead=false;
+
+
     public Mercenary(int x, int y, MercenaryType type,double hp, double damage,double moveRange,double attackRange, int cost, double accuracy) {
         this.type = type;
         pos = new Position(x, y);
@@ -57,6 +60,9 @@ this.accuracy=accuracy;
     @Override
     public void takeHit(double damage) {
         hp -= damage;
+        if (hp<0){
+            dead=true;
+        }
     }
 
     @Override
@@ -67,7 +73,7 @@ this.accuracy=accuracy;
     @Override
     public void hit(Damageable unit) {
         unit.takeHit(getDamage() * initialHp / getHp());
-
+        System.out.println("Gave "+(getDamage() * initialHp / getHp())+"damage");
     }
 
     public Picture getUnitPic() {
@@ -98,6 +104,10 @@ this.accuracy=accuracy;
 
     public Position getPos() {
         return pos;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 
 
