@@ -11,71 +11,68 @@ public class MercenaryFactory {
 
     public static Mercenary makeMercenary(int x, int y, Mercenary unit, Player player) {
 
+            if (unit instanceof Archer) {
 
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/archer/BLUE_archer_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Archer) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/archer/BLUE_archer_static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof Catapult) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/catapult/BLUE_catapult_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Catapult) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/catapult/BLUE_Catapult_static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof Cavalry) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalry/BLUE_cavalry_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Cavalry) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalry/BLUE_cavalry_Static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof Cavalry_Archer) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalryarcher/BLUE_cavalryarcher_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Cavalry_Archer) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalryarcher/BLUE_cavalryArcher_Static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof General) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/general/BLUE_general_Static.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof General) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/general/BLUE_general_Static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof Infantry) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/infantry/BLUE_soldier_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Infantry) {
+                return unit;
+            }
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/infantry/BLUE_soldier_Static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+            if (unit instanceof Spearman) {
 
-            return unit;
-        }
+                Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/spearman/BLUE_spearman_RIGHT.png"));
+                pic.draw();
+                pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
-        if (unit instanceof Spearman) {
-
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/spearman/BLUE_spearman_Static.png"));
-            pic.draw();
-            pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
-
-            return unit;
-        }
-
+                return unit;
+            }
 
         return unit;
     }
