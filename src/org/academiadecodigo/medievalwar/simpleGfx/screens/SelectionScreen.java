@@ -50,17 +50,17 @@ public class SelectionScreen implements MouseHandler {
     public void mouseClicked(MouseEvent mouseEvent) {
         Player player = null;
 
-        int mouseX = (int) mouseEvent.getX();
-        int mouseY = (int) mouseEvent.getY() - 23;
+        int mouseX = (int) mouseEvent.getX()-10;
+        int mouseY = (int) mouseEvent.getY() - 33;
 
-        if (mouseX <= 320) {
+        if (mouseX <= 320+10) {
             player = p1;
         }
-        if (mouseX > 640) {
+        if (mouseX > 640+10) {
             player = p2;
         }
 
-        if (mouseX > 320 && mouseX < 640) {
+        if (mouseX > 320+10 && mouseX < 640+10) {
             System.out.println("wrong place");
             return;
         }
@@ -80,8 +80,8 @@ public class SelectionScreen implements MouseHandler {
         }
 
 
-        //System.out.println(p1.toString());
-        //System.out.println(p2.toString());
+        System.out.println(p1.toString());
+        System.out.println(p2.toString());
 
 
         for (int i = 0; i < player.getUnits().length; i++) {
@@ -149,10 +149,15 @@ public class SelectionScreen implements MouseHandler {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+/*
+        int mouseX = (int) mouseEvent.getX();
+        int mouseY = (int) mouseEvent.getY();
 
-        //verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY()-23),p1);
-        //verifyMercenary(((int) mouseEvent.getX()), ((int) mouseEvent.getY())-23,p2);
-
+        System.out.println(mouseX+" "+mouseY);
+        System.out.println(verifyTerrain(mouseX,mouseY));
+        System.out.println(verifyMercenary(mouseX, mouseY,p1));
+        System.out.println(verifyMercenary(mouseX, mouseY,p2));
+*/
     }
 
 

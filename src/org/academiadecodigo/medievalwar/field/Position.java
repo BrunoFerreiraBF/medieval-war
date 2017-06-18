@@ -30,4 +30,17 @@ public class Position {
     }
 
 
+    public double getDistance(int x, int y){
+
+        return (Math.sqrt (Math.pow(   ((double)(x-this.x)),2)  +  Math.pow ((double)(y-this.y),2)));
+    }
+
+    public void setX(int x) {
+        this.x = x;
+
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 }

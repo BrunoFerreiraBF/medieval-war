@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  * Created by codecadet on 12/06/2017.
  */
 public class General extends Mercenary implements Damageable, Damager {
-
+/*
     private Picture unitPic;
 
     private double hp=300;
@@ -23,14 +23,11 @@ public class General extends Mercenary implements Damageable, Damager {
     public final double damage = 90;
 
     public final double accuracy=0.95;
-
+*/
 
     public General (int x, int y){
-        super(x, y,MercenaryType.GENERAL);
-        this.setInitialHp(hp);
+        super (x,y,MercenaryType.GENERAL,300,75,250,100,0,0.95);
     }
 
-    public General(){
-        this.setInitialHp(hp);
-    }
+
 }

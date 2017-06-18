@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class Catapult extends Mercenary implements Damageable, Damager {
 
-
+/*
     private double hp = 50;
 
     public final MercenaryType type = MercenaryType.CATAPULT;
@@ -25,15 +25,13 @@ public class Catapult extends Mercenary implements Damageable, Damager {
 
     private static int cost=80;
 
+
+*/
     public Catapult(int x, int y) {
-        super(x, y,MercenaryType.CATAPULT);
-        this.setInitialHp(hp);
+        super(x, y,MercenaryType.CATAPULT,50,55,60,500,80,0.7);
+
     }
 
-
-    public Catapult(){
-        this.setInitialHp(hp);
-    }
 
 
 }

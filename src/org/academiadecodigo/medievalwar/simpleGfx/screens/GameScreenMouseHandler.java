@@ -1,13 +1,16 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
+
 import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
-import org.academiadecodigo.simplegraphics.mouse.Mouse;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
-import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
+
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+
 
 /**
  * Created by codecadet on 17/06/2017.
@@ -24,13 +27,18 @@ public class GameScreenMouseHandler implements MouseHandler {
     private SimpleGfxGrid grid;
 
 
+    private Player playerInControl;
+
+
+    private Mercenary selectedMerc;
+
+
     public GameScreenMouseHandler(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
 
         this.terrains = terrains;
         this.p1 = p1;
         this.p2 = p2;
         this.grid = grid;
-
     }
 
 
@@ -40,31 +48,83 @@ public class GameScreenMouseHandler implements MouseHandler {
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
 
-        Terrain terrain = verifyTerrain(mouseX,mouseY);
 
-        Mercenary mercenary1 = verifyMercenary(mouseX,mouseY,p1);
-        Mercenary mercenary2 = verifyMercenary(mouseX,mouseY,p2);
+        Terrain terrain = verifyTerrain(mouseX, mouseY);
 
 
-        // quando clicar num boneco gerar om circulo a sua volta com o raio = ao movement range da unidade
+        if (selectedMerc!=null){
 
-        // com o segundo clique ele ve a posição e se estiver dentro do raio de acção ele faz a translacção
+            move(mouseX,mouseY);
+
+            selectedMerc=null;
+        }
+
+
+        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
+        //Mercenary mercenary2 = verifyMercenary(mouseX, mouseY, p2);
+
+        System.out.println("----------------------------------------------------------"+selectedMerc+"------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------"+selectedMerc+"------------------------------------------------------------------");
+
+
+        if (selectedMerc != null) {
+
+            Ellipse move = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getMoveRange()), (selectedMerc.getMoveRange()));
+            move.setColor(Color.YELLOW);
+            move.fill();
+            move.draw();
+
+            Ellipse attack = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() + selectedMerc.getAttackRange()) / 2, selectedMerc.getMoveRange() + selectedMerc.getAttackRange(), selectedMerc.getMoveRange() + selectedMerc.getAttackRange());
+            attack.setColor(Color.RED);
+            attack.fill();
+            attack.draw();
+
+
+        }
+
 
         // gerar o codigo que faz o hit ao atacar e seleccionar uma unidade inimiga se esta tiver dentro de atack range
-
-
-
-
-
-
-
 
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
+/*
+        int mouseX = (int) mouseEvent.getX();
+        int mouseY = (int) mouseEvent.getY();
+
+        System.out.println(mouseX + " " + mouseY);
+        System.out.println(verifyTerrain(mouseX, mouseY));
+        System.out.println(verifyMercenary(mouseX, mouseY, p1));
+        System.out.println(verifyMercenary(mouseX, mouseY, p2));
+
+        Mercenary mercenary1 = verifyMercenary(mouseX, mouseY, p1);
+
+        //System.out.println(mercenary1.getPos().getX());
+
+        System.out.println("X" + (mercenary1.getPos().getX() - (mercenary1.getMoveRange() / 2)) + "Y" + (mercenary1.getPos().getY() - (mercenary1.getMoveRange() / 2)) + " RAIO" + (mercenary1.getMoveRange()));
+*/
+    }
+
+    private void move(int x,int y){
+
+        System.out.println(selectedMerc.getPos().getDistance(x,y)+"move range "+selectedMerc.getMoveRange()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa");
+        if (selectedMerc.getPos().getDistance(x,y)>selectedMerc.getMoveRange()){
+
+            System.out.println("out of move range");
+            return;
+        }
+
+        selectedMerc.getUnitPic().translate(x-selectedMerc.getPos().getX(),y-selectedMerc.getPos().getY());
+        selectedMerc.getPos().setX(x);
+        selectedMerc.getPos().setY(y);
+
 
     }
+
+
+
+
 
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {
@@ -79,8 +139,8 @@ public class GameScreenMouseHandler implements MouseHandler {
                 return null;
             }
 
-            int centerPosX = player.getUnits()[i].getPos().getX()  -  player.getUnits()[i].getUnitPic().getWidth()/2 - 20;
-            int centerPosY = player.getUnits()[i].getPos().getY()  -  player.getUnits()[i].getUnitPic().getHeight()/2 - 20;
+            int centerPosX = player.getUnits()[i].getPos().getX() - player.getUnits()[i].getUnitPic().getWidth() / 2 - 20;
+            int centerPosY = player.getUnits()[i].getPos().getY() - player.getUnits()[i].getUnitPic().getHeight() / 2 - 20;
             //System.out.println("in X = "+centerPosX+ " "+ mouseX+" "+(centerPosX+80));
             //System.out.println("in y = "+centerPosY+ " "+ mouseY+" "+(centerPosY+60));
 

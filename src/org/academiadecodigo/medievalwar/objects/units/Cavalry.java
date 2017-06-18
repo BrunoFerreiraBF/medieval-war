@@ -9,6 +9,7 @@ import org.academiadecodigo.medievalwar.objects.Damager;
  */
 public class Cavalry extends Mercenary implements Damageable, Damager {
 
+    /*
     private double hp = 105;
 
     public final MercenaryType type = MercenaryType.CAVALRY;
@@ -22,16 +23,10 @@ public class Cavalry extends Mercenary implements Damageable, Damager {
     public final double accuracy = 0.95;
 
     private static int cost = 100;
-
+*/
 
     public Cavalry(int x, int y) {
-        super(x, y,MercenaryType.CAVALRY);
-        this.setInitialHp(hp);
-    }
-
-
-    public Cavalry() {
-        this.setInitialHp(hp);
+        super(x, y,MercenaryType.CAVALRY,105,54,350,100,100,0.95);
     }
 
 

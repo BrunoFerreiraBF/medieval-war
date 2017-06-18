@@ -22,19 +22,24 @@ public class GameScreen implements Screen {
 
     private SimpleGfxGrid grid;
 
-    private GameScreenMouseHandler gameScreenMouseHandler= new GameScreenMouseHandler(terrains,grid,p1,p2);
+    private GameScreenMouseHandler gameScreenMouseHandler;
+
+
+    private int turnCounter;
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
+
+        gameScreenMouseHandler=new GameScreenMouseHandler(terrains, grid, p1, p2);
+
+        Mouse m = new Mouse(gameScreenMouseHandler);
+        m.addEventListener(MouseEventType.MOUSE_CLICKED);
+        m.addEventListener(MouseEventType.MOUSE_MOVED);
 
         this.terrains = terrains;
         this.p1 = p1;
         this.p2 = p2;
         this.grid = grid;
-
-        Mouse m = new Mouse(gameScreenMouseHandler);
-        m.addEventListener(MouseEventType.MOUSE_CLICKED);
-        m.addEventListener(MouseEventType.MOUSE_MOVED);
 
     }
 
@@ -50,10 +55,18 @@ public class GameScreen implements Screen {
         drawUnits(p2.getUnits());
     }
 
+    public void startTurn(){
 
-    public void draw() {
+
+
+
+
+
+        turnCounter++;
+
 
     }
+
 
 
     private void drawUnits(Mercenary[] units) {
@@ -119,7 +132,6 @@ public class GameScreen implements Screen {
 
         remove(p2.getUnits());
 
-        draw();
     }
 
 

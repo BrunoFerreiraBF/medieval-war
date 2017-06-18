@@ -8,14 +8,14 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  * Created by codecadet on 12/06/2017.
  */
 public class Archer extends Mercenary implements Damageable, Damager {
-
+/*
     private double hp=36;
 
     public final MercenaryType type = MercenaryType.ARCHER;
 
-    public final double moveRange=30;
+    private double moveRange=200;
 
-    public final double attackRange= 160;
+    private double attackRange= 300;
 
     public final double damage=63;
 
@@ -23,16 +23,12 @@ public class Archer extends Mercenary implements Damageable, Damager {
 
     private static int cost=112;
 
-
+*/
     public Archer(int x, int y){
 
-        super (x,y,MercenaryType.ARCHER);
+        super (x,y,MercenaryType.ARCHER,36,63,200,300,112,0.8);
 
-        this.setInitialHp(hp);
     }
 
-    public Archer(){
-        this.setInitialHp(hp);
-    }
 
 }

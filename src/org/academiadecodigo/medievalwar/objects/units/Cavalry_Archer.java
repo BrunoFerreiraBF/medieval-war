@@ -11,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
 
 
-
+/*
     private double hp=105;
 
     public final MercenaryType type = MercenaryType.CAVALRY_ARCHER;
@@ -25,16 +25,13 @@ public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
     public final double accuracy = 0.8;
 
     private static int cost=94;
+*/
 
-    public Cavalry_Archer(){
-        this.setInitialHp(hp);
-    }
     public Cavalry_Archer(int x, int y){
 
-        super(x, y,MercenaryType.CAVALRY_ARCHER);
-        this.setInitialHp(hp);
-    }
+        super (x,y,MercenaryType.CAVALRY_ARCHER,105,27,250,200,94,0.75);
 
+    }
 
 
 

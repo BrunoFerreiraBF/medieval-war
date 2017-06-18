@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  * Created by codecadet on 12/06/2017.
  */
 public class Infantry extends Mercenary implements Damageable, Damager {
-
+/*
     private Picture unitPic;
 
     private double hp=135;
@@ -24,19 +24,11 @@ public class Infantry extends Mercenary implements Damageable, Damager {
     public final double accuracy=0.95;
 
     private  static int cost=60;
-
+*/
 
     public Infantry(int x, int y){
-
-        super(x, y,MercenaryType.INFANTRY);
-        this.setInitialHp(hp);
+        super (x,y,MercenaryType.INFANTRY,135,81,250,100,60,0.95);
     }
-
-
-    public Infantry(){
-        this.setInitialHp(hp);
-    }
-
 
 
 

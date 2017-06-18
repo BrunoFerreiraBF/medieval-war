@@ -20,6 +20,10 @@ public abstract class Mercenary implements Damageable, Damager {
 
     private double moveRange;
 
+    private double attackRange;
+
+    private double accuracy;
+
     private MercenaryType type;
 
     private Position pos;
@@ -27,10 +31,16 @@ public abstract class Mercenary implements Damageable, Damager {
     private static int cost;
 
 
-    public Mercenary(int x, int y, MercenaryType type) {
+    public Mercenary(int x, int y, MercenaryType type,double hp, double damage,double moveRange,double attackRange, int cost, double accuracy) {
         this.type = type;
         pos = new Position(x, y);
         initialHp = hp;
+this.accuracy=accuracy;
+        this.hp=hp;
+        this.damage=damage;
+        this.moveRange=moveRange;
+        this.attackRange=attackRange;
+        this.cost=cost;
 
     }
 
@@ -66,6 +76,10 @@ public abstract class Mercenary implements Damageable, Damager {
 
     public double getMoveRange() {
         return moveRange;
+    }
+
+    public double getAttackRange() {
+        return attackRange;
     }
 
     public void setInitialHp(double initialHp) {
