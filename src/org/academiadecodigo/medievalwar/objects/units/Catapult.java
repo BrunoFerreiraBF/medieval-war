@@ -10,23 +10,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class Catapult extends Mercenary implements Damageable, Damager {
 
-/*
-    private double hp = 50;
-
-    public final MercenaryType type = MercenaryType.CATAPULT;
-
-    public final double moveRange = 20;
-
-    public final double attackRange = 200;
-
-    public final double damage = 55;
-
-    public final double accuracy=0.70;
-
-    private static int cost=80;
-
-
-*/
     public Catapult(int x, int y) {
         super(x, y,MercenaryType.CATAPULT,50,55,60,500,80,0.7);
 

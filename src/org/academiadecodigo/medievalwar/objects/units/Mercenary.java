@@ -11,39 +11,28 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public abstract class Mercenary implements Damageable, Damager {
 
     private Picture unitPic;
-
     private double initialHp;
-
     private double hp;
-
     public double damage;
-
     private double moveRange;
-
     private double attackRange;
-
     private double accuracy;
-
     private MercenaryType type;
-
     private Position pos;
-
     private static int cost;
+    private boolean dead = false;
 
+    public Mercenary(int x, int y, MercenaryType type, double hp, double damage, double moveRange, double attackRange, int cost, double accuracy) {
 
-    private boolean dead=false;
-
-
-    public Mercenary(int x, int y, MercenaryType type,double hp, double damage,double moveRange,double attackRange, int cost, double accuracy) {
         this.type = type;
         pos = new Position(x, y);
         initialHp = hp;
-this.accuracy=accuracy;
-        this.hp=hp;
-        this.damage=damage;
-        this.moveRange=moveRange;
-        this.attackRange=attackRange;
-        this.cost=cost;
+        this.accuracy = accuracy;
+        this.hp = hp;
+        this.damage = damage;
+        this.moveRange = moveRange;
+        this.attackRange = attackRange;
+        this.cost = cost;
 
     }
 
@@ -56,26 +45,6 @@ this.accuracy=accuracy;
         return cost;
     }
 
-
-    @Override
-    public void takeHit(double damage) {
-        hp -= damage;
-        if (hp<0){
-            dead=true;
-        }
-    }
-
-    @Override
-    public double getHp() {
-        return hp;
-    }
-
-    @Override
-    public void hit(Damageable unit) {
-        unit.takeHit(getDamage() * initialHp / getHp());
-        System.out.println("Gave "+(getDamage() * initialHp / getHp())+"damage");
-    }
-
     public Picture getUnitPic() {
         return unitPic;
     }
@@ -86,10 +55,6 @@ this.accuracy=accuracy;
 
     public double getAttackRange() {
         return attackRange;
-    }
-
-    public void setInitialHp(double initialHp) {
-        this.initialHp = initialHp;
     }
 
     public double getDamage() {
@@ -112,6 +77,24 @@ this.accuracy=accuracy;
 
 
 
+    @Override
+    public void takeHit(double damage) {
+        hp -= damage;
+        if (hp < 0) {
+            dead = true;
+        }
+    }
+
+    @Override
+    public double getHp() {
+        return hp;
+    }
+
+    @Override
+    public void hit(Damageable unit) {
+        unit.takeHit(getDamage() * initialHp / getHp());
+        System.out.println("Gave " + (getDamage() * initialHp / getHp()) + "damage");
+    }
 
     @Override
     public String toString() {

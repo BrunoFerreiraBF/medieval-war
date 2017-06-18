@@ -14,36 +14,41 @@ public class TerrainFactory {
 
         double a= (Math.random());
 
-        if (a>0.75){
+        if (a>0.75) {
+
             ter= new Grass(grid.makeGridPosition(col,row));
-
             return ter;
+
         }
 
-        if (a>0.6){
+        if (a>0.6) {
+
             ter= new Mountain(grid.makeGridPosition(col,row));
-
             return ter;
+
         }
 
-        if (a>0.45){
+        if (a>0.45) {
 
             ter = new Forest(grid.makeGridPosition(col,row));
-
             return ter;
+
         }
 
-        if (a>0.3){
+        if (a>0.3) {
 
             ter = new Rock(grid.makeGridPosition(col,row));
-
             return ter;
+
         }
 
         else {
-            ter = new Sand(grid.makeGridPosition(col,row));
 
+            ter = new Sand(grid.makeGridPosition(col,row));
             return ter;
+
         }
+
     }
+
 }

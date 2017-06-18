@@ -37,7 +37,7 @@ public class Game {
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-        //menuScreen.setSpacePressed(true);
+        menuScreen.setSpacePressed(true);
 
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();

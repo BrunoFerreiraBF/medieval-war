@@ -20,21 +20,14 @@ public class GameScreenMouseHandler implements MouseHandler {
 
 
     private Terrain[][] terrains;
-
     private Player p1;
-
     private Player p2;
-
     private SimpleGfxGrid grid;
 
-
     private Mercenary selectedMerc;
-
     private Mercenary targetMerc;
 
-
     private Ellipse move = new Ellipse(0, 0, 0, 0);
-
     private Ellipse attack = new Ellipse(0, 0, 0, 0);
     private Ellipse attack1 = new Ellipse(0, 0, 0, 0);
 
@@ -50,6 +43,7 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+        attack1.delete();
 
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
@@ -59,43 +53,79 @@ public class GameScreenMouseHandler implements MouseHandler {
         if (terrain.getTerrainType() == TerrainType.ROCK) {
             return;
         }
-        attack1.delete();
+
+        selectedMerc=verifyMercenary(mouseX,mouseY,p1);
+        System.out.println("---------------------"+selectedMerc+"--------------------");
+        drawCircles();
 
 
-        if (selectedMerc != null) {
+        //targetMerc=verifyMercenary(mouseX,mouseY,p2);
 
-            move(mouseX, mouseY);
+        //if (attack()){return;}
 
 
-            move.delete();
-            attack.delete();
 
-            attack1 = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getAttackRange(), selectedMerc.getAttackRange());
-            attack1.setColor(Color.RED);
-            attack1.fill();
-            attack1.draw();
+        //if (selectedMerc != null) {
+          //  move(mouseX, mouseY);
+        //}
 
-            selectedMerc = null;
-            return;
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
+
+    }
+
+    private boolean move(int x, int y) {
+
+
+        if (selectedMerc.getPos().getDistance(x, y) > selectedMerc.getMoveRange()) {
+
+            System.out.println("out of move range");
+            return false;
         }
 
+        selectedMerc.getUnitPic().translate(x - selectedMerc.getPos().getX(), y - selectedMerc.getPos().getY());
+        selectedMerc.getPos().setX(x);
+        selectedMerc.getPos().setY(y);
 
-        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
-        targetMerc = verifyMercenary(mouseX, mouseY, p2);
+        move.delete();
+        attack.delete();
+
+        attack1 = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getAttackRange(), selectedMerc.getAttackRange());
+        attack1.setColor(Color.RED);
+        attack1.fill();
+        attack1.draw();
+
+        selectedMerc = null;
+
+        System.out.println("moved----------------------------------------------------");
+
+        return true;
+
+    }
+
+    private boolean attack() {
 
         if (targetMerc != null) {
 
             selectedMerc.hit(targetMerc);
 
-            if (targetMerc.isDead()){
+            if (targetMerc.isDead()) {
                 targetMerc.getUnitPic().delete();
                 targetMerc.getPos().setX(-10);
                 targetMerc.getPos().setY(-10);
             }
 
-            targetMerc=null;
-            return;
+            targetMerc = null;
+
+            System.out.println("atacked----------------------------------------------------");
+            return true;
         }
+        return false;
+    }
+
+    private void drawCircles() {
 
         if (selectedMerc != null) {
 
@@ -109,49 +139,17 @@ public class GameScreenMouseHandler implements MouseHandler {
             attack.fill();
             attack.draw();
 
+            System.out.println("drawn.......................--------------------------..............................------------------------");
 
         }
 
-
-        // gerar o codigo que faz o hit ao atacar e seleccionar uma unidade inimiga se esta tiver dentro de atack range
-
     }
 
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-
-        int mouseX = (int) mouseEvent.getX();
-        int mouseY = (int) mouseEvent.getY();
-/*
-        System.out.println(mouseX + " " + mouseY);
-
-        System.out.println(verifyMercenary(mouseX, mouseY, p1));
-        System.out.println(verifyMercenary(mouseX, mouseY, p2));
-
-        Mercenary mercenary1 = verifyMercenary(mouseX, mouseY, p1);
-
-        //System.out.println(mercenary1.getPos().getX());
-
-        System.out.println("X" + (mercenary1.getPos().getX() - (mercenary1.getMoveRange() / 2)) + "Y" + (mercenary1.getPos().getY() - (mercenary1.getMoveRange() / 2)) + " RAIO" + (mercenary1.getMoveRange()));
-*/
-       // System.out.println(verifyTerrain(mouseX, mouseY));
+    private void deleteCircles() {
+        attack.delete();
+        attack1.delete();
+        move.delete();
     }
-
-    private void move(int x, int y) {
-
-//        System.out.println(selectedMerc.getPos().getDistance(x,y)+"move range "+selectedMerc.getMoveRange()+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaa");
-        if (selectedMerc.getPos().getDistance(x, y) > selectedMerc.getMoveRange()) {
-
-            System.out.println("out of move range");
-            return;
-        }
-
-        selectedMerc.getUnitPic().translate(x - selectedMerc.getPos().getX(), y - selectedMerc.getPos().getY());
-        selectedMerc.getPos().setX(x);
-        selectedMerc.getPos().setY(y);
-
-    }
-
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {
 

@@ -57,16 +57,9 @@ public class GameScreen implements Screen {
 
     public void startTurn(){
 
-
-
-
-
-
         turnCounter++;
 
-
     }
-
 
 
     private void drawUnits(Mercenary[] units) {

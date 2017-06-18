@@ -10,4 +10,5 @@ public enum TerrainType {
     FOREST,
     ROCK,
     GRASS
+
 }
