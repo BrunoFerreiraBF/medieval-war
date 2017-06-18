@@ -4,6 +4,8 @@ import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -40,14 +42,31 @@ public class GameScreenMouseHandler implements MouseHandler {
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
 
-        Terrain terrain = verifyTerrain(mouseX,mouseY);
+        try {
+            Terrain terrain = verifyTerrain(mouseX,mouseY);
+        } catch(Exception e) {
+            System.out.println("EXCEPTION ON TERRAIN");
+        }
 
-        Mercenary mercenary1 = verifyMercenary(mouseX,mouseY,p1);
-        Mercenary mercenary2 = verifyMercenary(mouseX,mouseY,p2);
+        try {
+            Mercenary mercenary1 = verifyMercenary(mouseX, mouseY, p1);
+            Mercenary mercenary2 = verifyMercenary(mouseX, mouseY, p2);
 
+            Ellipse ellipse1 = new Ellipse(mercenary1.getPos().getX(), mercenary1.getPos().getY(), mercenary1.getMoveRange(), mercenary1.getMoveRange());
+            Ellipse ellipse2 = new Ellipse(mercenary2.getPos().getX(), mercenary2.getPos().getY(), mercenary2.getMoveRange(), mercenary2.getMoveRange());
+
+            ellipse1.setColor(Color.RED);
+            ellipse2.setColor(Color.BLUE);
+
+            ellipse1.draw();
+            ellipse2.draw();
+        } catch(Exception e) {
+            System.out.println("EXCEPTION ON UNITS");
+        } finally {
+
+        }
 
         // quando clicar num boneco gerar om circulo a sua volta com o raio = ao movement range da unidade
-
         // com o segundo clique ele ve a posição e se estiver dentro do raio de acção ele faz a translacção
 
         // gerar o codigo que faz o hit ao atacar e seleccionar uma unidade inimiga se esta tiver dentro de atack range
