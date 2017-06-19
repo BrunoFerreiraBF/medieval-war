@@ -83,7 +83,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Archer) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/archer/BLUE_archer_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/archer/RED_archer_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
@@ -92,7 +92,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Catapult) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/catapult/BLUE_catapult_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/catapult/RED_Catapult_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
@@ -101,7 +101,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Cavalry) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalry/BLUE_cavalry_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/cavalry/RED_kinights_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
@@ -110,7 +110,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Cavalry_Archer) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/cavalryarcher/BLUE_cavalryarcher_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/cavalryarcher/RED_cavalryArcher_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
@@ -128,7 +128,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Infantry) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/infantry/BLUE_soldier_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/infantry/RED_soldier_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
@@ -137,7 +137,7 @@ public class MercenaryFactory {
 
         if (unit instanceof Spearman) {
 
-            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p1/spearman/BLUE_spearman_RIGHT.png"));
+            Picture pic = unit.setUnitPic(new Picture(x, y, "charset/p2/spearman/RED_spearman_LEFT.png"));
             pic.draw();
             pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 

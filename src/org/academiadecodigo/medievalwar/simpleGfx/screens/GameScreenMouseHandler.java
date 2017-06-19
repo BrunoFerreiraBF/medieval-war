@@ -44,7 +44,7 @@ public class GameScreenMouseHandler implements MouseHandler {
     }
 
 
-    public static void nextTurn(){
+    public static void nextTurn() {
         resetAttack();
         resetMovement();
     }
@@ -61,10 +61,14 @@ public class GameScreenMouseHandler implements MouseHandler {
         int mouseY = (int) mouseEvent.getY() - 23;
 
 
-        if (verifyTerrain(mouseX, mouseY).getTerrainType() == TerrainType.ROCK) {
+        if (verifyTerrain(mouseX, mouseY + 23).getTerrainType() == TerrainType.ROCK) {
             return;
         }
 
+        if (targetMerc != null && selectedMerc != null && !selectedMerc.isAttacked()) {
+            attack();
+            return;
+        }
 
         if (selectedMerc != null && !selectedMerc.isMoved()) {
             move(mouseX, mouseY);
@@ -88,13 +92,6 @@ public class GameScreenMouseHandler implements MouseHandler {
         if (selectedMerc != null) {
             drawCircles();
         }
-
-
-        if (targetMerc != null && !selectedMerc.isAttacked()) {
-            attack();
-            return;
-        }
-
 
     }
 
@@ -151,6 +148,8 @@ public class GameScreenMouseHandler implements MouseHandler {
         attack1.fill();
         attack1.draw();
 
+        //System.out.println("--------------------------------------------------------- "+selectedMerc.isMoved() +"----------------------------------------------");
+
         selectedMerc.hasMoved();
 
         selectedMerc = null;
@@ -164,9 +163,9 @@ public class GameScreenMouseHandler implements MouseHandler {
     public static void resetMovement() {
 
 
-        for (int i = 0; i <playerInControl.getUnits().length ; i++) {
+        for (int i = 0; i < playerInControl.getUnits().length; i++) {
 
-            if(playerInControl.getUnits()[i]!=null){
+            if (playerInControl.getUnits()[i] != null) {
 
                 playerInControl.getUnits()[i].resetMove();
             }
@@ -176,11 +175,11 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     }
 
-    public static void resetAttack(){
+    public static void resetAttack() {
 
-        for (int i = 0; i <playerInControl.getUnits().length ; i++) {
+        for (int i = 0; i < playerInControl.getUnits().length; i++) {
 
-            if(playerInControl.getUnits()[i]!=null){
+            if (playerInControl.getUnits()[i] != null) {
 
                 playerInControl.getUnits()[i].resetAttacked();
             }
@@ -201,8 +200,14 @@ public class GameScreenMouseHandler implements MouseHandler {
                 targetMerc.getPos().setY(-10);
             }
 
+            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
+
             selectedMerc.hasAttacked();
+
+            selectedMerc = null;
             targetMerc = null;
+
             return true;
         }
 
