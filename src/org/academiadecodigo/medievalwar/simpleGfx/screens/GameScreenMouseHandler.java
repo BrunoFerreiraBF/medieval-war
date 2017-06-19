@@ -54,20 +54,31 @@ public class GameScreenMouseHandler implements MouseHandler {
             return;
         }
 
-        selectedMerc=verifyMercenary(mouseX,mouseY,p1);
-        System.out.println("---------------------"+selectedMerc+"--------------------");
-        drawCircles();
+
+        if (selectedMerc != null) {
+            move(mouseX, mouseY);
+            deleteCircles();
+
+        }
+
+        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
+        targetMerc = verifyMercenary(mouseX, mouseY, p2);
 
 
-        //targetMerc=verifyMercenary(mouseX,mouseY,p2);
+        if (selectedMerc != null) {
+            drawCircles();
+            System.out.println("in");
+        }
 
-        //if (attack()){return;}
+        System.out.println("---------------------" + selectedMerc + "--------------------");
 
 
+        if (targetMerc != null) {
+            attack();
 
-        //if (selectedMerc != null) {
-          //  move(mouseX, mouseY);
-        //}
+            return;
+        }
+
 
     }
 
