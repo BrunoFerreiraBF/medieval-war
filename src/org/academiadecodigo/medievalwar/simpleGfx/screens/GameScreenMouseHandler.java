@@ -61,19 +61,10 @@ public class GameScreenMouseHandler implements MouseHandler {
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
 
-
         if (verifyTerrain(mouseX, mouseY + 23).getTerrainType() == TerrainType.ROCK) {
             return;
         }
 
-        if (targetMerc != null && selectedMerc != null && !selectedMerc.isAttacked()) {
-
-            //System.out.println((selectedMerc.getPos().getDistance(targetMerc.getPos().getX(),targetMerc.getPos().getY())<selectedMerc.getAttackRange())+" and atack");
-
-            attack();
-
-            return;
-        }
 
         if (selectedMerc != null && !selectedMerc.isMoved() && targetMerc==null) {
             move(mouseX, mouseY);
@@ -93,6 +84,24 @@ public class GameScreenMouseHandler implements MouseHandler {
             targetMerc = verifyMercenary(mouseX, mouseY, p1);
             playerInControl = p2;
         }
+
+
+
+
+        if (targetMerc != null && selectedMerc != null && !selectedMerc.isAttacked()) {
+
+            //System.out.println((selectedMerc.getPos().getDistance(targetMerc.getPos().getX(),targetMerc.getPos().getY())<selectedMerc.getAttackRange())+" and atack");
+
+            attack();
+
+            return;
+        }
+
+
+
+
+
+
 
         if (selectedMerc != null) {
             drawCircles();
