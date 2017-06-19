@@ -22,6 +22,9 @@ public abstract class Mercenary implements Damageable, Damager {
     private static int cost;
     private boolean dead = false;
 
+
+    private boolean moved=false;
+
     public Mercenary(int x, int y, MercenaryType type, double hp, double damage, double moveRange, double attackRange, int cost, double accuracy) {
 
         this.type = type;
@@ -71,10 +74,35 @@ public abstract class Mercenary implements Damageable, Damager {
         return pos;
     }
 
+    private boolean attacked;
+
+
+    public boolean isAttacked() {
+        return attacked;
+    }
+    public void hasAttacked() {
+        attacked=true;
+    }
+    public void resetAttacked() {
+        attacked=false;
+    }
+
+
+    public boolean isMoved() {
+
+        return moved;
+
+    }
+    public void hasMoved() {
+        moved=true;
+    }
+    public void resetMove() {
+        moved=false;
+    }
+
     public boolean isDead() {
         return dead;
     }
-
 
 
     @Override

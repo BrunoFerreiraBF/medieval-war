@@ -23,14 +23,14 @@ public class GameScreen {
 
     private GameScreenMouseHandler gameScreenMouseHandler;
 
-    private static boolean winner;
+    private GameScreenKeyboardHandler gameScreenKeyboardHandler;
 
-    private static int turnCounter;
+    private static boolean winner;
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
-
-        gameScreenMouseHandler=new GameScreenMouseHandler(terrains, grid, p1, p2);
+        gameScreenMouseHandler = new GameScreenMouseHandler(terrains, grid, p1, p2);
+        gameScreenKeyboardHandler = new GameScreenKeyboardHandler();
 
         Mouse m = new Mouse(gameScreenMouseHandler);
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
@@ -63,12 +63,6 @@ public class GameScreen {
 
         drawUnits(p1.getUnits());
         drawUnits(p2.getUnits());
-    }
-
-    public void startTurn(){
-
-        turnCounter++;
-
     }
 
 
@@ -127,15 +121,6 @@ public class GameScreen {
             }
         }
     }
-
-    public void update() {
-
-        remove(p1.getUnits());
-
-        remove(p2.getUnits());
-
-    }
-
 
     public void remove(Mercenary[] units) {
 

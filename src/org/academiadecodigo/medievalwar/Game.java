@@ -44,7 +44,7 @@ public class Game {
         }
 
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
-        //SelectionScreenKeyboardHandler.setStartGameScreen(true);
+        //SelectionScreenKeyboardHandler.setTurnCounter(true);
 
         selectionScreen.init();
 

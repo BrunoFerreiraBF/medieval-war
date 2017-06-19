@@ -1,6 +1,5 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
-
 import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.terrain.TerrainType;
@@ -27,10 +26,14 @@ public class GameScreenMouseHandler implements MouseHandler {
     private Mercenary selectedMerc;
     private Mercenary targetMerc;
 
+    private static Player playerInControl;
+
     private Ellipse move = new Ellipse(0, 0, 0, 0);
     private Ellipse attack = new Ellipse(0, 0, 0, 0);
     private Ellipse attack1 = new Ellipse(0, 0, 0, 0);
 
+
+    private int turnCounter;
 
     public GameScreenMouseHandler(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
 
@@ -41,8 +44,17 @@ public class GameScreenMouseHandler implements MouseHandler {
     }
 
 
+    public static void nextTurn(){
+        resetAttack();
+        resetMovement();
+    }
+
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+
+        turnCounter = GameScreenKeyboardHandler.getTurnCounter();
+
         deleteCircles();
 
         int mouseX = (int) mouseEvent.getX();
@@ -54,33 +66,35 @@ public class GameScreenMouseHandler implements MouseHandler {
         }
 
 
-        if (selectedMerc != null) {
-
+        if (selectedMerc != null && !selectedMerc.isMoved()) {
             move(mouseX, mouseY);
-
             deleteCircles();
+        }
+
+
+        if (player1InControl(turnCounter)) {
+            selectedMerc = verifyMercenary(mouseX, mouseY, p1);
+            targetMerc = verifyMercenary(mouseX, mouseY, p2);
+            playerInControl = p1;
 
         }
 
-        selectedMerc = verifyMercenary(mouseX, mouseY, p1);
-        targetMerc = verifyMercenary(mouseX, mouseY, p2);
-
+        if (!player1InControl(turnCounter)) {
+            selectedMerc = verifyMercenary(mouseX, mouseY, p2);
+            targetMerc = verifyMercenary(mouseX, mouseY, p1);
+            playerInControl = p2;
+        }
 
         if (selectedMerc != null) {
             drawCircles();
         }
 
-        System.out.println("---------------------" + selectedMerc + "--------------------");
 
-
-        if (targetMerc != null) {
+        if (targetMerc != null && !selectedMerc.isAttacked()) {
             attack();
-
             return;
         }
 
-
-        System.out.println(GameScreen.setWinner(gameEnded()));
 
     }
 
@@ -92,23 +106,19 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     private boolean gameEnded() {
 
-
         for (int i = 0; i < p1.getUnits().length; i++) {
 
-            if ( p1.getUnits()[i] != null && !p1.getUnits()[i].isDead()) {
+            if (p1.getUnits()[i] != null && !p1.getUnits()[i].isDead()) {
 
             }
-            System.out.println("p1 alive---------------------");
         }
 
+        for (int i = 0; i < p2.getUnits().length; i++) {
 
-        for (int i = 0; i < p2.getUnits().length ; i++) {
-
-            if (p2.getUnits()[i] != null && !p2.getUnits()[i].isDead())  {
+            if (p2.getUnits()[i] != null && !p2.getUnits()[i].isDead()) {
 
                 return false;
             }
-            System.out.println("p2 alive -----------------------");
         }
 
         deleteCircles();
@@ -116,6 +126,9 @@ public class GameScreenMouseHandler implements MouseHandler {
         return true;
     }
 
+    public Player getPlayerInControl() {
+        return playerInControl;
+    }
 
     private boolean move(int x, int y) {
 
@@ -138,11 +151,41 @@ public class GameScreenMouseHandler implements MouseHandler {
         attack1.fill();
         attack1.draw();
 
+        selectedMerc.hasMoved();
+
         selectedMerc = null;
 
 
-
         return true;
+
+    }
+
+
+    public static void resetMovement() {
+
+
+        for (int i = 0; i <playerInControl.getUnits().length ; i++) {
+
+            if(playerInControl.getUnits()[i]!=null){
+
+                playerInControl.getUnits()[i].resetMove();
+            }
+
+        }
+
+
+    }
+
+    public static void resetAttack(){
+
+        for (int i = 0; i <playerInControl.getUnits().length ; i++) {
+
+            if(playerInControl.getUnits()[i]!=null){
+
+                playerInControl.getUnits()[i].resetAttacked();
+            }
+
+        }
 
     }
 
@@ -158,9 +201,11 @@ public class GameScreenMouseHandler implements MouseHandler {
                 targetMerc.getPos().setY(-10);
             }
 
+            selectedMerc.hasAttacked();
             targetMerc = null;
             return true;
         }
+
         return false;
     }
 
@@ -186,6 +231,7 @@ public class GameScreenMouseHandler implements MouseHandler {
         attack1.delete();
         move.delete();
     }
+
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {
 
@@ -215,7 +261,6 @@ public class GameScreenMouseHandler implements MouseHandler {
         return null;
     }
 
-
     public Terrain verifyTerrain(int mouseX, int mouseY) {
 
         int mouseRow = (mouseX - SimpleGfxGrid.PADDING) / SimpleGfxGrid.getCELLWIDTH();
@@ -238,4 +283,15 @@ public class GameScreenMouseHandler implements MouseHandler {
         return null;
 
     }
+
+
+    private boolean player1InControl(int turn) {
+
+        if ((turn % 2) == 0) {//par= true
+            return true;
+        }
+        return false;
+    }
 }
+
+
