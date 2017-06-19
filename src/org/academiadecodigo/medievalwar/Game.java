@@ -37,7 +37,7 @@ public class Game {
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-        //menuScreen.setSpacePressed(true);
+        menuScreen.setSpacePressed(true);
 
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
@@ -58,6 +58,9 @@ public class Game {
         selectionScreen.remove(p1.getUnits());
         selectionScreen.remove(p2.getUnits());
         selectionScreen=null;
+
+
+
         GameScreen gameScreen = new GameScreen(terrains, grid, p1, p2);
 
         gameScreen.init();
@@ -74,18 +77,6 @@ public class Game {
         EndScreen endScreen = new EndScreen(); // Player
 
         endScreen.Start();
-    }
-
-
-    private void turn() {
-
-        while (!endTurn) {
-
-            // mouse Handler
-            // allow player actions
-
-            //on click of ENDTURN ---> endTurn=true;
-        }
     }
 
 

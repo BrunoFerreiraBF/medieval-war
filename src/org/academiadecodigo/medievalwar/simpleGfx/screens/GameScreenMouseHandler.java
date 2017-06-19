@@ -47,6 +47,7 @@ public class GameScreenMouseHandler implements MouseHandler {
     public static void nextTurn() {
         resetAttack();
         resetMovement();
+
     }
 
 
@@ -66,11 +67,15 @@ public class GameScreenMouseHandler implements MouseHandler {
         }
 
         if (targetMerc != null && selectedMerc != null && !selectedMerc.isAttacked()) {
+
+            //System.out.println((selectedMerc.getPos().getDistance(targetMerc.getPos().getX(),targetMerc.getPos().getY())<selectedMerc.getAttackRange())+" and atack");
+
             attack();
+
             return;
         }
 
-        if (selectedMerc != null && !selectedMerc.isMoved()) {
+        if (selectedMerc != null && !selectedMerc.isMoved() && targetMerc==null) {
             move(mouseX, mouseY);
             deleteCircles();
         }
@@ -93,8 +98,36 @@ public class GameScreenMouseHandler implements MouseHandler {
             drawCircles();
         }
 
-    }
+        System.out.println(selectedMerc);
 
+        System.out.println(targetMerc);
+
+    }
+    private boolean attack() {
+
+        if (targetMerc != null) {
+
+            selectedMerc.hit(targetMerc);
+
+            if (targetMerc.isDead()) {
+                targetMerc.getUnitPic().delete();
+                targetMerc.getPos().setX(-10);
+                targetMerc.getPos().setY(-10);
+            }
+
+            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
+
+            selectedMerc.hasAttacked();
+
+            selectedMerc = null;
+            targetMerc = null;
+
+            return true;
+        }
+
+        return false;
+    }
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
@@ -123,9 +156,6 @@ public class GameScreenMouseHandler implements MouseHandler {
         return true;
     }
 
-    public Player getPlayerInControl() {
-        return playerInControl;
-    }
 
     private boolean move(int x, int y) {
 
@@ -152,7 +182,8 @@ public class GameScreenMouseHandler implements MouseHandler {
 
         selectedMerc.hasMoved();
 
-        selectedMerc = null;
+        //selectedMerc = null;
+        //targetMerc = null;
 
 
         return true;
@@ -188,31 +219,7 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     }
 
-    private boolean attack() {
 
-        if (targetMerc != null) {
-
-            selectedMerc.hit(targetMerc);
-
-            if (targetMerc.isDead()) {
-                targetMerc.getUnitPic().delete();
-                targetMerc.getPos().setX(-10);
-                targetMerc.getPos().setY(-10);
-            }
-
-            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
-            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
-
-            selectedMerc.hasAttacked();
-
-            selectedMerc = null;
-            targetMerc = null;
-
-            return true;
-        }
-
-        return false;
-    }
 
     private void drawCircles() {
 
