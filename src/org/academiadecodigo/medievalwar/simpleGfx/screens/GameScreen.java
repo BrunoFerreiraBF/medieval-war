@@ -1,7 +1,6 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
 import org.academiadecodigo.medievalwar.Player;
-import org.academiadecodigo.medievalwar.field.grid.Grid;
 import org.academiadecodigo.medievalwar.objects.terrain.*;
 import org.academiadecodigo.medievalwar.objects.units.*;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
@@ -12,7 +11,7 @@ import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 /**
  * Created by codecadet on 13/06/17.
  */
-public class GameScreen implements Screen {
+public class GameScreen {
 
     private Terrain[][] terrains;
 
@@ -24,8 +23,9 @@ public class GameScreen implements Screen {
 
     private GameScreenMouseHandler gameScreenMouseHandler;
 
+    private static boolean winner;
 
-    private int turnCounter;
+    private static int turnCounter;
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
@@ -41,6 +41,16 @@ public class GameScreen implements Screen {
         this.p2 = p2;
         this.grid = grid;
 
+    }
+
+
+    public static boolean setWinner(boolean winner1) {
+        winner = winner1;
+        return winner;
+    }
+
+    public static boolean isWinner() {
+        return winner;
     }
 
     public void init() {
@@ -117,7 +127,6 @@ public class GameScreen implements Screen {
             }
         }
     }
-
 
     public void update() {
 

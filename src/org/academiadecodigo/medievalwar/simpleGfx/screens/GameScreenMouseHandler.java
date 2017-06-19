@@ -43,20 +43,21 @@ public class GameScreenMouseHandler implements MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        attack1.delete();
+        deleteCircles();
 
         int mouseX = (int) mouseEvent.getX();
         int mouseY = (int) mouseEvent.getY() - 23;
 
-        Terrain terrain = verifyTerrain(mouseX, mouseY);
 
-        if (terrain.getTerrainType() == TerrainType.ROCK) {
+        if (verifyTerrain(mouseX, mouseY).getTerrainType() == TerrainType.ROCK) {
             return;
         }
 
 
         if (selectedMerc != null) {
+
             move(mouseX, mouseY);
+
             deleteCircles();
 
         }
@@ -67,7 +68,6 @@ public class GameScreenMouseHandler implements MouseHandler {
 
         if (selectedMerc != null) {
             drawCircles();
-            System.out.println("in");
         }
 
         System.out.println("---------------------" + selectedMerc + "--------------------");
@@ -80,12 +80,42 @@ public class GameScreenMouseHandler implements MouseHandler {
         }
 
 
+        System.out.println(GameScreen.setWinner(gameEnded()));
+
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
     }
+
+
+    private boolean gameEnded() {
+
+
+        for (int i = 0; i < p1.getUnits().length; i++) {
+
+            if ( p1.getUnits()[i] != null && !p1.getUnits()[i].isDead()) {
+
+            }
+            System.out.println("p1 alive---------------------");
+        }
+
+
+        for (int i = 0; i < p2.getUnits().length ; i++) {
+
+            if (p2.getUnits()[i] != null && !p2.getUnits()[i].isDead())  {
+
+                return false;
+            }
+            System.out.println("p2 alive -----------------------");
+        }
+
+        deleteCircles();
+
+        return true;
+    }
+
 
     private boolean move(int x, int y) {
 
@@ -110,7 +140,7 @@ public class GameScreenMouseHandler implements MouseHandler {
 
         selectedMerc = null;
 
-        System.out.println("moved----------------------------------------------------");
+
 
         return true;
 
@@ -129,8 +159,6 @@ public class GameScreenMouseHandler implements MouseHandler {
             }
 
             targetMerc = null;
-
-            System.out.println("atacked----------------------------------------------------");
             return true;
         }
         return false;
@@ -150,10 +178,7 @@ public class GameScreenMouseHandler implements MouseHandler {
             attack.fill();
             attack.draw();
 
-            System.out.println("drawn.......................--------------------------..............................------------------------");
-
         }
-
     }
 
     private void deleteCircles() {

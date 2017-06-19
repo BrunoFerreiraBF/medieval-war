@@ -37,7 +37,7 @@ public class Game {
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-        menuScreen.setSpacePressed(true);
+        //menuScreen.setSpacePressed(true);
 
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
@@ -64,7 +64,16 @@ public class Game {
         gameScreen.start();
 
 
-        //EndScreen endScreen = new EndScreen(gameScreen.winner); // Player
+        while (!GameScreen.isWinner()) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+            }
+        }
+
+        EndScreen endScreen = new EndScreen(); // Player
+
+        endScreen.Start();
     }
 
 

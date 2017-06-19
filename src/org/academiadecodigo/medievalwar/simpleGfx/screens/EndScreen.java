@@ -14,12 +14,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class EndScreen implements KeyboardHandler {
 
 
-    private boolean spacePressed;
-
     private Picture endScreen = new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_blueWins.jpg");
 
 
-    public EndScreen(Player player) {
+    public EndScreen() {
 
         Keyboard k = new Keyboard(this);
 
@@ -40,13 +38,6 @@ public class EndScreen implements KeyboardHandler {
         endScreen.draw();
     }
 
-    public boolean isSpacePressed() {
-        return spacePressed;
-    }
-
-    public void setSpacePressed(boolean spacePressed) {
-        this.spacePressed = spacePressed;
-    }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -55,10 +46,11 @@ public class EndScreen implements KeyboardHandler {
 
             case KeyboardEvent.KEY_SPACE:
 
-                spacePressed = true;
                 endScreen.delete();
+
                 break;
             case KeyboardEvent.KEY_Q:
+
                 System.exit(0);
         }
     }

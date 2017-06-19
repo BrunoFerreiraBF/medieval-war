@@ -1,8 +1,6 @@
 package org.academiadecodigo.medievalwar.simpleGfx.screens;
 
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -14,7 +12,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  *
  * @author João David Silva
  */
-public class MenuScreen implements Screen, KeyboardHandler {
+public class MenuScreen implements KeyboardHandler {
 
     private boolean spacePressed;
 
