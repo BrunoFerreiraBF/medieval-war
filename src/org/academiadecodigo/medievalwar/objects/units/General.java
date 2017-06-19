@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 /**
  * Created by codecadet on 12/06/2017.
  */
-public class General extends Mercenary implements Damageable, Damager {
+public class General extends Mercenary {
 
     public General (int x, int y){
         super (x,y,MercenaryType.GENERAL,300,75,250,100,0,0.95);

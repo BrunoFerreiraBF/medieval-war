@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 /**
  * Created by codecadet on 12/06/2017.
  */
-public class Cavalry_Archer extends Mercenary implements Damageable, Damager {
+public class Cavalry_Archer extends Mercenary {
 
     public Cavalry_Archer(int x, int y){
 

@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 /**
  * Created by codecadet on 12/06/2017.
  */
-public class Catapult extends Mercenary implements Damageable, Damager {
+public class Catapult extends Mercenary {
 
     public Catapult(int x, int y) {
         super(x, y,MercenaryType.CATAPULT,50,55,60,500,80,0.7);

@@ -7,7 +7,7 @@ import org.academiadecodigo.medievalwar.objects.Damager;
 /**
  * Created by codecadet on 12/06/2017.
  */
-public class Cavalry extends Mercenary implements Damageable, Damager {
+public class Cavalry extends Mercenary  {
 
     public Cavalry(int x, int y) {
         super(x, y,MercenaryType.CAVALRY,105,54,350,100,100,0.95);
