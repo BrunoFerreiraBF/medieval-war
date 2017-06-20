@@ -10,8 +10,19 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class General extends Mercenary {
 
+    private boolean placed;
+
+
     public General (int x, int y){
         super (x,y,MercenaryType.GENERAL,300,75,250,100,0,0.95);
+    }
+
+    public boolean isPlaced() {
+        return placed;
+    }
+
+    public void place(){
+        placed=true;
     }
 
 

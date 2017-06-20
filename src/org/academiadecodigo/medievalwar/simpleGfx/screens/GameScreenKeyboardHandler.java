@@ -8,14 +8,14 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 /**
  * Created by codecadet on 19/06/2017.
  */
-public class GameScreenKeyboardHandler implements KeyboardHandler{
+public class GameScreenKeyboardHandler implements KeyboardHandler {
 
 
     private static boolean keySpace;
 
 
-    private static int turnCounter;
 
+    private GameScreenMouseHandler gameScreenMouseHandler;
 
     public static boolean isKeySpace() {
         return keySpace;
@@ -23,6 +23,8 @@ public class GameScreenKeyboardHandler implements KeyboardHandler{
 
 
     public GameScreenKeyboardHandler() {
+
+
 
         Keyboard k = new Keyboard(this);
 
@@ -34,30 +36,17 @@ public class GameScreenKeyboardHandler implements KeyboardHandler{
 
     }
 
-    public static int getTurnCounter() {
-        return turnCounter;
-    }
 
 
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
-        switch (keyboardEvent.getKey()) {
-
-            case KeyboardEvent.KEY_SPACE:
-
-                turnCounter ++;
-
-                GameScreenMouseHandler.nextTurn();
-        }
-
-
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
-        }
     }
+}
 

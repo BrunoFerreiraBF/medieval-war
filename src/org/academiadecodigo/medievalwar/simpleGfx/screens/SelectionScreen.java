@@ -55,14 +55,12 @@ public class SelectionScreen implements MouseHandler {
 
 
         if (mouseX > 320 + 10 && mouseX < 640 + 10) {
-            //System.out.println("wrong place");
             return;
         }
 
         Terrain terrain = verifyTerrain(mouseX, mouseY);
 
         if (terrain instanceof Rock) {
-            //System.out.println("cant place unit o rock");
             return;
         }
 
@@ -79,7 +77,6 @@ public class SelectionScreen implements MouseHandler {
         }
 
         if (verifyMercenary(mouseX, mouseY, player) != null) {
-            //System.out.println("there is a mercenary there");
             return;
         }
 

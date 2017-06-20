@@ -30,9 +30,11 @@ public class GameScreen {
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
         gameScreenMouseHandler = new GameScreenMouseHandler(terrains, grid, p1, p2);
+
         gameScreenKeyboardHandler = new GameScreenKeyboardHandler();
 
         Mouse m = new Mouse(gameScreenMouseHandler);
+
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         m.addEventListener(MouseEventType.MOUSE_MOVED);
 
