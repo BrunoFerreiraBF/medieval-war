@@ -16,10 +16,11 @@ public class Player {
     private int gold;
 
 
-    public Player (){
+    public Player() {
 
         this.units = new Mercenary[10];
-        this.gold=1000;
+        this.gold = 1000;
+
     }
 
 
@@ -33,7 +34,7 @@ public class Player {
     }
 
 
-    public void spendGold(int mercenaryCost){
+    public void spendGold(int mercenaryCost) {
 
         this.gold -= mercenaryCost;
     }

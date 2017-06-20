@@ -130,4 +130,6 @@ public abstract class Mercenary implements Damageable, Damager {
                 "type=" + type +
                 '}';
     }
+
+
 }

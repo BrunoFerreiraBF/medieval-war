@@ -25,7 +25,6 @@ public class SelectionScreen implements MouseHandler {
 
     private SelectionScreenKeyboardHandler keyboardHandler = new SelectionScreenKeyboardHandler();
 
-
     public SelectionScreen(Player p1, Player p2, SimpleGfxGrid grid, Terrain[][] terrains) {
 
         this.p1 = p1;
@@ -42,13 +41,38 @@ public class SelectionScreen implements MouseHandler {
         Picture rules = new Picture(960 / 3 + SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/pickScreen.jpg");
 
         drawTerrains(terrains);
+        createGeneral();
+
         rules.draw();
+    }
+
+
+    private void createGeneral() {
+
+
+        for (int i = 0; i < grid.getCols(); i++) {
+
+            if (terrains[0][i].getTerrainType() != TerrainType.ROCK) {
+
+                p1.getUnits()[0] = MercenaryFactory.makeMercenary2(80, 80+60*i, new General(80, 80+60*i), p1);
+               break;
+            }
+        }
+
+        for (int i = grid.getCols()-1; i > 0; i--) {
+
+            if (terrains[5][i].getTerrainType() != TerrainType.ROCK) {
+
+                p2.getUnits()[0] = MercenaryFactory.makeMercenary(880, 660-60*(5-i), new General(880 , 660-60*(5-i)), p2);
+                break;
+            }
+        }
     }
 
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
+        Player player = null;
 
         int mouseX = (int) mouseEvent.getX() - 10;
         int mouseY = (int) mouseEvent.getY() - 33;
@@ -58,17 +82,19 @@ public class SelectionScreen implements MouseHandler {
             return;
         }
 
+
         Terrain terrain = verifyTerrain(mouseX, mouseY);
 
         if (terrain instanceof Rock) {
             return;
         }
 
-        Player player = null;
 
         if (mouseX <= 320 + 10) {
             player = p1;
+
             createMercenary(mouseX, mouseY);
+
         }
 
         if (mouseX > 640 + 10) {
@@ -80,15 +106,13 @@ public class SelectionScreen implements MouseHandler {
             return;
         }
 
-        //System.out.println(p1.toString());
-        //System.out.println(p2.toString());
 
     }
 
 
     private void createMercenary2(int mouseX, int mouseY) {
 
-        Player player=p2;
+        Player player = p2;
 
         for (int i = 0; i < player.getUnits().length; i++) {
 
@@ -157,7 +181,6 @@ public class SelectionScreen implements MouseHandler {
     private void createMercenary(int mouseX, int mouseY) {
 
         Player player = p1;
-
 
 
         for (int i = 0; i < player.getUnits().length; i++) {
