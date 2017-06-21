@@ -21,19 +21,17 @@ public class GameScreen {
 
     private SimpleGfxGrid grid;
 
-    private GameScreenMouseHandler gameScreenMouseHandler;
+    private GameScreenInterfaceHandler gameScreenInterfaceHandler;
 
-    private GameScreenKeyboardHandler gameScreenKeyboardHandler;
+
 
     private static boolean winner;
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
-        gameScreenMouseHandler = new GameScreenMouseHandler(terrains, grid, p1, p2);
+        gameScreenInterfaceHandler = new GameScreenInterfaceHandler(terrains, grid, p1, p2);
 
-        gameScreenKeyboardHandler = new GameScreenKeyboardHandler();
-
-        Mouse m = new Mouse(gameScreenMouseHandler);
+        Mouse m = new Mouse(gameScreenInterfaceHandler);
 
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
         m.addEventListener(MouseEventType.MOUSE_MOVED);

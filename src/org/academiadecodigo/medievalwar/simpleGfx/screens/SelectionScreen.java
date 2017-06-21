@@ -317,9 +317,6 @@ public class SelectionScreen implements MouseHandler {
             int centerPosX = player.getUnits()[i].getPos().getX() - player.getUnits()[i].getUnitPic().getWidth() / 2 - 20;
             int centerPosY = player.getUnits()[i].getPos().getY() - player.getUnits()[i].getUnitPic().getHeight() / 2 - 20;
 
-            //System.out.println("in X = "+centerPosX+ " "+ mouseX+" "+(centerPosX+80));
-            //System.out.println("in y = "+centerPosY+ " "+ mouseY+" "+(centerPosY+60));
-
             if ((mouseX > centerPosX && (mouseX < (centerPosX + 120))
                     && (mouseY > centerPosY) && (mouseY < (centerPosY + 80)))) {
 

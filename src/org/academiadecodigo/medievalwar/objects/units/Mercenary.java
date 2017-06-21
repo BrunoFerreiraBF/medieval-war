@@ -120,8 +120,10 @@ public abstract class Mercenary implements Damageable, Damager {
 
     @Override
     public void hit(Damageable unit) {
-        unit.takeHit(getDamage() * initialHp / getHp());
-        System.out.println("Gave " + (getDamage() * initialHp / getHp()) + "damage");
+
+        unit.takeHit(getDamage() * getHp() / initialHp);
+
+        System.out.println("Gave " + (getDamage() * getHp() / initialHp + "damage");
     }
 
     @Override

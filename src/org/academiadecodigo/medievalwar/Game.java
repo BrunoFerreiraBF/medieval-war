@@ -57,8 +57,6 @@ public class Game {
 
         selectionScreen.remove(p1.getUnits());
         selectionScreen.remove(p2.getUnits());
-        selectionScreen=null;
-
 
 
         GameScreen gameScreen = new GameScreen(terrains, grid, p1, p2);
