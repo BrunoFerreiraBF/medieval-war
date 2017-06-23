@@ -7,6 +7,7 @@ import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -35,7 +36,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     private Ellipse move = new Ellipse(0, 0, 0, 0);
     private Ellipse attack = new Ellipse(0, 0, 0, 0);
     private Ellipse attack1 = new Ellipse(0, 0, 0, 0);
-
+    private Text turn= new Text(0,0,"");
 
     private int turnCounter;
 
@@ -45,7 +46,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         this.p1 = p1;
         this.p2 = p2;
         this.grid = grid;
-
 
 
         Keyboard k = new Keyboard(this);
@@ -62,6 +62,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
+
         deleteCircles();
 
         int mouseX = (int) mouseEvent.getX();
@@ -71,20 +72,20 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             return;
         }
 
-        if(selectedMerc!=null
+        if (selectedMerc != null
                 && selectedMerc.isMoved()
-                && verifyMercenary(mouseX, mouseY, p1)==null
-                && verifyMercenary(mouseX,mouseY,p2)==null){
+                && verifyMercenary(mouseX, mouseY, p1) == null
+                && verifyMercenary(mouseX, mouseY, p2) == null) {
 
-            selectedMerc=null;
-            targetMerc=null;
+            selectedMerc = null;
+            targetMerc = null;
         }
 
         if (selectedMerc != null
                 && !selectedMerc.isMoved()
                 && targetMerc == null
-                && verifyMercenary(mouseX,mouseY,p1)==null
-                && verifyMercenary(mouseX,mouseY,p2)==null) {
+                && verifyMercenary(mouseX, mouseY, p1) == null
+                && verifyMercenary(mouseX, mouseY, p2) == null) {
 
             move(mouseX, mouseY);
             deleteCircles();
@@ -137,8 +138,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
     private boolean attack() {
 
-        if (selectedMerc.getPos().getDistance(targetMerc.getPos().getX(), targetMerc.getPos().getY()) > selectedMerc.getAttackRange()/2) {
-            System.out.println("Distance " + selectedMerc.getPos().getDistance(targetMerc.getPos().getX(), targetMerc.getPos().getY()) + " attack range " + selectedMerc.getAttackRange()/2);
+        if (selectedMerc.getPos().getDistance(targetMerc.getPos().getX(), targetMerc.getPos().getY()) > selectedMerc.getAttackRange() / 2) {
+            System.out.println("Distance " + selectedMerc.getPos().getDistance(targetMerc.getPos().getX(), targetMerc.getPos().getY()) + " attack range " + selectedMerc.getAttackRange() / 2);
 
             selectedMerc = null;
             targetMerc = null;
@@ -149,8 +150,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         if (targetMerc != null) {
 
             selectedMerc.hit(targetMerc,
-                    terrains[selectedMerc.getPos().getX()/grid.getWidth()][selectedMerc.getPos().getY()/grid.getHeight()],
-                    terrains[targetMerc.getPos().getX()/grid.getWidth()][targetMerc.getPos().getY()/grid.getHeight()]);
+                    terrains[selectedMerc.getPos().getX() / grid.getWidth()][selectedMerc.getPos().getY() / grid.getHeight()],
+                    terrains[targetMerc.getPos().getX() / grid.getWidth()][targetMerc.getPos().getY() / grid.getHeight()]);
 
             if (targetMerc.isDead()) {
                 targetMerc.getUnitPic().delete();
@@ -181,10 +182,10 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     private boolean gameEnded() {
 
 
-        if (p1.getUnits()[0].isDead()||p2.getUnits()[0].isDead()) {
+        if (p1.getUnits()[0].isDead() || p2.getUnits()[0].isDead()) {
             System.out.println("-----Game Ended------");
 
-            targetMerc=null;
+            targetMerc = null;
 
             deleteCircles();
             GameScreen.setWinner(true);
@@ -198,12 +199,12 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     private boolean move(int x, int y) {
 
 
-        if (selectedMerc.getPos().getDistance(x, y) > selectedMerc.getMoveRange()/2) {
+        if (selectedMerc.getPos().getDistance(x, y) > selectedMerc.getMoveRange() / 2) {
             System.out.println("out of move range");
             return false;
         }
 
-        System.out.println("Distance : " + selectedMerc.getPos().getDistance(x, y) + " Unit move Range : " + selectedMerc.getMoveRange()/2);
+        System.out.println("Distance : " + selectedMerc.getPos().getDistance(x, y) + " Unit move Range : " + selectedMerc.getMoveRange() / 2);
         double distanceX = x - selectedMerc.getPos().getX();
         double distanceY = y - selectedMerc.getPos().getY();
 
@@ -227,7 +228,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
         return true;
     }
-
 
 
     public void resetUnits() {
@@ -266,21 +266,20 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     }
 
 
-
     private void drawCircles() {
 
         if (selectedMerc != null) {
 
 
-            double moveRangeRsdius= (selectedMerc.getMoveRange());
-            double attackRangeRadius= selectedMerc.getAttackRange() / 2;
+            double moveRangeRsdius = (selectedMerc.getMoveRange());
+            double attackRangeRadius = selectedMerc.getAttackRange() / 2;
 
             move = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2)), (selectedMerc.getMoveRange()), (selectedMerc.getMoveRange()));
             move.setColor(Color.YELLOW);
             move.fill();
             move.draw();
 
-            attack = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2)-(selectedMerc.getAttackRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2))-(selectedMerc.getAttackRange() / 2), (selectedMerc.getMoveRange())+(selectedMerc.getAttackRange() / 1),(selectedMerc.getMoveRange())+(selectedMerc.getAttackRange() / 1));
+            attack = new Ellipse((selectedMerc.getPos().getX() - (selectedMerc.getMoveRange() / 2) - (selectedMerc.getAttackRange() / 2)), (selectedMerc.getPos().getY() - (selectedMerc.getMoveRange() / 2)) - (selectedMerc.getAttackRange() / 2), (selectedMerc.getMoveRange()) + (selectedMerc.getAttackRange() / 1), (selectedMerc.getMoveRange()) + (selectedMerc.getAttackRange() / 1));
             attack.setColor(Color.RED);
             attack.fill();
             attack.draw();
@@ -293,7 +292,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         attack1.delete();
         move.delete();
     }
-
 
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {
@@ -363,10 +361,18 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             case KeyboardEvent.KEY_SPACE:
 
                 turnCounter++;
+                turn.delete();
+                turn = new Text(900, 50, "Turn:" + turnCounter);
+                turn.grow(10, 10);
+                turn.setColor(Color.RED);
+                turn.draw();
 
                 System.out.println("----------------------------------------------------Next turn----------------------------------------------------------");
 
-                resetUnits();
+                if(playerInControl!=null){
+                    resetUnits();
+                }
+
                 deleteCircles();
         }
     }
