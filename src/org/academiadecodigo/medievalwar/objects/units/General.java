@@ -14,7 +14,7 @@ public class General extends Mercenary {
 
 
     public General (int x, int y){
-        super (x,y,MercenaryType.GENERAL,300,75,250,100,0,0.95);
+        super (x,y,MercenaryType.GENERAL,300,75,250,150,0,0.95);
     }
 
     public boolean isPlaced() {

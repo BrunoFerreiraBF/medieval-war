@@ -10,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Infantry extends Mercenary {
 
     public Infantry(int x, int y){
-        super (x,y,MercenaryType.INFANTRY,135,81,250,100,60,0.95);
+        super (x,y,MercenaryType.INFANTRY,135,81,250,150,60,0.95);
     }
 
 

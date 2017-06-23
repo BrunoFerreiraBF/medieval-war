@@ -3,6 +3,7 @@ package org.academiadecodigo.medievalwar.objects.units;
 import org.academiadecodigo.medievalwar.field.Position;
 import org.academiadecodigo.medievalwar.objects.Damageable;
 import org.academiadecodigo.medievalwar.objects.Damager;
+import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -23,7 +24,7 @@ public abstract class Mercenary implements Damageable, Damager {
     private boolean dead = false;
 
 
-    private boolean moved=false;
+    private boolean moved = false;
 
     public Mercenary(int x, int y, MercenaryType type, double hp, double damage, double moveRange, double attackRange, int cost, double accuracy) {
 
@@ -80,11 +81,13 @@ public abstract class Mercenary implements Damageable, Damager {
     public boolean isAttacked() {
         return attacked;
     }
+
     public void hasAttacked() {
-        attacked=true;
+        attacked = true;
     }
+
     public void resetAttacked() {
-        attacked=false;
+        attacked = false;
     }
 
 
@@ -93,11 +96,13 @@ public abstract class Mercenary implements Damageable, Damager {
         return moved;
 
     }
+
     public void hasMoved() {
-        moved=true;
+        moved = true;
     }
+
     public void resetMove() {
-        moved=false;
+        moved = false;
     }
 
     public boolean isDead() {
@@ -119,11 +124,19 @@ public abstract class Mercenary implements Damageable, Damager {
     }
 
     @Override
-    public void hit(Damageable unit) {
+    public void hit(Damageable unit, Terrain attackerTerrain, Terrain defenderTerrain) {
 
-        unit.takeHit(getDamage() * getHp() / initialHp);
+        double accuracy = this.accuracy * attackerTerrain.getAccuracyMultiplier() * defenderTerrain.getDefenseMultiplier();
+        double damage = attackerTerrain.getDamageMultiplier() * this.damage;
 
-        System.out.println("Gave " + (getDamage() * getHp() / initialHp + "damage");
+
+        if (damage * accuracy == 0) {
+            System.out.println(" Attack Missed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
+        }
+
+        unit.takeHit(damage * accuracy);
+
+        System.out.println("Gave " + (getDamage() * getHp() / initialHp + "damage"));
     }
 
     @Override

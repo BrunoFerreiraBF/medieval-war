@@ -10,7 +10,7 @@ import org.academiadecodigo.medievalwar.objects.Damager;
 public class Cavalry extends Mercenary  {
 
     public Cavalry(int x, int y) {
-        super(x, y,MercenaryType.CAVALRY,105,54,350,100,100,0.95);
+        super(x, y,MercenaryType.CAVALRY,105,54,350,150,100,0.95);
     }
 
 

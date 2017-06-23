@@ -12,7 +12,7 @@ public class Cavalry_Archer extends Mercenary {
 
     public Cavalry_Archer(int x, int y){
 
-        super (x,y,MercenaryType.CAVALRY_ARCHER,105,27,250,200,94,0.75);
+        super (x,y,MercenaryType.CAVALRY_ARCHER,105,27,250,250,94,0.75);
 
     }
 

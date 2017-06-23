@@ -11,8 +11,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Catapult extends Mercenary {
 
     public Catapult(int x, int y) {
-        super(x, y,MercenaryType.CATAPULT,50,55,100,500,80,0.7);
-
+        super(x, y,MercenaryType.CATAPULT,50,55000,100,500,80,0.7);
+//TODO: fix the attack
     }
 
 

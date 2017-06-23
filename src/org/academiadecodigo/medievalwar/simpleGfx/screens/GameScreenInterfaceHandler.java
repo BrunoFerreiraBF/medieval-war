@@ -46,6 +46,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         this.p2 = p2;
         this.grid = grid;
 
+
+
         Keyboard k = new Keyboard(this);
 
         KeyboardEvent SpacePressedEvent = new KeyboardEvent();
@@ -69,10 +71,24 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             return;
         }
 
+        if(selectedMerc!=null
+                && selectedMerc.isMoved()
+                && verifyMercenary(mouseX, mouseY, p1)==null
+                && verifyMercenary(mouseX,mouseY,p2)==null){
 
-        if (selectedMerc != null && !selectedMerc.isMoved() && targetMerc == null) {
+            selectedMerc=null;
+            targetMerc=null;
+        }
+
+        if (selectedMerc != null
+                && !selectedMerc.isMoved()
+                && targetMerc == null
+                && verifyMercenary(mouseX,mouseY,p1)==null
+                && verifyMercenary(mouseX,mouseY,p2)==null) {
+
             move(mouseX, mouseY);
             deleteCircles();
+
         }
 
 
@@ -84,7 +100,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             if (targetMerc == null) {
                 targetMerc = verifyMercenary(mouseX, mouseY, p2);
             }
-            System.out.println("----------------Player 1 in control-----------------");
+            System.out.println("------------Player 1 in control-----------------");
             playerInControl = p1;
         }
 
@@ -97,7 +113,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             if (targetMerc == null) {
                 targetMerc = verifyMercenary(mouseX, mouseY, p1);
             }
-            System.out.println("----------------Player 2 in control-----------------");
+            System.out.println("------------Player 2 in control-----------------");
             playerInControl = p2;
         }
 
@@ -132,7 +148,9 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
         if (targetMerc != null) {
 
-            selectedMerc.hit(targetMerc);
+            selectedMerc.hit(targetMerc,
+                    terrains[selectedMerc.getPos().getX()/grid.getWidth()][selectedMerc.getPos().getY()/grid.getHeight()],
+                    terrains[targetMerc.getPos().getX()/grid.getWidth()][targetMerc.getPos().getY()/grid.getHeight()]);
 
             if (targetMerc.isDead()) {
                 targetMerc.getUnitPic().delete();
@@ -140,8 +158,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 targetMerc.getPos().setY(-10);
             }
 
-            System.out.println("---------------------------------------------------------------" + selectedMerc + "-----attacked-------" + targetMerc + "---------------------------------------------------");
-            System.out.println("--------------------------------------------------------------------attacked----------------------------------------------------------");
+            System.out.println("------------------------------" + selectedMerc + "-----attacked-------" + targetMerc + "---------------------------------------------------");
+            System.out.println("---------------------------------------------attacked----------------------------------------------------------");
 
             selectedMerc.hasAttacked();
 
@@ -164,9 +182,12 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
 
         if (p1.getUnits()[0].isDead()||p2.getUnits()[0].isDead()) {
-            System.out.println("-----in------");
+            System.out.println("-----Game Ended------");
+
             targetMerc=null;
+
             deleteCircles();
+            GameScreen.setWinner(true);
             return true;
         }
 

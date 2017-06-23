@@ -10,6 +10,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Archer extends Mercenary {
 
     public Archer(int x, int y){
-        super (x,y,MercenaryType.ARCHER,36,63,200,300,112,0.8);
+        super (x,y,MercenaryType.ARCHER,36,63,200,350,112,0.8);
     }
 }
