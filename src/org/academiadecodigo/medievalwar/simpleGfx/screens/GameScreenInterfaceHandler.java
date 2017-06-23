@@ -271,17 +271,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
     }
 
-    public void showLife() {
-
-        for (int i = 0; i < p1.getUnits().length; i++) {
-
-            if (!playerInControl.getUnits()[i].isDead()) {
-
-                playerInControl.getUnits()[i].resetAttacked();
-            }
-
-        }
-    }
 
     private void drawCircles() {
 
@@ -378,11 +367,18 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             case KeyboardEvent.KEY_SPACE:
 
                 turnCounter++;
+
                 turn.delete();
-                turn = new Text(900, 50, "Turn:" + turnCounter);
+
+                turn = new Text(850, 50, "Turn:" + ( player1InControl(turnCounter) ? "Player 1":"Player 2"));
+
                 turn.grow(10, 10);
+
                 turn.setColor(Color.RED);
+
                 turn.draw();
+
+
 
                 System.out.println("---------Next turn-----------Next turn----------Next turn----------Next turn---------Next turn----------Next turn---------Next turn----");
 

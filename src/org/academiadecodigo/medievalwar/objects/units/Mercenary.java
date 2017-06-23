@@ -159,13 +159,14 @@ public abstract class Mercenary implements Damageable, Damager {
         double damage = attackerTerrain.getDamageMultiplier() * this.damage;
 
 
-        if (damage * accuracy == 0) {
-            System.out.println(" Attack Missed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
+        if (Math.random() < accuracy) {
+            unit.takeHit(damage);
+            System.out.println("Gave " + damage+ "damage");
+            return;
         }
 
-        unit.takeHit(damage * accuracy);
+        System.out.println(" Attack Missed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ");
 
-        System.out.println("Gave " + (getDamage() * getHp() / initialHp + "damage"));
     }
 
     @Override
