@@ -7,6 +7,7 @@ import org.academiadecodigo.medievalwar.objects.units.Mercenary;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -36,7 +37,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     private Ellipse move = new Ellipse(0, 0, 0, 0);
     private Ellipse attack = new Ellipse(0, 0, 0, 0);
     private Ellipse attack1 = new Ellipse(0, 0, 0, 0);
-    private Text turn= new Text(0,0,"");
+    private Text turn = new Text(0, 0, "");
 
     private int turnCounter;
 
@@ -164,6 +165,9 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
             selectedMerc.hasAttacked();
 
+            selectedMerc.drawHpBar();
+            targetMerc.drawHpBar();
+
             selectedMerc = null;
             targetMerc = null;
 
@@ -222,6 +226,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         attack1.fill();
         attack1.draw();
 
+        selectedMerc.drawHpBar();
+
         selectedMerc.hasMoved();
 
         selectedMerc = null;
@@ -265,6 +271,17 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
     }
 
+    public void showLife() {
+
+        for (int i = 0; i < p1.getUnits().length; i++) {
+
+            if (!playerInControl.getUnits()[i].isDead()) {
+
+                playerInControl.getUnits()[i].resetAttacked();
+            }
+
+        }
+    }
 
     private void drawCircles() {
 
@@ -367,9 +384,9 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 turn.setColor(Color.RED);
                 turn.draw();
 
-                System.out.println("----------------------------------------------------Next turn----------------------------------------------------------");
+                System.out.println("---------Next turn-----------Next turn----------Next turn----------Next turn---------Next turn----------Next turn---------Next turn----");
 
-                if(playerInControl!=null){
+                if (playerInControl != null) {
                     resetUnits();
                 }
 

@@ -4,7 +4,10 @@ import org.academiadecodigo.medievalwar.field.Position;
 import org.academiadecodigo.medievalwar.objects.Damageable;
 import org.academiadecodigo.medievalwar.objects.Damager;
 import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 
 /**
  * Created by codecadet on 10/06/2017.
@@ -12,15 +15,22 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public abstract class Mercenary implements Damageable, Damager {
 
     private Picture unitPic;
+    private Rectangle uniFullHp=new Rectangle();
+    private Rectangle unitHp=new Rectangle();
+
     private double initialHp;
     private double hp;
     public double damage;
     private double moveRange;
     private double attackRange;
     private double accuracy;
+
     private MercenaryType type;
+
     private Position pos;
+
     private static int cost;
+
     private boolean dead = false;
 
 
@@ -37,6 +47,25 @@ public abstract class Mercenary implements Damageable, Damager {
         this.moveRange = moveRange;
         this.attackRange = attackRange;
         this.cost = cost;
+
+
+        drawHpBar();
+
+    }
+
+    public void drawHpBar(){
+        unitHp.delete();
+        uniFullHp.delete();
+
+        uniFullHp = new Rectangle(pos.getX() - 30, pos.getY() - 35, (int) (0.25 * initialHp), 2);
+        unitHp = new Rectangle(pos.getX() - 30, pos.getY() - 35, (int) (0.25 * this.hp), 2);
+
+        uniFullHp.setColor(Color.RED);
+        unitHp.setColor(Color.RED);
+
+        uniFullHp.draw();
+
+        unitHp.fill();
 
     }
 
