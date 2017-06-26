@@ -14,10 +14,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class EndScreen implements KeyboardHandler {
 
 
-    private Picture endScreen = new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_blueWins.jpg");
+    private Picture endScreen;
 
 
-    public EndScreen() {
+    public EndScreen(Picture pic) {
+
+        endScreen=pic;
 
         Keyboard k = new Keyboard(this);
 /*

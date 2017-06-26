@@ -26,7 +26,6 @@ public class SimpleGfxGrid implements Grid {
 
         this.rows=rows;
         this.cols=cols;
-
     }
 
     /**

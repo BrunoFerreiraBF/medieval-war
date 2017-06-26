@@ -15,6 +15,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 
 import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 /**
@@ -100,7 +101,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             if (targetMerc == null) {
                 targetMerc = verifyMercenary(mouseX, mouseY, p2);
             }
-            System.out.println("------------Player 1 in control-----------------");
             playerInControl = p1;
         }
 
@@ -113,7 +113,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             if (targetMerc == null) {
                 targetMerc = verifyMercenary(mouseX, mouseY, p1);
             }
-            System.out.println("------------Player 2 in control-----------------");
             playerInControl = p2;
         }
 
@@ -159,7 +158,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 targetMerc.getPos().setY(-10);
             }
 
-            System.out.println("---------------------------------------------attacked----------------------------------------------------------");
+            //System.out.println("---------------------------------------------attacked----------------------------------------------------------");
 
             selectedMerc.hasAttacked();
 
@@ -189,9 +188,12 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
             deleteCircles();
 
-            EndScreen endScreen = new EndScreen(); // Player
+            EndScreen endScreen = new EndScreen(
+                    p1.getUnits()[0].isDead()? new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_blueWins.jpg"):
+                            new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_redWins.jpg")); // Player
 
             endScreen.Start();
+
             return true;
         }
 
@@ -235,6 +237,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     }
 
 
+
     public void resetUnits() {
         resetMovement();
         resetAttack();
@@ -271,6 +274,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     }
 
 
+
     private void drawCircles() {
 
         if (selectedMerc.isMoved()) {
@@ -305,6 +309,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         attack1.delete();
         move.delete();
     }
+
 
 
     public Mercenary verifyMercenary(int mouseX, int mouseY, Player player) {
@@ -357,6 +362,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         return null;
 
     }
+
 
 
     private boolean getPlayerInControl(int turn) {

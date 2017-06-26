@@ -36,7 +36,7 @@ public class Player {
 
     public void spendGold(int mercenaryCost) {
 
-        this.gold -= mercenaryCost;
+        gold = gold - mercenaryCost;
     }
 
 
