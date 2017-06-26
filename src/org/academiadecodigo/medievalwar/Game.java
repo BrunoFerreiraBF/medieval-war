@@ -5,10 +5,12 @@ import org.academiadecodigo.medievalwar.objects.terrain.Terrain;
 import org.academiadecodigo.medievalwar.objects.terrain.TerrainFactory;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
 import org.academiadecodigo.medievalwar.simpleGfx.screens.*;
+import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Game {
 
-    //private ScreenManager sm;
+
 
     private SimpleGfxGrid grid;
 
@@ -18,7 +20,7 @@ public class Game {
 
     private Player p2;
 
-    private boolean endTurn;
+    //private KeyboardHandler k;
 
 
     public void init() {
@@ -39,11 +41,14 @@ public class Game {
         MenuScreen menuScreen = new MenuScreen();
         menuScreen.setSpacePressed(true);
 
+
         while (!menuScreen.isSpacePressed()) {
             menuScreen.Start();
         }
 
         SelectionScreen selectionScreen = new SelectionScreen(p1, p2, grid, terrains);
+
+
         //SelectionScreenKeyboardHandler.setTurnCounter(true);
 
         selectionScreen.init();
@@ -55,6 +60,7 @@ public class Game {
             }
         }
 
+
         selectionScreen.remove(p1.getUnits());
         selectionScreen.remove(p2.getUnits());
 
@@ -64,17 +70,6 @@ public class Game {
         gameScreen.init();
         gameScreen.start();
 
-
-        while (!GameScreen.isWinner()) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-            }
-        }
-
-        EndScreen endScreen = new EndScreen(); // Player
-
-        endScreen.Start();
     }
 
 

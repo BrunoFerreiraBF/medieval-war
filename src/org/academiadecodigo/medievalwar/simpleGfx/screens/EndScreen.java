@@ -20,16 +20,16 @@ public class EndScreen implements KeyboardHandler {
     public EndScreen() {
 
         Keyboard k = new Keyboard(this);
-
+/*
         KeyboardEvent spacePressed = new KeyboardEvent();
         spacePressed.setKey(KeyboardEvent.KEY_SPACE);
         spacePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         k.addEventListener(spacePressed);
-
+*/
         KeyboardEvent qPressed = new KeyboardEvent();
         qPressed.setKey(KeyboardEvent.KEY_Q);
         qPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        k.addEventListener(spacePressed);
+        k.addEventListener(qPressed);
 
     }
 
@@ -50,7 +50,7 @@ public class EndScreen implements KeyboardHandler {
 
                 break;
             case KeyboardEvent.KEY_Q:
-
+                System.out.println("Finish Screen");
                 System.exit(0);
         }
     }

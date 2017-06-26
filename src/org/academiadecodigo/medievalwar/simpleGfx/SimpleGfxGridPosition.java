@@ -59,7 +59,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     }
 
     /**
-     * @see GridPosition#hide()
+     //* @see GridPosition#hide()
      */
     @Override
     public void hide() {

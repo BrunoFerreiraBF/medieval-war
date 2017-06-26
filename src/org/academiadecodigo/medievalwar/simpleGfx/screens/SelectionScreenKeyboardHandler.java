@@ -44,6 +44,9 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
         return key6;
     }
 
+
+
+
     public SelectionScreenKeyboardHandler() {
 
         Keyboard k = new Keyboard(this);
@@ -114,10 +117,6 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
 
     public static boolean isStartGameScreen() {
         return startGameScreen;
-    }
-
-    public static void setStartGameScreen(boolean startGameScreen) {
-        SelectionScreenKeyboardHandler.startGameScreen = startGameScreen;
     }
 
     @Override

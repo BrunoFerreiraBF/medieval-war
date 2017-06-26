@@ -16,16 +16,11 @@ public class GameScreen {
     private Terrain[][] terrains;
 
     private Player p1;
-
     private Player p2;
 
-    private SimpleGfxGrid grid;
+    //private SimpleGfxGrid grid;
 
     private GameScreenInterfaceHandler gameScreenInterfaceHandler;
-
-
-
-    private static boolean winner;
 
 
     public GameScreen(Terrain[][] terrains, SimpleGfxGrid grid, Player p1, Player p2) {
@@ -39,19 +34,10 @@ public class GameScreen {
         this.terrains = terrains;
         this.p1 = p1;
         this.p2 = p2;
-        this.grid = grid;
+        //this.grid = grid;
 
     }
 
-
-    public static boolean setWinner(boolean winner1) {
-        winner = winner1;
-        return winner;
-    }
-
-    public static boolean isWinner() {
-        return winner;
-    }
 
     public void init() {
         drawTerrains(terrains);
@@ -122,6 +108,8 @@ public class GameScreen {
         }
     }
 
+
+    /*
     public void remove(Mercenary[] units) {
 
         Picture picture;
@@ -137,4 +125,5 @@ public class GameScreen {
         }
 
     }
+    */
 }

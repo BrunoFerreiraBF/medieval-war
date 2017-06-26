@@ -4,6 +4,8 @@ import org.academiadecodigo.medievalwar.Player;
 import org.academiadecodigo.medievalwar.objects.terrain.*;
 import org.academiadecodigo.medievalwar.objects.units.*;
 import org.academiadecodigo.medievalwar.simpleGfx.SimpleGfxGrid;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -23,6 +25,10 @@ public class SelectionScreen implements MouseHandler {
 
     private SimpleGfxGrid grid;
 
+    private Text p1Gold= new Text(0,0,"");
+    private Text p2Gold= new Text(0,0,"");
+
+
     private SelectionScreenKeyboardHandler keyboardHandler = new SelectionScreenKeyboardHandler();
 
     public SelectionScreen(Player p1, Player p2, SimpleGfxGrid grid, Terrain[][] terrains) {
@@ -31,8 +37,11 @@ public class SelectionScreen implements MouseHandler {
         this.p2 = p2;
         this.grid = grid;
         this.terrains = terrains;
+
         Mouse m = new Mouse(this);
+
         m.addEventListener(MouseEventType.MOUSE_CLICKED);
+
         m.addEventListener(MouseEventType.MOUSE_MOVED);
 
     }
@@ -44,9 +53,13 @@ public class SelectionScreen implements MouseHandler {
         createGeneral();
 
         rules.draw();
+        updatePlayerGold();
     }
-
-
+/*
+    public void setKeyboardHandler(SelectionScreenKeyboardHandler keyboardHandler) {
+        this.keyboardHandler = keyboardHandler;
+    }
+*/
     private void createGeneral() {
 
 
@@ -54,16 +67,16 @@ public class SelectionScreen implements MouseHandler {
 
             if (terrains[0][i].getTerrainType() != TerrainType.ROCK) {
 
-                p1.getUnits()[0] = MercenaryFactory.makeMercenary2(80, 80+60*i, new General(80, 80+60*i), p1);
-               break;
+                p1.getUnits()[0] = MercenaryFactory.makeMercenary2(80, 80 + 60 * i, new General(80, 80 + 60 * i), p1);
+                break;
             }
         }
 
-        for (int i = grid.getCols()-1; i > 0; i--) {
+        for (int i = grid.getCols() - 1; i > 0; i--) {
 
             if (terrains[5][i].getTerrainType() != TerrainType.ROCK) {
 
-                p2.getUnits()[0] = MercenaryFactory.makeMercenary(880, 660-60*(5-i), new General(880 , 660-60*(5-i)), p2);
+                p2.getUnits()[0] = MercenaryFactory.makeMercenary(880, 660 - 60 * (5 - i), new General(880, 660 - 60 * (5 - i)), p2);
                 break;
             }
         }
@@ -94,7 +107,6 @@ public class SelectionScreen implements MouseHandler {
             player = p1;
 
             createMercenary(mouseX, mouseY);
-
         }
 
         if (mouseX > 640 + 10) {
@@ -105,6 +117,23 @@ public class SelectionScreen implements MouseHandler {
         if (verifyMercenary(mouseX, mouseY, player) != null) {
             return;
         }
+        updatePlayerGold();
+
+    }
+
+    private void updatePlayerGold() {
+        p1Gold.delete();
+        p1Gold= new Text( 460,(115) ,"Gold: "+p1.getGold());
+        p1Gold.grow(40,20);
+        p1Gold.setColor(Color.YELLOW);
+        p1Gold.draw();
+
+        p2Gold.delete();
+        p2Gold= new Text( 470 ,(705) ,"Gold: "+p2.getGold());
+        p2Gold.grow(50,20);
+        p2Gold.setColor(Color.YELLOW);
+        p2Gold.draw();
+
 
 
     }
@@ -364,6 +393,9 @@ public class SelectionScreen implements MouseHandler {
             picture = units[i].getUnitPic();
             picture.delete();
         }
+
+        p1Gold = null;
+        p2Gold = null;
 
     }
 }
