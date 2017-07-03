@@ -55,13 +55,11 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         SpacePressedEvent.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         k.addEventListener(SpacePressedEvent);
-
     }
 
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
 
         deleteCircles();
 
@@ -71,6 +69,8 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
         if (verifyTerrain(mouseX, mouseY + 23).getTerrainType() == TerrainType.ROCK) {
             return;
         }
+
+        //clean mercenary selection if you press on an empty space
 
         if (selectedMerc != null
                 && selectedMerc.isMoved()
@@ -88,33 +88,21 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 && verifyMercenary(mouseX, mouseY, p2) == null) {
 
             move(mouseX, mouseY);
+
             deleteCircles();
-
         }
 
+// check which player is in control and assign mercenaries as friends or enemies;
 
-        if (getPlayerInControl(turnCounter)) {
+        playerInControl= getPlayerInControl(turnCounter)? p1 : p2 ;
 
-            if (selectedMerc == null) {
-                selectedMerc = verifyMercenary(mouseX, mouseY, p1);
-            }
-            if (targetMerc == null) {
-                targetMerc = verifyMercenary(mouseX, mouseY, p2);
-            }
-            playerInControl = p1;
+        if (selectedMerc == null) {
+            selectedMerc = verifyMercenary(mouseX, mouseY, getPlayerInControl(turnCounter)? p1 : p2);
+        }
+        if (targetMerc == null) {
+            targetMerc = verifyMercenary(mouseX, mouseY, getPlayerInControl(turnCounter)? p2 : p1);
         }
 
-        if (!getPlayerInControl(turnCounter)) {
-
-
-            if (selectedMerc == null) {
-                selectedMerc = verifyMercenary(mouseX, mouseY, p2);
-            }
-            if (targetMerc == null) {
-                targetMerc = verifyMercenary(mouseX, mouseY, p1);
-            }
-            playerInControl = p2;
-        }
 
 
         if (targetMerc != null && selectedMerc != null && !selectedMerc.isAttacked()) {
@@ -126,9 +114,10 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             drawCircles();
         }
 
-        System.out.println(selectedMerc);
+        //souts for debugging
+        System.out.println("My unit : "+selectedMerc);
 
-        System.out.println(targetMerc);
+        System.out.println("Enemy unit : "+targetMerc);
 
         gameEnded();
     }
@@ -158,8 +147,6 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 targetMerc.getPos().setY(-10);
             }
 
-            //System.out.println("---------------------------------------------attacked----------------------------------------------------------");
-
             selectedMerc.hasAttacked();
 
             selectedMerc.drawHpBar();
@@ -174,32 +161,25 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     }
 
     @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-
-    }
+    public void mouseMoved(MouseEvent mouseEvent) {}
 
 
-    private boolean gameEnded() {
+    private void gameEnded() {
 
         if (p1.getUnits()[0].isDead() || p2.getUnits()[0].isDead()) {
             System.out.println("-----Game Ended------");
 
-            targetMerc = null;
-
             deleteCircles();
 
-            EndScreen endScreen = new EndScreen(
-                    p1.getUnits()[0].isDead()? new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_blueWins.jpg"):
-                            new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_redWins.jpg")); // Player
+            EndScreen endScreen =
+                    new EndScreen(!p1.getUnits()[0].isDead()?
+                            new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_blueWins.jpg"):
+                            new Picture(SimpleGfxGrid.PADDING, SimpleGfxGrid.PADDING, "game_screens/fullScreen_redWins.jpg"));
 
             endScreen.Start();
-
-            return true;
         }
 
-        return false;
     }
-
 
     private boolean move(int x, int y) {
 
@@ -215,17 +195,20 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
 
         selectedMerc.getUnitPic().translate(distanceX, distanceY);
-
+// set position
         selectedMerc.getPos().setX(x);
         selectedMerc.getPos().setY(y);
 
+//delete circles
         move.delete();
         attack.delete();
+
 
         attack1 = new Ellipse(selectedMerc.getPos().getX() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getPos().getY() - (selectedMerc.getAttackRange()) / 2, selectedMerc.getAttackRange(), selectedMerc.getAttackRange());
         attack1.setColor(Color.RED);
         attack1.fill();
         attack1.draw();
+
 
         selectedMerc.drawHpBar();
 
@@ -332,7 +315,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
             if ((mouseX > centerPosX && (mouseX < (centerPosX + 120))
                     && (mouseY > centerPosY) && (mouseY < (centerPosY + 80)))) {
 
-                System.out.println(player.getUnits()[i]);
+                //System.out.println(player.getUnits()[i]);
 
                 return player.getUnits()[i];
             }
@@ -351,7 +334,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
 
                 if ((mouseRow == i) && (mouseCol == j)) {
 
-                    System.out.println(terrains[i][j].toString());
+                    //System.out.println(terrains[i][j].toString());
 
                     return terrains[i][j];
 
@@ -384,15 +367,12 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
                 turn.delete();
 
                 turn = new Text(820, 50, "Turn:" + (getPlayerInControl(turnCounter) ? "Player 1" : "Player 2"));
-
                 turn.grow(50, 30);
-
                 turn.setColor((getPlayerInControl(turnCounter) ? Color.BLUE : Color.RED));
-
                 turn.draw();
 
 
-                System.out.println("---------Next turn-----------Next turn----------Next turn----------Next turn---------Next turn----------Next turn---------Next turn----");
+                System.out.println("------Next turn------Next turn--------Next turn-------Next turn------Next turn------Next turn------Next turn----");
 
                 if (playerInControl != null) {
                     resetUnits();
@@ -403,9 +383,7 @@ public class GameScreenInterfaceHandler implements MouseHandler, KeyboardHandler
     }
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
+    public void keyReleased(KeyboardEvent keyboardEvent) {}
 
 }
 

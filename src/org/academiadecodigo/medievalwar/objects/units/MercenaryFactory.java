@@ -1,6 +1,8 @@
 package org.academiadecodigo.medievalwar.objects.units;
 
 import org.academiadecodigo.medievalwar.Player;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**
@@ -9,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class MercenaryFactory {
 
 
-    public static Mercenary makeMercenary(int x, int y, Mercenary unit, Player player) {
+    public static Mercenary makeMercenary(int x, int y, Mercenary unit) {
 
             if (unit instanceof Archer) {
 
@@ -17,6 +19,13 @@ public class MercenaryFactory {
                 pic.draw();
                 pic.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
 
+
+                Rectangle rec=new Rectangle(x,y,pic.getWidth() ,pic.getHeight() );
+                rec.setColor(Color.BLACK);
+                rec.draw();
+                rec.translate(-pic.getWidth() / 2,-pic.getHeight() / 2);
+
+//TODO: take the test square
                 return unit;
             }
 
@@ -79,7 +88,7 @@ public class MercenaryFactory {
 
 
 
-    public static Mercenary makeMercenary2(int x, int y, Mercenary unit, Player player) {
+    public static Mercenary makeMercenary2(int x, int y, Mercenary unit) {
 
         if (unit instanceof Archer) {
 

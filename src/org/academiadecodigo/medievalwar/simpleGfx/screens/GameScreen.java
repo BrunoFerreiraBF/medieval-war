@@ -44,8 +44,8 @@ public class GameScreen {
     }
 
     public void start() {
-        System.out.println(p1);
-        System.out.println(p2);
+        //System.out.println(p1);
+        //System.out.println(p2);
 
         drawUnits(p1.getUnits());
         drawUnits(p2.getUnits());

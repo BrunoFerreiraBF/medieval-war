@@ -17,7 +17,7 @@ public class SelectionScreenKeyboardHandler implements KeyboardHandler {
     private boolean key5;
     private boolean key6;
 
-    private static boolean startGameScreen;
+    private static volatile boolean startGameScreen;
 
 
     public boolean isKey1() {

@@ -67,7 +67,7 @@ public class SelectionScreen implements MouseHandler {
 
             if (terrains[0][i].getTerrainType() != TerrainType.ROCK) {
 
-                p1.getUnits()[0] = MercenaryFactory.makeMercenary2(SimpleGfxGrid.CELLWIDTH/2, SimpleGfxGrid.CELLHEIGHT/2 *(1+i), new General(SimpleGfxGrid.CELLWIDTH/2, SimpleGfxGrid.CELLHEIGHT/2 *(1+i)), p1);
+                p1.getUnits()[0] = MercenaryFactory.makeMercenary2(SimpleGfxGrid.CELLWIDTH/2, SimpleGfxGrid.CELLHEIGHT/2 *(1+i), new General(SimpleGfxGrid.CELLWIDTH/2, SimpleGfxGrid.CELLHEIGHT/2 *(1+i)));
                 break;
             }
         }
@@ -76,7 +76,7 @@ public class SelectionScreen implements MouseHandler {
 
             if (terrains[5][i].getTerrainType() != TerrainType.ROCK) {
 
-                p2.getUnits()[0] = MercenaryFactory.makeMercenary(grid.getWidth()-SimpleGfxGrid.CELLWIDTH/2, grid.getHeight() - SimpleGfxGrid.CELLHEIGHT/2 * (grid.getRows() - i), new General(grid.getWidth()-SimpleGfxGrid.CELLWIDTH/2, grid.getHeight() - SimpleGfxGrid.CELLHEIGHT/2 * (grid.getRows() - i)), p2);
+                p2.getUnits()[0] = MercenaryFactory.makeMercenary(grid.getWidth()-SimpleGfxGrid.CELLWIDTH/2, grid.getHeight() - SimpleGfxGrid.CELLHEIGHT/2 * (grid.getRows() - i), new General(grid.getWidth()-SimpleGfxGrid.CELLWIDTH/2, grid.getHeight() - SimpleGfxGrid.CELLHEIGHT/2 * (grid.getRows() - i)));
                 break;
             }
         }
@@ -161,9 +161,9 @@ public class SelectionScreen implements MouseHandler {
 
                     player.spendGold(Archer.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Archer(mouseX, mouseY));
 
-                    System.out.println(player.getUnits()[i].getPos().getX() + " equal " + mouseX + "  " + player.getUnits()[i].getPos().getY() + " equal " + mouseY);
+                    //System.out.println(player.getUnits()[i].getPos().getX() + " equal " + mouseX + "  " + player.getUnits()[i].getPos().getY() + " equal " + mouseY);
                 }
 
                 if (keyboardHandler.isKey2()) {
@@ -173,7 +173,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Catapult.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Catapult(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Catapult(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey3()) {
@@ -182,7 +182,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Cavalry.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Cavalry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Cavalry(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey4()) {
@@ -192,7 +192,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Cavalry_Archer.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey5()) {
@@ -201,7 +201,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Infantry.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Infantry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Infantry(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey6()) {
@@ -210,7 +210,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Spearman.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Spearman(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary2(mouseX, mouseY, new Spearman(mouseX, mouseY));
 
                 }
                 return;
@@ -240,9 +240,9 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Archer.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Archer(mouseX, mouseY));
 
-                    System.out.println(player.getUnits()[i].getPos().getX() + " equal " + mouseX + "  " + player.getUnits()[i].getPos().getY() + " equal " + mouseY);
+                    //System.out.println(player.getUnits()[i].getPos().getX() + " equal " + mouseX + "  " + player.getUnits()[i].getPos().getY() + " equal " + mouseY);
                 }
 
                 if (keyboardHandler.isKey2()) {
@@ -252,7 +252,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Catapult.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Catapult(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Catapult(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey3()) {
@@ -261,7 +261,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Cavalry.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey4()) {
@@ -271,7 +271,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Cavalry_Archer.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Cavalry_Archer(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey5()) {
@@ -280,7 +280,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Infantry.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Infantry(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Infantry(mouseX, mouseY));
                 }
 
                 if (keyboardHandler.isKey6()) {
@@ -289,7 +289,7 @@ public class SelectionScreen implements MouseHandler {
                     }
                     player.spendGold(Spearman.getCost());
                     updatePlayerGold();
-                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Spearman(mouseX, mouseY), player);
+                    player.getUnits()[i] = MercenaryFactory.makeMercenary(mouseX, mouseY, new Spearman(mouseX, mouseY));
 
                 }
                 return;

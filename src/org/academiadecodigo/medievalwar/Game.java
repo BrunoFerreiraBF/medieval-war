@@ -10,8 +10,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Game {
 
-
-
     private SimpleGfxGrid grid;
 
     private Terrain[][] terrains;
@@ -20,7 +18,6 @@ public class Game {
 
     private Player p2;
 
-    //private KeyboardHandler k;
 
 
     public void init() {
@@ -39,7 +36,7 @@ public class Game {
     public void start() {
 
         MenuScreen menuScreen = new MenuScreen();
-        menuScreen.setSpacePressed(true);
+        //menuScreen.setSpacePressed(true);
 
 
         while (!menuScreen.isSpacePressed()) {
@@ -54,10 +51,7 @@ public class Game {
         selectionScreen.init();
 
         while (!SelectionScreenKeyboardHandler.isStartGameScreen()) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-            }
+
         }
 
 
